@@ -184,6 +184,9 @@ you added it.
 - 2026-09-02 Design direction for this site: cold moon-white greyish surfaces,
   checkerboard edge, very condensed Instrument Sans display type, springy
   half-spin on the asterisk. Mobile gets the same treatment, not a cut-down.
+- 2026-09-02 Licensed fonts come from the user, in `footer fonts.zip` on
+  `main`. Check that branch for supplied assets before concluding something
+  cannot be fetched.
 - 2026-09-02 Interaction preferences for this site: micro-interactions belong
   on the element itself, never on its parent container. Magnetic pull plus a
   springy half spin on the asterisk. Links carry a permanent underline that

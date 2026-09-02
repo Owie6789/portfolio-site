@@ -5,21 +5,22 @@
  * own CSS is untouched.
  */
 
-/* Static cuts from tools/measure-headline.py. Static rather than variable:
-   no dependence on variable-axis support, and no silent fallback to the wrong
-   width. 27 KB and 34 KB. */
+/* The two display faces the user supplied in `footer fonts.zip` on main.
+   The Garamond arrived as OTF and was converted to woff2, 26 KB; Helvetica
+   Now Display Medium is used as delivered, 45 KB. font-display: block so the
+   fitted headline never flashes in a fallback face at the wrong width. */
 @font-face {
-  font-family: "Instrument Sans Cond";
-  src: url("/live/font/InstrumentSans-CondensedBold.woff2") format("woff2");
-  font-weight: 700;
+  font-family: "Helvetica Now Display";
+  src: url("/live/font/HelveticaNowDisplay-Medium.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
   font-display: block;
 }
 
 @font-face {
-  font-family: "Geist SemiBold";
-  src: url("/live/font/Geist-SemiBold.woff2") format("woff2");
-  font-weight: 600;
+  font-family: "ITC Garamond Narrow";
+  src: url("/live/font/ITCGaramondStd-LightNarrow.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
   font-display: block;
 }
@@ -90,7 +91,9 @@
 .body {
   display: grid;
   gap: clamp(1.25rem, 2.6vw, 2.25rem);
-  padding: clamp(2rem, 4.5vw, 4rem) var(--pad) clamp(1.5rem, 3vw, 2.5rem);
+  /* The page's .glass-overlay is fixed to the bottom of the viewport and is
+     up to 128px tall, so the meta row needs to clear it. */
+  padding: clamp(2rem, 4.5vw, 4rem) var(--pad) clamp(5.5rem, 10vw, 9.5rem);
   position: relative;
 }
 
@@ -111,14 +114,14 @@
   fill: var(--ink);
 }
 
-.wordGeist {
-  font-family: "Geist SemiBold", "Some Sans", sans-serif;
-  font-weight: 600;
+.wordHelv {
+  font-family: "Helvetica Now Display", Helvetica, Arial, sans-serif;
+  font-weight: 500;
 }
 
-.wordCond {
-  font-family: "Instrument Sans Cond", "Some Sans", sans-serif;
-  font-weight: 700;
+.wordGara {
+  font-family: "ITC Garamond Narrow", Garamond, serif;
+  font-weight: 300;
 }
 
 /* Asterisk sits in its own row so it never collides with the headline.
@@ -134,14 +137,31 @@
   padding: clamp(0.75rem, 1.6vw, 1.25rem);
 }
 
+/* The magnet carries the spring-driven translate written from JS. */
+.asteriskMagnet {
+  display: block;
+  will-change: transform;
+}
+
+/* The glyph carries the endless windmill turn, off the main thread. */
 .asterisk {
+  animation: windmill 14s linear infinite;
   display: block;
   fill: var(--ink);
   height: auto;
   transform-box: fill-box;
   transform-origin: 50% 50%;
   width: clamp(2.75rem, 6vw, 5.5rem);
-  will-change: transform;
+}
+
+.asteriskField:hover .asterisk {
+  animation-duration: 3.5s;
+}
+
+@keyframes windmill {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .meta {
@@ -281,6 +301,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .asterisk {
+    animation: none;
+  }
+
   .arrow,
   .links a::after,
   .email::after {

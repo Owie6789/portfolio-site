@@ -1,16 +1,15 @@
 "use client";
 
-/* Magnetic asterisk.
+/* Magnetic asterisk with a windmill loop.
  *
- * Driven by a spring integrated on every frame, not by CSS transitions. A
- * transition restarts from zero each time the pointer moves, which is what
- * made the earlier version stutter. A spring carries its velocity across
- * interruptions, so redirecting mid-motion stays continuous, and the same
- * integrator handles the pull, the release and the half spin.
+ * Two transforms on two elements, deliberately. The outer span carries the
+ * magnetic translate, written per frame by a spring in JS. The inner svg
+ * carries the endless rotation, a plain CSS animation so it runs off the main
+ * thread and never fights the spring for the same transform property.
  *
- * The loop only runs while something is moving. Transform is written straight
- * onto the element, since a CSS variable on the parent would recalculate
- * styles for every child on every frame.
+ * The spring is integrated per frame rather than run through a CSS transition,
+ * because a transition restarts from zero on every pointermove, which reads as
+ * stutter. A spring carries its velocity across interruptions.
  */
 
 import { useCallback, useEffect, useRef } from "react";
@@ -19,13 +18,11 @@ const PULL = 0.34; // fraction of the cursor's offset the glyph travels
 const MAX = 26; // px cap, so it never leaves its corner
 const STIFF = 170;
 const DAMP = 16;
-const SPIN_STIFF = 120;
-const SPIN_DAMP = 14;
 const REST = 0.05;
 
 type Axis = { value: number; target: number; velocity: number };
 
-const axis = (): Axis => ({ value: 0, target: 0, velocity: 0 });
+const axis = (start = 0): Axis => ({ value: start, target: start, velocity: 0 });
 
 function step(a: Axis, dt: number, stiffness: number, damping: number) {
   const accel = (a.target - a.value) * stiffness - a.velocity * damping;
@@ -37,14 +34,20 @@ function step(a: Axis, dt: number, stiffness: number, damping: number) {
 type Props = {
   path: string;
   className: string;
+  magnetClassName: string;
   fieldClassName: string;
 };
 
-export default function FooterAsterisk({ path, className, fieldClassName }: Props) {
-  const ref = useRef<SVGSVGElement>(null);
+export default function FooterAsterisk({
+  path,
+  className,
+  magnetClassName,
+  fieldClassName,
+}: Props) {
+  const ref = useRef<HTMLSpanElement>(null);
   const x = useRef(axis());
   const y = useRef(axis());
-  const spin = useRef(axis());
+  const scale = useRef(axis(1));
   const frame = useRef(0);
   const last = useRef(0);
 
@@ -52,14 +55,15 @@ export default function FooterAsterisk({ path, className, fieldClassName }: Prop
     const dt = Math.min((now - (last.current || now)) / 1000, 1 / 30);
     last.current = now;
 
-    const moving =
-      [step(x.current, dt, STIFF, DAMP), step(y.current, dt, STIFF, DAMP), step(spin.current, dt, SPIN_STIFF, SPIN_DAMP)].some(
-        Boolean
-      );
+    const moving = [
+      step(x.current, dt, STIFF, DAMP),
+      step(y.current, dt, STIFF, DAMP),
+      step(scale.current, dt, STIFF, DAMP),
+    ].some(Boolean);
 
     const el = ref.current;
     if (el) {
-      el.style.transform = `translate3d(${x.current.value.toFixed(2)}px, ${y.current.value.toFixed(2)}px, 0) rotate(${spin.current.value.toFixed(2)}deg)`;
+      el.style.transform = `translate3d(${x.current.value.toFixed(2)}px, ${y.current.value.toFixed(2)}px, 0) scale(${scale.current.value.toFixed(3)})`;
     }
 
     if (moving) {
@@ -99,7 +103,7 @@ export default function FooterAsterisk({ path, className, fieldClassName }: Prop
   const onEnter = useCallback(
     (e: React.PointerEvent<HTMLSpanElement>) => {
       if (inert(e)) return;
-      spin.current.target = 180;
+      scale.current.target = 1.12;
       wake();
     },
     [wake]
@@ -108,7 +112,7 @@ export default function FooterAsterisk({ path, className, fieldClassName }: Prop
   const onLeave = useCallback(() => {
     x.current.target = 0;
     y.current.target = 0;
-    spin.current.target = 0;
+    scale.current.target = 1;
     wake();
   }, [wake]);
 
@@ -120,9 +124,11 @@ export default function FooterAsterisk({ path, className, fieldClassName }: Prop
       onPointerLeave={onLeave}
       aria-hidden="true"
     >
-      <svg ref={ref} className={className} viewBox="0 0 346 330">
-        <path d={path} transform="translate(-30, 740) scale(1, -1)" />
-      </svg>
+      <span className={magnetClassName} ref={ref}>
+        <svg className={className} viewBox="0 0 80 80">
+          <path d={path} />
+        </svg>
+      </span>
     </span>
   );
 }

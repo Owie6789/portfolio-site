@@ -1,11 +1,10 @@
-"""Cut the footer display fonts and measure the headline words.
+"""Measure the footer headline words in the fonts they are actually set in.
 
-The footer headline mixes two faces on one line: "Let's" in Geist and "talk"
-in Instrument Sans at its most condensed width. The SVG that draws it is fitted
+The headline mixes two faces on one line: "Let's" in Helvetica Now Display
+Medium and "talk" in ITC Garamond Std Light Narrow. Both are supplied by the
+user in `footer fonts.zip` on main. The SVG that draws the headline is fitted
 to the panel, so it needs each word's real advance and ink bounds in font
-units. This script cuts the static instances and prints those numbers. Re-run
-it with the fontTools venv when the copy or the fonts change, then paste the
-output into app/headline-metrics.json.
+units. Re-run this with the fontTools venv when the copy or the fonts change:
 
   /tmp/fv/bin/python tools/measure-headline.py > app/headline-metrics.json
 """
@@ -13,14 +12,10 @@ import json
 
 from fontTools.pens.boundsPen import BoundsPen
 from fontTools.ttLib import TTFont
-from fontTools.varLib import instancer
 
-CUTS = [
-    # source, axes to pin, output, the words measured in it
-    ("/tmp/IS.ttf", {"wdth": 75, "wght": 700},
-     "public/live/font/InstrumentSans-CondensedBold.woff2", ["talk"]),
-    ("/tmp/Geist.ttf", {"wght": 600},
-     "public/live/font/Geist-SemiBold.woff2", ["Let’s"]),
+FACES = [
+    ("public/live/font/HelveticaNowDisplay-Medium.woff2", ["Let’s"]),
+    ("public/live/font/ITCGaramondStd-LightNarrow.woff2", ["talk"]),
 ]
 
 
@@ -41,18 +36,20 @@ def measure(font, text):
             box[2] = x + gx1 if box[2] is None else max(box[2], x + gx1)
             box[3] = gy1 if box[3] is None else max(box[3], gy1)
         x += hmtx[name][0]
-    return {"advance": x, "x0": box[0], "y0": box[1], "x1": box[2], "y1": box[3]}
+    return {
+        "advance": round(x, 1),
+        "x0": round(box[0], 1),
+        "y0": round(box[1], 1),
+        "x1": round(box[2], 1),
+        "y1": round(box[3], 1),
+    }
 
 
 out = {}
-for src, axes, dest, words in CUTS:
-    font = instancer.instantiateVariableFont(TTFont(src), axes, inplace=False)
-    font.flavor = "woff2"
-    font.save(dest)
-    out[dest.split("/")[-1]] = {
-        "axes": axes,
+for path, words in FACES:
+    font = TTFont(path)
+    out[path.split("/")[-1]] = {
         "upm": font["head"].unitsPerEm,
-        "capHeight": font["OS/2"].sCapHeight,
         "words": {w: measure(font, w) for w in words},
     }
 

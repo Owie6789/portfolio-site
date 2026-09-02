@@ -1,34 +1,25 @@
 {
-  "InstrumentSans-CondensedBold.woff2": {
-    "axes": {
-      "wdth": 75,
-      "wght": 700
-    },
+  "HelveticaNowDisplay-Medium.woff2": {
     "upm": 1000,
-    "capHeight": 720,
     "words": {
-      "talk": {
-        "advance": 1396,
-        "x0": 10,
-        "y0": -10,
-        "x1": 1386,
-        "y1": 720
+      "Let’s": {
+        "advance": 2097,
+        "x0": 62,
+        "y0": -13,
+        "x1": 2079,
+        "y1": 712
       }
     }
   },
-  "Geist-SemiBold.woff2": {
-    "axes": {
-      "wght": 600
-    },
+  "ITCGaramondStd-LightNarrow.woff2": {
     "upm": 1000,
-    "capHeight": 710,
     "words": {
-      "Let’s": {
-        "advance": 2389,
-        "x0": 79.999267578125,
+      "talk": {
+        "advance": 1282,
+        "x0": 17,
         "y0": -12,
-        "x1": 2350.0023193359375,
-        "y1": 710
+        "x1": 1295,
+        "y1": 707
       }
     }
   }

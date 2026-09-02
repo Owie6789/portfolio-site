@@ -83,11 +83,13 @@ social links, the same copyright, and the Cloudflare-obfuscated email markup
 byte-for-byte so the decode script still resolves it. `npm run verify` checks
 all ten of those and compares the rest of the page as before.
 
-It adds two display fonts, both SIL OFL, both cut to static instances by
-`tools/measure-headline.py` and self-hosted under `public/live/font/`:
-Instrument Sans at wdth 75 / wght 700 (27 KB) for "talk", and Geist at wght 600
-(34 KB) for "Let’s". The same script prints the ink metrics the SVG headline
-needs; re-run it if the copy or the fonts change.
+It adds the two display fonts the user supplied in `footer fonts.zip` on
+`main`, self-hosted under `public/live/font/`: Helvetica Now Display Medium
+(45 KB, used as delivered) for "Let’s", and ITC Garamond Std Light Narrow
+(converted from OTF to woff2, 26 KB) for "talk", condensed a further 14% with
+a horizontal scale. Both are licensed fonts supplied by the user, not fetched.
+`tools/measure-headline.py` prints the ink metrics the SVG headline needs;
+re-run it if the copy or the fonts change.
 
 ## Known issues
 
