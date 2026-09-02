@@ -23,20 +23,16 @@ MARGIN = 3  # viewBox units of air on every side, so nothing clips when the
             # mark is transformed on scroll
 SRC = "/tmp/Inter.ttf"
 AXES = {"opsz": 32, "wght": 700}
+THIN_WEIGHT = 100
 
 font = instancer.instantiateVariableFont(TTFont(SRC), AXES, inplace=False)
 
-# A second cut that keeps the weight axis live, subset to the four letters, so
-# the mark can be thinned on scroll. Optical size is still pinned.
-var_cut = instancer.instantiateVariableFont(
-    TTFont(SRC), {"opsz": AXES["opsz"]}, inplace=False
+# The thin end of the scroll animation. Instances of one variable font share
+# their point structure, so the two outline sets interpolate number for number
+# and the mark can be thinned in the browser without loading a font at all.
+thin = instancer.instantiateVariableFont(
+    TTFont(SRC), {**AXES, "wght": THIN_WEIGHT}, inplace=False
 )
-sub = Subsetter()
-sub.populate(text=WORD)
-sub.subset(var_cut)
-var_cut.flavor = "woff2"
-VAR_OUT = "public/live/font/Inter-Wordmark-var.woff2"
-var_cut.save(VAR_OUT)
 upm = font["head"].unitsPerEm
 cmap = font.getBestCmap()
 hmtx = font["hmtx"]
@@ -66,13 +62,25 @@ width, height = x1 - x0, y1 - y0
 # Scale so the ink fills a 160-unit-wide viewBox, matching the original's
 # width, and flip the y axis from font space into SVG space.
 scale = 160 / width
-paths = []
-for name, ox in placed:
-    svg = SVGPathPen(gs)
-    # translate ink to the origin, flip y, then scale
-    tp = TransformPen(svg, (scale, 0, 0, -scale, (ox - x0) * scale, y1 * scale))
-    gs[name].draw(tp)
-    paths.append(svg.getCommands())
+
+
+def draw(glyphset):
+    """Outlines for the laid-out word, using one shared set of pen positions.
+
+    Both weights are placed on the heavy layout deliberately: only the strokes
+    should change on scroll, not where the letters sit.
+    """
+    out = []
+    for name, ox in placed:
+        svg = SVGPathPen(glyphset)
+        tp = TransformPen(svg, (scale, 0, 0, -scale, (ox - x0) * scale, y1 * scale))
+        glyphset[name].draw(tp)
+        out.append(svg.getCommands())
+    return out
+
+
+paths = draw(gs)
+paths_thin = draw(thin.getGlyphSet())
 
 h = round(height * scale, 3)
 
@@ -87,10 +95,8 @@ print(json.dumps({
     "tracking_em": TRACK,
     "margin": MARGIN,
     "viewBox": f"{-MARGIN} {-MARGIN} {160 + MARGIN * 2} {round(h + MARGIN * 2, 3)}",
-    "fontSize": round(upm * scale, 3),
-    "baseline": round(y1 * scale, 3),
-    "inkLeft": round(x0 * scale, 3),
     "advance": advance,
-    "variableFont": VAR_OUT,
+    "weights": {"heavy": AXES["wght"], "thin": THIN_WEIGHT},
     "paths": paths,
+    "pathsThin": paths_thin,
 }, indent=2))

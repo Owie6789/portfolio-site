@@ -1,84 +1,112 @@
 "use client";
 
-/* The hero wordmark thins as the page scrolls.
+/* The hero wordmark thins as the page scrolls, and thickens on the way back.
  *
- * The mark ships as outlines so it paints immediately with no font request.
- * Outlines cannot change weight, so this swaps in live text set on a variable
- * cut of Inter (1.7 KB, four glyphs, weight axis intact) once that font is
- * ready, then drives 'wght' from scroll position. If the font never arrives,
- * or the visitor asked for reduced motion, the outlines simply stay.
+ * The mark is four SVG outlines. An outline has no weight axis, so the two
+ * ends of the animation are shipped as two outline sets, weight 700 in `d` and
+ * weight 100 in `data-thin`. Both are instances of the same variable font, so
+ * their point structure is identical and blending them is a number-for-number
+ * interpolation. That deliberately avoids loading a font at runtime: an
+ * earlier version swapped in live text on a variable cut and depended on
+ * document.fonts resolving, which is one more thing to fail.
  *
- * The advance is pinned with textLength, so thinning changes stroke weight
- * without the mark changing width. Weight is eased toward its target each
- * frame rather than written raw, which keeps a flicked scroll smooth and
- * reverses naturally on the way back up. Work happens in one rAF, and the
- * scroll listener is passive.
+ * Each path is parsed once into static string chunks and two number arrays, so
+ * a frame is arithmetic and a join, no regex. Weight eases toward its target
+ * rather than tracking raw scroll, which keeps a flicked scroll smooth. The
+ * loop stops when it arrives, the scroll listener is passive, and reduced
+ * motion leaves the heavy outlines alone.
  */
 
 import { useEffect } from "react";
 
-const HEAVY = 700;
-const THIN = 100;
-const EASE = 0.12; // per-frame approach to the target weight
+const EASE = 0.12;
+const NUM = /-?\d*\.?\d+(?:e[-+]?\d+)?/gi;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+
+type Letter = {
+  el: SVGPathElement;
+  chunks: string[]; // literal text between the numbers
+  heavy: number[];
+  thin: number[];
+};
+
+function parse(el: SVGPathElement): Letter | null {
+  const heavyD = el.getAttribute("d");
+  const thinD = el.getAttribute("data-thin");
+  if (!heavyD || !thinD) return null;
+
+  const chunks: string[] = [];
+  const heavy: number[] = [];
+  let last = 0;
+  for (const m of heavyD.matchAll(NUM)) {
+    chunks.push(heavyD.slice(last, m.index));
+    heavy.push(parseFloat(m[0]));
+    last = m.index + m[0].length;
+  }
+  chunks.push(heavyD.slice(last));
+
+  const thin = Array.from(thinD.matchAll(NUM), (m) => parseFloat(m[0]));
+  if (thin.length !== heavy.length) return null; // structures diverged
+
+  return { el, chunks, heavy, thin };
+}
 
 export default function WordmarkWeight() {
   useEffect(() => {
     const mark = document.querySelector<SVGSVGElement>(".logomark svg");
-    const text = mark?.querySelector<SVGTextElement>(".wordmark-live");
-    if (!mark || !text) return;
+    if (!mark) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const letters = Array.from(
+      mark.querySelectorAll<SVGPathElement>(".wordmark-letter")
+    )
+      .map(parse)
+      .filter((l): l is Letter => l !== null);
+    if (!letters.length) return;
+
     let frame = 0;
-    let current = HEAVY;
-    let target = HEAVY;
-    let live = false;
+    let current = 0; // 0 = heavy, 1 = thin
+    let target = 0;
+
+    const paint = (t: number) => {
+      for (const { el, chunks, heavy, thin } of letters) {
+        let d = "";
+        for (let i = 0; i < heavy.length; i++) {
+          d += chunks[i] + (heavy[i] + (thin[i] - heavy[i]) * t).toFixed(2);
+        }
+        el.setAttribute("d", d + chunks[chunks.length - 1]);
+      }
+    };
 
     const measure = () => {
       const r = mark.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       // 0 while the mark sits at the bottom of the viewport, 1 once it has
       // scrolled off the top.
-      target = HEAVY + (THIN - HEAVY) * clamp01((vh - r.bottom) / vh);
+      target = clamp01((vh - r.bottom) / vh);
     };
 
     const tick = () => {
       current += (target - current) * EASE;
-      text.style.fontVariationSettings = `"wght" ${current.toFixed(1)}`;
-      if (Math.abs(target - current) > 0.5) {
-        frame = requestAnimationFrame(tick);
-      } else {
-        text.style.fontVariationSettings = `"wght" ${target.toFixed(1)}`;
-        frame = 0;
-      }
+      const done = Math.abs(target - current) < 0.002;
+      if (done) current = target;
+      paint(current);
+      frame = done ? 0 : requestAnimationFrame(tick);
     };
 
     const onScroll = () => {
-      if (!live) return;
       measure();
       if (!frame) frame = requestAnimationFrame(tick);
     };
 
-    let cancelled = false;
-    document.fonts
-      .load('700 100px "Inter Wordmark"')
-      .then(() => {
-        if (cancelled) return;
-        live = true;
-        mark.classList.add("is-live");
-        measure();
-        current = target;
-        tick();
-      })
-      .catch(() => {
-        /* keep the outlines */
-      });
+    measure();
+    current = target;
+    paint(current);
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
 
     return () => {
-      cancelled = true;
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(frame);

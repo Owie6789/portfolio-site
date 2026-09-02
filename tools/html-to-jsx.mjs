@@ -152,36 +152,18 @@ function applyIdentity(root) {
         namespaceURI: svg.namespaceURI,
       });
 
-      /* Two versions of the mark.
-         - outlines, which render immediately and need no font
-         - live text on a variable cut of Inter, revealed by
-           app/wordmark-weight.tsx once the font is ready, so its weight can be
-           driven by scroll. textLength pins the advance, so thinning changes
-           stroke weight without changing how much room the mark takes. */
-      const paths = el("g", [{ name: "class", value: "wordmark-outline" }]);
-      paths.childNodes = wordmark.paths.map((d) =>
+      /* Outlines at the heavy weight, plus the thin outlines carried on a
+         data attribute. app/wordmark-weight.tsx interpolates between the two
+         on scroll. Instances of one variable font share their point structure,
+         so this is a number-for-number blend and needs no font at runtime. */
+      svg.childNodes = wordmark.paths.map((d, i) =>
         el("path", [
+          { name: "class", value: "wordmark-letter" },
           { name: "d", value: d },
+          { name: "data-thin", value: wordmark.pathsThin[i] },
           { name: "fill", value: "var(--on-neutral-inverse)" },
         ])
       );
-
-      const text = el(
-        "text",
-        [
-          { name: "class", value: "wordmark-live" },
-          { name: "x", value: String(-wordmark.inkLeft) },
-          { name: "y", value: String(wordmark.baseline) },
-          { name: "font-size", value: String(wordmark.fontSize) },
-          { name: "textLength", value: String(wordmark.advance) },
-          { name: "lengthAdjust", value: "spacing" },
-          { name: "fill", value: "var(--on-neutral-inverse)" },
-        ],
-        [{ nodeName: "#text", value: wordmark.word }]
-      );
-      text.childNodes[0].parentNode = text;
-
-      svg.childNodes = [paths, text];
       mark++;
     }
   });

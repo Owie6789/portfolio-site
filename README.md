@@ -88,12 +88,12 @@ untouched reference:
   from `0 0 160 32` to `-3 -3 166 54.29`, the margin being air so scroll
   transforms cannot clip it.
 
-  The same script also cuts a variable version, `Inter-Wordmark-var.woff2`,
-  1.7 KB, four glyphs with the weight axis intact. `app/wordmark-weight.tsx`
-  swaps the outlines for live text once that font is ready and drives `wght`
-  from 700 down to 100 as the mark scrolls out of view, reversing on the way
-  back. `textLength` pins the advance so only the stroke weight changes. If the
-  font fails or the visitor asked for reduced motion, the outlines stay.
+  Each letter also carries the same outline at weight 100 in `data-thin`.
+  Because both are instances of one variable font their point structure is
+  identical, so `app/wordmark-weight.tsx` blends them number for number as the
+  mark scrolls out of view, and back on the way up. Both weights are laid out
+  on the heavy layout, so the letters do not shift, only their strokes. No font
+  is loaded at runtime, and reduced motion leaves the heavy outlines alone.
 
 **Still saying Nitish Khagwal**, deliberately, pending a decision: the page
 title and meta description, the Open Graph and Twitter tags, the JSON-LD
