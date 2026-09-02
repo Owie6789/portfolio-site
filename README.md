@@ -152,10 +152,16 @@ left in place for touch and for `prefers-reduced-motion`.
 
 `app/overrides.css` is the one place where the port's own elements get
 restyled, kept separate so `public/dist/main.css@v1.0.10.css` stays a verbatim
-copy. It currently holds a single rule: `.glass-overlay { pointer-events: none }`.
-That element is fixed across the bottom of the viewport at `z-index: 1` and
-paints only a blur, but it was intercepting every pointer event aimed at the
-footer links beneath it.
+copy. It currently holds three:
+
+- `.glass-overlay { pointer-events: none }`. Fixed across the bottom of the
+  viewport at `z-index: 1`, painting only a blur, but intercepting every
+  pointer event aimed at the footer links beneath it.
+- `.logomark svg { overflow: visible }`, so scroll transforms cannot clip the
+  wordmark against its own viewport.
+- Hero headline: line-height from 1.2 down to 1.02 with tighter tracking, and
+  one sentence per line below 980px. The original collapses them onto one
+  running line there with `.hero h1 span{display:inline}`.
 
 ## Known issues
 

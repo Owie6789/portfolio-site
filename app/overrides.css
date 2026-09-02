@@ -5,6 +5,35 @@
  * and should be listed in README.md.
  */
 
+/* Hero headline.
+ *
+ * The original sets 3.75rem type on a 4.5rem line, a 1.2 ratio that is loose
+ * for two short display lines, and tracks it -0.125rem. Tightened here to 1.02
+ * with a little more negative tracking.
+ *
+ * It also collapses the two sentences onto one running line below 980px
+ * (.hero h1 span{display:inline}). Restored to one sentence per line, which is
+ * how it reads on desktop.
+ */
+.hero h1.title-large {
+  letter-spacing: -0.15rem;
+  line-height: 1.02;
+}
+
+@media only screen and (max-width: 980px) {
+  .hero h1 span {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* 1.75rem type here, so the tracking has to scale back with it. */
+  .hero h1.title-large {
+    letter-spacing: -0.045rem;
+    line-height: 1.06;
+  }
+}
+
 /* The hero wordmark is transformed on scroll. Its viewBox carries 3 units of
  * air on every side (see tools/make-wordmark.py) and this stops the SVG
  * viewport clipping the outer edge of the letterforms.

@@ -329,8 +329,23 @@
   }
 }
 
-/* Phone: same treatment, not a cut-down. Teeth shrink, meta stacks into the
-   two-column block from the reference's mobile card. */
+/* Tablet and below: the meta row stops competing for one line. */
+@media only screen and (max-width: 768px) {
+  .meta {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .metaLeft,
+  .links {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* Phone: same treatment, not a cut-down. Two rows of two, as in the
+   reference's mobile card: email opposite the year, then the two links. */
 @media only screen and (max-width: 576px) {
   .footer {
     --tooth: 14px;
@@ -340,24 +355,27 @@
   }
 
   .meta {
-    align-items: start;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .metaLeft {
-    justify-content: space-between;
-    width: 100%;
+    gap: 0.7rem;
   }
 
   .links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
+    display: flex;
   }
 
-  .links li:nth-child(even) a {
-    justify-content: flex-end;
+  .copy,
+  .email,
+  .links a {
+    font-size: 0.875rem;
+  }
+
+  /* Tighter air around the type at this size, and the asterisk closer in. */
+  .body {
+    gap: 0.9rem;
+    padding: 1.75rem var(--pad) 2.5rem;
+  }
+
+  .asterisk {
+    width: 2.25rem;
   }
 }
 
