@@ -15,13 +15,13 @@ from fontTools.subset import Subsetter
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
 
-# Inter is variable; pin it to the display optical size at the weight the
-# original heading uses, then keep the static cut.
-CUTS = [("/tmp/Inter.ttf", {"opsz": 32, "wght": 500},
-         "public/live/font/Inter-Display-Medium.woff2")]
+# Inter is variable; pin it to the display optical size. Weight 400 with the
+# 6.8-unit stroke in footer.tsx gives an apparent stem of 89.8/1000em.
+CUTS = [("/tmp/Inter.ttf", {"opsz": 32, "wght": 400},
+         "public/live/font/Inter-Display.woff2")]
 
 FACES = [
-    ("public/live/font/Inter-Display-Medium.woff2", ["Let’s"]),
+    ("public/live/font/Inter-Display.woff2", ["Let’s"]),
     ("public/live/font/ITCGaramondStd-LightNarrow.woff2", ["talk"]),
 ]
 

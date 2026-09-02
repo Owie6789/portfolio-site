@@ -82,13 +82,15 @@ On the user's instruction the footer's link set changed: the six social links
 were dropped and replaced by About and Works. **Those two have no destination
 yet** — the original site has no such pages, so they are `href="#"` until real
 URLs are supplied. The copyright is now just the mark and an auto-updating
-year. The Cloudflare-obfuscated email markup is unchanged byte-for-byte, so the
-decode script still resolves it to hey@khagwal.com. `npm run verify` checks
+year. The email is now a plain `mailto:heyowie@proton.me` on the user's instruction,
+which retires the Cloudflare obfuscation the original used. The decode script
+still loads and is now a no-op on this page; it can be re-encoded for the new
+address if scraper protection matters. `npm run verify` checks
 those seven items and compares the rest of the page as before.
 
 It adds two display faces under `public/live/font/`, both cut and subset by
 `tools/measure-headline.py` to only the glyphs the headline draws: Inter pinned
-to opsz 32 / wght 500 for "Let’s" (1 KB, down from a 116 KB variable font) and
+to opsz 32 / wght 400 for "Let’s" (1 KB, down from a 116 KB variable font) and
 ITC Garamond Std Light Narrow for "talk" (1.5 KB, converted from the OTF the
 user supplied in `footer fonts.zip` on `main`). The same script prints the ink
 metrics the SVG headline needs; re-run it if the copy or the fonts change. Note

@@ -14,6 +14,7 @@
  */
 import "./overrides.css";
 import FooterAsterisk from "./footer-asterisk";
+import FooterLink from "./footer-link";
 import FooterYear from "./footer-year";
 import styles from "./footer.module.css";
 
@@ -22,10 +23,10 @@ import styles from "./footer.module.css";
 const INTER = {
   text: "Let’s",
   upm: 2048,
-  x0: 136,
-  x1: 4253,
+  x0: 148,
+  x1: 4119,
   yTop: 1490,
-  yBottom: -25,
+  yBottom: -24,
 };
 const GARA = {
   text: "talk",
@@ -45,10 +46,11 @@ const TRACK_INTER = -34;
 const TRACK_GARA = -31.5;
 const GAP = 160; // optical space between the words
 
-/* "Let’s" is a touch bolder than the Medium it is set in. Only one weight was
-   supplied, so the weight comes from a hairline stroke in the same colour,
-   painted under the fill. */
-const BOLD = 9;
+/* Apparent stem width, tuned rather than guessed. Inter's 'l' is a bare stem:
+   83.0 units per 1000em at weight 400, and the stroke adds its full width on
+   top, so 83.0 + 6.8 = 89.8. That is exactly 80% of the 112.2 this was before
+   (weight 500 plus a 9 stroke). */
+const BOLD = 6.8;
 /* ...and nudged off the left edge. Negative moves it left. */
 const SHIFT = 24;
 
@@ -146,25 +148,15 @@ export default function Footer() {
               <p className={styles.copy}>
                 © <FooterYear initial={new Date().getFullYear()} />
               </p>
-              <a
-                className={styles.email}
-                href="https://khagwal.com/cdn-cgi/l/email-protection#f69e938fb69d9e979181979ad895999b"
-                target="_blank"
-                rel="noopenner"
-              >
-                <span
-                  className="__cf_email__"
-                  data-cfemail="95fdf0ecd5fefdf4f2e2f4f9bbf6faf8"
-                >
-                  [email&#160;protected]
-                </span>
+              <a className={styles.email} href="mailto:heyowie@proton.me">
+                heyowie@proton.me
               </a>
             </div>
 
             <ul className={styles.links}>
               {LINKS.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href}>{l.label}</a>
+                  <FooterLink label={l.label} href={l.href} />
                 </li>
               ))}
             </ul>

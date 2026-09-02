@@ -12,8 +12,8 @@
    at the wrong width. */
 @font-face {
   font-family: "Inter Display";
-  src: url("/live/font/Inter-Display-Medium.woff2") format("woff2");
-  font-weight: 500;
+  src: url("/live/font/Inter-Display.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: block;
 }
@@ -167,7 +167,7 @@
 
 .wordInter {
   font-family: "Inter Display", Inter, Helvetica, Arial, sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   /* Stroke under fill, same colour: a fraction of a weight step without a
      second font file. */
   paint-order: stroke fill;
@@ -314,7 +314,9 @@
 
 .links a span {
   display: inline-block;
-  min-width: 4.5ch;
+  /* Widest label, so a swapped glyph cannot twitch the row's width. */
+  min-width: 5ch;
+  text-align: left;
 }
 
 .email:focus-visible,

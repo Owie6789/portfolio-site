@@ -116,9 +116,8 @@ function stripFooter(n) {
 
 function checkFooterContent() {
   const required = [
-    ['data-cfemail="95fdf0ecd5fefdf4f2e2f4f9bbf6faf8"', "Cloudflare email payload"],
-    ["cdn-cgi/l/email-protection#f69e938fb69d9e979181979ad895999b", "email href"],
-    ["__cf_email__", "email decode hook"],
+    ["mailto:heyowie@proton.me", "email href"],
+    ["heyowie@proton.me", "email label"],
     ["©", "copyright mark"],
     [String(new Date().getFullYear()), "current year"],
     ["About", "About link"],
