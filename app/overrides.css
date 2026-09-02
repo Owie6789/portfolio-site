@@ -110,6 +110,12 @@
   }
 }
 
+/* The signature grows about its own centre as it writes. */
+.signature-scale {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
 /* The wordmark letters scale toward their own centre on scroll. */
 .wordmark-scale {
   transform-box: fill-box;
