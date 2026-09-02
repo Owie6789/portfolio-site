@@ -17,6 +17,7 @@
  * present — same DOM, same scripts, just no longer racing React.
  */
 import Script from "next/script";
+import LocalTime from "./local-time";
 import SmoothScroll from "./smooth-scroll";
 
 export default function Scripts() {
@@ -29,6 +30,7 @@ export default function Scripts() {
       />
       <Script src="/dist/main.js@v1.0.2" strategy="afterInteractive" />
       <SmoothScroll />
+      <LocalTime />
     </>
   );
 }

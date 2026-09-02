@@ -26,13 +26,26 @@ const find = (node, tag) => {
   return null;
 };
 
-/* Identity swap. Two places only:
+/* Identity swap. Four places:
      - .logo, the stacked name at the top of the page
      - .logomark, the giant hero wordmark, whose seven hand-drawn KHAGWAL paths
        are replaced by OWIE drawn from Inter by tools/make-wordmark.py
+     - the first line of .caption, the greeting
+     - .geo, the location and timezone line
    Everything else that says Nitish Khagwal (page title, meta, JSON-LD, the
-   hero caption, the portrait alt text) is left alone deliberately. */
+   portrait alt text, image filenames) is left alone deliberately. */
 const NAME = { first: "Owie", last: "Emmanuel" };
+const GREETING = "Emmanuel Owie";
+const GEO = { place: "Based in Edo State, NG", zone: "WAT" };
+// Placeholder only. app/local-time.tsx overwrites this with live WAT once the
+// original bundle has finished grabbing the node. Baked at generate time so a
+// no-JS visitor still sees a plausible Lagos time rather than an IST one.
+const CLOCK = new Intl.DateTimeFormat("en-US", {
+  timeZone: "Africa/Lagos",
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+}).format(new Date()).toLowerCase();
 const wordmark = JSON.parse(readFileSync("tools/wordmark.json", "utf8"));
 
 const classOf = (n) =>
@@ -52,6 +65,8 @@ function walk(node, fn) {
 function applyIdentity(root) {
   let logo = 0;
   let mark = 0;
+  let greeting = 0;
+  let geo = 0;
 
   walk(root, (n) => {
     if (classOf(n).split(/\s+/).includes("logo")) {
@@ -63,6 +78,40 @@ function applyIdentity(root) {
         if (text && words[i]) {
           text.value = words[i];
           logo++;
+        }
+      });
+    }
+
+    if (classOf(n).split(/\s+/).includes("caption")) {
+      const first = [];
+      walk(n, (c) => {
+        if (c.tagName === "span" && !first.length) first.push(c);
+      });
+      const text = (first[0]?.childNodes ?? []).find((c) => c.nodeName === "#text");
+      if (text) {
+        const label = n.attrs?.find((a) => a.name === "aria-label");
+        if (label) label.value = label.value.replace(text.value.trim(), GREETING);
+        text.value = GREETING;
+        greeting++;
+      }
+    }
+
+    if (classOf(n) === "geo") {
+      const spans = (n.childNodes ?? []).filter((c) => c.tagName === "span");
+      const place = (spans[0]?.childNodes ?? []).find((c) => c.nodeName === "#text");
+      if (place) {
+        place.value = GEO.place;
+        geo++;
+      }
+      // second span is "— IST <span class=timestamp>…</span>"
+      const zone = (spans[1]?.childNodes ?? []).find(
+        (c) => c.nodeName === "#text" && c.value.includes("—")
+      );
+      if (zone) zone.value = `— ${GEO.zone} `;
+      walk(spans[1] ?? {}, (c) => {
+        if (classOf(c) === "timestamp") {
+          const t = (c.childNodes ?? []).find((x) => x.nodeName === "#text");
+          if (t) t.value = CLOCK;
         }
       });
     }
@@ -88,7 +137,8 @@ function applyIdentity(root) {
 
   console.log(
     `identity: ${logo} logo words -> ${NAME.first} ${NAME.last}, ` +
-      `${mark} wordmark -> ${wordmark.word} (${wordmark.paths.length} paths)`
+      `${mark} wordmark -> ${wordmark.word} (${wordmark.paths.length} paths), ` +
+      `${greeting} greeting -> ${GREETING}, ${geo} geo -> ${GEO.place} / ${GEO.zone}`
   );
 }
 

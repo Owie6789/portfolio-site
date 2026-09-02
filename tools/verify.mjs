@@ -65,9 +65,35 @@ function decodeNextScripts(html) {
   return { inline, external };
 }
 
+/* Text the identity swap in tools/html-to-jsx.mjs deliberately rewrites. Both
+   sides are folded to the same token so the rest of the subtree still gets
+   compared, rather than excluding those branches from the diff entirely. */
+const RENAMED = new Map([
+  ["Hey! I’m Nitish Khagwal.", "«greeting»"],
+  ["Emmanuel Owie", "«greeting»"],
+  ["Based in Meerut, IN", "«place»"],
+  ["Based in Edo State, NG", "«place»"],
+  ["— IST", "«zone»"],
+  ["— WAT", "«zone»"],
+]);
+const CLOCK = /^\d{1,2}:\d{2} [ap]m$/;
+
+function foldText(v) {
+  if (RENAMED.has(v)) return RENAMED.get(v);
+  if (CLOCK.test(v)) return "«time»";
+  return v;
+}
+
+function foldAttr(name, value) {
+  if (name !== "aria-label") return value;
+  let out = value;
+  for (const [from, to] of RENAMED) out = out.replace(from, to);
+  return out;
+}
+
 function normalise(node, seen) {
   if (node.nodeName === "#text") {
-    const v = node.value.replace(/\s+/g, " ").trim();
+    const v = foldText(node.value.replace(/\s+/g, " ").trim());
     return v ? { t: "#text", v } : null;
   }
   if (node.nodeName === "#comment") return null;
@@ -75,7 +101,7 @@ function normalise(node, seen) {
 
   const attrs = (node.attrs ?? [])
     .filter((a) => !IGNORED_ATTRS.has(a.name))
-    .map((a) => [a.name, a.value.replace(/\s+/g, " ").trim()])
+    .map((a) => [a.name, foldAttr(a.name, a.value.replace(/\s+/g, " ").trim())])
     .sort((x, y) => x[0].localeCompare(y[0]));
 
   const children = (node.childNodes ?? [])
@@ -133,6 +159,9 @@ function checkIdentity() {
     ['aria-label="Owie Emmanuel"', "stacked name label"],
     [">Owie<", "first name"],
     [">Emmanuel<", "last name"],
+    ["Emmanuel Owie", "greeting"],
+    ["Based in Edo State, NG", "location"],
+    ["WAT", "timezone"],
   ];
   const missing = required.filter(([needle]) => !rendered.includes(needle));
   const marks = (rendered.match(/var\(--on-neutral-inverse\)/g) ?? []).length;

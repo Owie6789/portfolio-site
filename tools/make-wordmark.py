@@ -18,6 +18,8 @@ from fontTools.varLib import instancer
 
 WORD = "OWIE"
 TRACK = -0.02  # em, tightened like a wordmark rather than running text
+MARGIN = 3  # viewBox units of air on every side, so nothing clips when the
+            # mark is transformed on scroll
 SRC = "/tmp/Inter.ttf"
 AXES = {"opsz": 32, "wght": 700}
 
@@ -59,10 +61,12 @@ for name, ox in placed:
     gs[name].draw(tp)
     paths.append(svg.getCommands())
 
+h = round(height * scale, 3)
 print(json.dumps({
     "word": WORD,
     "font": f"Inter opsz {AXES['opsz']} wght {AXES['wght']}",
     "tracking_em": TRACK,
-    "viewBox": f"0 0 160 {round(height * scale, 3)}",
+    "margin": MARGIN,
+    "viewBox": f"{-MARGIN} {-MARGIN} {160 + MARGIN * 2} {round(h + MARGIN * 2, 3)}",
     "paths": paths,
 }, indent=2))

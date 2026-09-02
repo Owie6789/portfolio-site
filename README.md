@@ -73,6 +73,9 @@ scripted transform on the parsed tree so `tools/original-index.html` stays the
 untouched reference:
 
 - `.logo`, the stacked name at the top, becomes Owie / Emmanuel.
+- `.caption`'s first line becomes "Emmanuel Owie".
+- `.geo` becomes "Based in Edo State, NG — WAT", and its clock placeholder is
+  baked at generate time from `Africa/Lagos`.
 - `.logomark`, the giant hero wordmark, drops its seven hand-drawn KHAGWAL
   paths for OWIE drawn from Inter (opsz 32, wght 700, -0.02em) by
   `tools/make-wordmark.py` into `tools/wordmark.json`. Outlines rather than
@@ -115,6 +118,19 @@ ITC Garamond Std Light Narrow for "talk" (1.5 KB, converted from the OTF the
 user supplied in `footer fonts.zip` on `main`). The same script prints the ink
 metrics the SVG headline needs; re-run it if the copy or the fonts change. Note
 that it subsets the Garamond in place, so restore it from `main` first.
+
+## The clock
+
+`dist/main.js@v1.0.2` hardcodes IST: it grabs `.timestamp` once, adds 330
+minutes to UTC and rewrites it on every animation frame. The bundle is a
+verbatim copy, so that 330 cannot be changed, and writing into the same node
+would lose a race sixty times a second.
+
+`app/local-time.tsx` waits for the bundle's first write, which proves it has
+already captured its reference, then swaps the element for a clone. The bundle
+carries on updating the original, now detached and off-screen, while the clone
+on the page shows `Africa/Lagos` time. If nothing writes within two seconds the
+bundle failed to load and the component takes over regardless.
 
 ## Smooth scrolling
 
