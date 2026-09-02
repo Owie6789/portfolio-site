@@ -14,6 +14,7 @@
  */
 import "./overrides.css";
 import FooterAsterisk from "./footer-asterisk";
+import FooterEmail from "./footer-email";
 import FooterLink from "./footer-link";
 import FooterYear from "./footer-year";
 import styles from "./footer.module.css";
@@ -148,9 +149,7 @@ export default function Footer() {
               <p className={styles.copy}>
                 © <FooterYear initial={new Date().getFullYear()} />
               </p>
-              <a className={styles.email} href="mailto:heyowie@proton.me">
-                heyowie@proton.me
-              </a>
+              <FooterEmail address="heyowie@proton.me" className={styles.email} />
             </div>
 
             <ul className={styles.links}>

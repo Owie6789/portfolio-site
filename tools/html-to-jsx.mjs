@@ -35,7 +35,7 @@ const find = (node, tag) => {
    Everything else that says Nitish Khagwal (page title, meta, JSON-LD, the
    portrait alt text, image filenames) is left alone deliberately. */
 const NAME = { first: "Owie", last: "Emmanuel" };
-const GREETING = "Emmanuel Owie";
+const GREETING = "Hey! I’m Emmanuel Owie";
 const GEO = { place: "Based in Edo State, NG", zone: "WAT" };
 // Placeholder only. app/local-time.tsx overwrites this with live WAT once the
 // original bundle has finished grabbing the node. Baked at generate time so a

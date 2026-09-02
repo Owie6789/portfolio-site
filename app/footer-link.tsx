@@ -9,15 +9,26 @@
  * the anchor catches them.
  *
  * Characters lock in from the left while the rest keep cycling, so the word
- * resolves rather than fades. Visual only: the anchor carries the real label
- * in aria-label and the animated span is hidden from assistive tech.
+ * resolves rather than fades. The cycling glyphs are the word's own remaining
+ * letters reordered, never foreign ones, so it reads as the label reassembling
+ * itself. Visual only: the anchor carries the real label in aria-label and the
+ * animated span is hidden from assistive tech.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const DURATION = 460; // ms for the whole word to settle
 const FRAME = 45; // ms between glyph swaps, slow enough to read as shuffling
+
+/* Fisher-Yates on a copy. */
+function shuffled<T>(items: T[]) {
+  const out = items.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
 
 export default function FooterLink({
   label,
@@ -61,16 +72,9 @@ export default function FooterLink({
         return;
       }
       const settled = Math.floor(progress * label.length);
-      setText(
-        label
-          .split("")
-          .map((ch, i) => {
-            if (i < settled || ch === " ") return ch;
-            const roll = POOL[Math.floor(Math.random() * POOL.length)];
-            return ch === ch.toLowerCase() ? roll.toLowerCase() : roll;
-          })
-          .join("")
-      );
+      const locked = label.slice(0, settled);
+      const rest = shuffled(label.slice(settled).split(""));
+      setText(locked + rest.join(""));
     }, FRAME);
   }, [label, stop]);
 

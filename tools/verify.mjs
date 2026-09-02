@@ -70,7 +70,7 @@ function decodeNextScripts(html) {
    compared, rather than excluding those branches from the diff entirely. */
 const RENAMED = new Map([
   ["Hey! I’m Nitish Khagwal.", "«greeting»"],
-  ["Emmanuel Owie", "«greeting»"],
+  ["Hey! I’m Emmanuel Owie", "«greeting»"],
   ["Based in Meerut, IN", "«place»"],
   ["Based in Edo State, NG", "«place»"],
   ["— IST", "«zone»"],
@@ -159,7 +159,7 @@ function checkIdentity() {
     ['aria-label="Owie Emmanuel"', "stacked name label"],
     [">Owie<", "first name"],
     [">Emmanuel<", "last name"],
-    ["Emmanuel Owie", "greeting"],
+    ["Hey! I’m Emmanuel Owie", "greeting"],
     ["Based in Edo State, NG", "location"],
     ["WAT", "timezone"],
   ];

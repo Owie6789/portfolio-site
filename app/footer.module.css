@@ -180,11 +180,11 @@
   font-weight: 300;
 }
 
-/* Bottom row sits at 500 throughout. */
+/* Bottom row sits at 600 throughout. */
 .copy,
 .email,
 .links a {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Asterisk sits in its own row so it never collides with the headline.
@@ -288,18 +288,6 @@
   content: "";
   inset: -14px -6px;
   position: absolute;
-}
-
-/* A plain rule, no animation on it. The hover interest is the shuffle. */
-.links a::after,
-.email::after {
-  background-color: currentColor;
-  bottom: -0.22em;
-  content: "";
-  height: 1px;
-  left: 0;
-  position: absolute;
-  right: 0;
 }
 
 .links a:hover,

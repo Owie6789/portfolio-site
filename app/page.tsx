@@ -26,10 +26,10 @@ export default function Page() {
                 {"Emmanuel"}
               </span>
             </div>
-            <div className="caption body-small" aria-label="Emmanuel Owie I specialize in human-centered design. Crafting products grounded in insights. My goal is to design usable & delightful products.">
+            <div className="caption body-small" aria-label="Hey! I’m Emmanuel Owie I specialize in human-centered design. Crafting products grounded in insights. My goal is to design usable & delightful products.">
               <p>
                 <span aria-hidden="true">
-                  {"Emmanuel Owie"}
+                  {"Hey! I’m Emmanuel Owie"}
                 </span>
                 <span aria-hidden="true">
                   {"I specialize in human-centered design."}
@@ -143,7 +143,7 @@ export default function Page() {
               <span className="title-large">
                 {"— WAT "}
                 <span className="timestamp">
-                  {"9:30 pm"}
+                  {"9:36 pm"}
                 </span>
               </span>
             </p>
