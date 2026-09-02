@@ -5,8 +5,10 @@
  * Set in Graflo Italic, the user's own face, converted to outlines by
  * tools/make-signature.py so nothing is fetched at runtime.
  *
- * Set in small caps: the leading capital at full height, the rest scaled about
- * the baseline, built that way in the generator rather than faked with CSS.
+ * Set as a lowercase e leading a run of small caps. The e is scaled so its ink
+ * matches cap height, and spacing is set from ink rather than advances, so the
+ * clear space between every pair of letters is identical. Both are done in the
+ * generator rather than faked with CSS.
  *
  * Each letter is stroked with its own dash offset and they run in sequence
  * across the scroll range, so the word is drawn continuously left to right.
