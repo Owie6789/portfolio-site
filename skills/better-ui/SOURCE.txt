@@ -1,0 +1,4 @@
+source: https://github.com/jakubkrehel/skills
+path:   skills/better-ui
+fetched: 2026-09-02T18:07:33.317Z
+command: npx skills use "https://github.com/jakubkrehel/skills" --skill "better-ui"

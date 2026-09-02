@@ -1,0 +1,4 @@
+source: https://github.com/pbakaus/impeccable
+path:   plugin/skills/impeccable
+fetched: 2026-09-02T18:08:24.258Z
+command: npx skills use "https://github.com/pbakaus/impeccable" --skill "impeccable"

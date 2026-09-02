@@ -1,0 +1,4 @@
+source: https://github.com/mattpocock/skills
+path:   skills/engineering/implement
+fetched: 2026-09-02T18:07:01.462Z
+command: npx skills use "https://github.com/mattpocock/skills" --skill "implement"

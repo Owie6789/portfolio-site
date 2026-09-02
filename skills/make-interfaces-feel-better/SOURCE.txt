@@ -1,0 +1,4 @@
+source: https://github.com/affaan-m/ecc
+path:   skills/make-interfaces-feel-better
+fetched: 2026-09-02T18:07:27.571Z
+command: npx skills use "https://github.com/affaan-m/ecc" --skill "make-interfaces-feel-better"

@@ -1,0 +1,4 @@
+source: https://github.com/buildgreatproducts/builder-os
+path:   skills/design-better
+fetched: 2026-09-02T18:06:52.169Z
+command: npx skills use "https://github.com/buildgreatproducts/builder-os" --skill "design-better"

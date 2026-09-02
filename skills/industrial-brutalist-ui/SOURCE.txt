@@ -1,0 +1,4 @@
+source: https://github.com/leonxlnx/taste-skill
+path:   skills/brutalist-skill
+fetched: 2026-09-02T18:06:59.014Z
+command: npx skills use "https://github.com/leonxlnx/taste-skill" --skill "brutalist-skill"
