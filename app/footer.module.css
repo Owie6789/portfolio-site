@@ -1,27 +1,32 @@
 /* Moon-white footer panel.
  *
- * Cold near-white surface, checkerboard edge, oversized condensed Instrument
- * Sans headline. Self-contained: no rule here reaches outside .footer, so the
- * ported page's own CSS is untouched.
+ * Cold near-white surface, stamp-edge checker, headline set as fitted SVG.
+ * Self-contained: nothing here reaches outside .footer, so the ported page's
+ * own CSS is untouched.
  */
 
+/* Static instance at wdth 75 / wght 700, cut by tools/measure-headline.py.
+   A static cut rather than the variable font: no dependence on variable-axis
+   support, and no silent fallback to an unstyled weight. 27 KB. */
 @font-face {
-  font-family: "Instrument Sans";
-  src: url("/live/font/InstrumentSans.woff2") format("woff2-variations");
-  font-weight: 400 700;
-  font-stretch: 75% 100%;
+  font-family: "Instrument Sans Cond";
+  src: url("/live/font/InstrumentSans-CondensedBold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 .footer {
-  /* Moon surface: cool grey-white, lit slightly from the top left. */
+  /* Moon surface: cool grey-white, lit from the top left. */
   --moon-0: #eef0f3;
-  --moon-1: #e2e5ea;
-  --moon-2: #d3d8df;
-  --ink: #14161a;
-  --ink-soft: #4a515b;
+  --moon-1: #e3e6eb;
+  --moon-2: #ccd2da;
+  --ink: #101216;
+  --ink-soft: #565e6a;
+  --tooth: 30px;
+  --band: 20px;
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pad: clamp(1.25rem, 3.2vw, 3rem);
 
   display: block;
   padding-bottom: var(--space-9, 3rem);
@@ -30,9 +35,9 @@
 .panel {
   background-color: var(--moon-1);
   background-image: radial-gradient(
-    120% 90% at 12% -10%,
+    130% 100% at 10% -20%,
     var(--moon-0) 0%,
-    var(--moon-1) 42%,
+    var(--moon-1) 45%,
     var(--moon-2) 100%
   );
   color: var(--ink);
@@ -41,73 +46,70 @@
   width: 100%;
 }
 
-/* Checkerboard edge: a solid band, then a row of teeth. */
-.checker {
+/* Stamp edge: a solid ink band with square teeth hanging into the panel.
+   Same figure/ground as the reference, inverted because the panel is light. */
+.edge {
   display: block;
   width: 100%;
 }
 
-.checkerBand {
-  background-color: var(--moon-0);
+.edgeBand {
+  background-color: var(--ink);
   display: block;
-  height: 18px;
+  height: var(--band);
   width: 100%;
 }
 
-.checkerTeeth {
-  --tooth: 18px;
-  background-color: var(--moon-0);
-  background-image:
-    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%),
-    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%);
-  background-position: 0 0, var(--tooth) var(--tooth);
-  background-size: calc(var(--tooth) * 2) calc(var(--tooth) * 2);
+.edgeTeeth {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--ink) 0,
+    var(--ink) var(--tooth),
+    transparent var(--tooth),
+    transparent calc(var(--tooth) * 2)
+  );
   display: block;
-  height: var(--tooth);
+  height: var(--band);
   width: 100%;
 }
 
 .body {
   display: grid;
-  gap: var(--space-9, 3rem);
-  padding: var(--space-10, 4rem) var(--space-7, 2rem) var(--space-7, 2rem);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(2rem, 4.5vw, 4rem) var(--pad) clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
 }
 
-/* Headline: very condensed, heavy, with the extra letter spacing asked for. */
+/* Headline: SVG scaled to the panel width, so the type is edge to edge and
+   the size is a consequence of the layout rather than a guess. */
 .headline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 0.28em;
-  font-family: "Instrument Sans", "Some Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-stretch: 75%;
-  font-variation-settings: "wdth" 75, "wght" 700;
-  font-synthesis: none;
-  font-weight: 700;
-  font-size: clamp(3.25rem, 13.5vw, 11.5rem);
-  letter-spacing: 0.005em;
-  line-height: 0.86;
   margin: 0;
-  text-wrap: balance;
 }
 
-.word {
-  display: inline-block;
+.headline svg {
+  display: block;
+  height: auto;
+  overflow: visible;
+  width: 100%;
 }
 
-/* Asterisk: springy half spin in, springy unwind out. */
+.headline text {
+  fill: var(--ink);
+  font-family: "Instrument Sans Cond", "Some Sans", sans-serif;
+  font-weight: 700;
+}
+
+/* Asterisk: springy half spin in, springy unwind out, around its own centre. */
 .asterisk {
-  color: var(--ink);
-  font-family: "Instrument Sans", "Some Sans", sans-serif;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-variation-settings: "wdth" 100, "wght" 400;
-  font-weight: 400;
-  line-height: 1;
+  fill: var(--ink);
+  height: auto;
   position: absolute;
-  right: var(--space-7, 2rem);
-  top: var(--space-7, 2rem);
+  right: var(--pad);
+  top: clamp(1.5rem, 3.5vw, 3rem);
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
   transition: transform 620ms var(--ease-spring);
+  width: clamp(2.75rem, 6vw, 5.5rem);
   will-change: transform;
 }
 
@@ -116,50 +118,57 @@
 }
 
 .meta {
-  align-items: end;
-  display: grid;
-  gap: var(--space-6, 1.5rem) var(--space-9, 3rem);
-  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(1.5rem, 4vw, 3rem);
+  justify-content: space-between;
+}
+
+.metaLeft {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 clamp(1rem, 2.5vw, 2rem);
 }
 
 .copy,
-.email {
-  color: var(--ink-soft);
-  font-size: var(--type-size-3, 1rem);
+.email,
+.links a {
+  font-family: "Some Sans", sans-serif;
+  font-size: 0.9375rem;
   letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.copy {
+  color: var(--ink-soft);
   margin: 0;
 }
 
 .email {
-  border-radius: 4px;
-  display: inline-block;
-  min-height: 44px;
-  padding: 12px 0;
+  color: var(--ink);
   text-decoration: none;
-  transition: color 150ms ease-out;
+  text-underline-offset: 0.25em;
 }
 
 .email:hover {
-  color: var(--ink);
+  text-decoration: underline;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 var(--space-6, 1.5rem);
-  justify-content: flex-end;
+  gap: 0 clamp(0.875rem, 2vw, 1.75rem);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .links a {
-  border-radius: 4px;
   color: var(--ink-soft);
   display: inline-flex;
   align-items: center;
-  font-size: var(--type-size-3, 1rem);
-  letter-spacing: 0.01em;
   min-height: 44px;
   text-decoration: none;
   transition: color 150ms ease-out;
@@ -173,73 +182,33 @@
 .links a:focus-visible {
   background-color: var(--ink);
   color: var(--moon-0);
-  outline: 2px dotted var(--ink);
-  outline-offset: 3px;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
-/* Tablet */
-@media only screen and (max-width: 980px) {
-  .body {
-    padding: var(--space-9, 3rem) var(--space-6, 1.5rem) var(--space-6, 1.5rem);
-  }
-
-  .meta {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .links {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-  }
-}
-
-/* Phone: the reference's stacked card. Type stays oversized, the four meta
-   items fall into a 2x2 block. */
+/* Phone: same treatment, not a cut-down. Teeth shrink, meta stacks into the
+   two-column block from the reference's mobile card. */
 @media only screen and (max-width: 576px) {
-  .checkerBand,
-  .checkerTeeth {
-    height: 12px;
-  }
-
-  .checkerTeeth {
-    --tooth: 12px;
-  }
-
-  .body {
-    gap: var(--space-7, 2rem);
-    padding: var(--space-8, 2.5rem) var(--space-5, 1.25rem) var(--space-5, 1.25rem);
-  }
-
-  .headline {
-    font-size: clamp(2.75rem, 17vw, 5rem);
-  }
-
-  .asterisk {
-    font-size: 2.25rem;
-    right: var(--space-5, 1.25rem);
-    top: var(--space-5, 1.25rem);
+  .footer {
+    --tooth: 18px;
+    --band: 12px;
   }
 
   .meta {
-    gap: var(--space-4, 1rem) var(--space-6, 1.5rem);
-    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
-  .copy {
-    order: 2;
-    text-align: right;
-  }
-
-  .email {
-    order: 1;
+  .metaLeft {
+    justify-content: space-between;
+    width: 100%;
   }
 
   .links {
     display: grid;
-    gap: 0 var(--space-6, 1.5rem);
-    grid-column: 1 / -1;
     grid-template-columns: 1fr 1fr;
-    order: 3;
+    width: 100%;
   }
 
   .links li:nth-child(even) a {
@@ -247,7 +216,7 @@
   }
 }
 
-/* Touch devices fire hover on tap. */
+/* Touch fires hover on tap. */
 @media (hover: none) {
   .panel:hover .asterisk {
     transform: none;
