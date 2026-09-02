@@ -14,7 +14,6 @@
  */
 import "./overrides.css";
 import FooterAsterisk from "./footer-asterisk";
-import FooterShuffle from "./footer-shuffle";
 import FooterYear from "./footer-year";
 import styles from "./footer.module.css";
 
@@ -165,9 +164,7 @@ export default function Footer() {
             <ul className={styles.links}>
               {LINKS.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} aria-label={l.label}>
-                    <FooterShuffle label={l.label} />
-                  </a>
+                  <a href={l.href}>{l.label}</a>
                 </li>
               ))}
             </ul>

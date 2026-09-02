@@ -14,8 +14,8 @@
 
 import { useCallback, useEffect, useRef } from "react";
 
-const PULL = 0.34; // fraction of the cursor's offset the glyph travels
-const MAX = 26; // px cap, so it never leaves its corner
+const PULL = 0.26; // fraction of the cursor's offset the glyph travels
+const MAX = 40; // px cap, so it never leaves its corner
 /* Two regimes for the position spring. While the cursor is inside, it is soft
    and slow so the glyph drifts after it. On release it stiffens to roughly
    critical damping (damping ~ 2*sqrt(stiffness)) so a quick in-and-out settles

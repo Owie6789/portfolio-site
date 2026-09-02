@@ -52,6 +52,7 @@
 
 .panel {
   background-color: var(--moon-1);
+  isolation: isolate;
   background-image: radial-gradient(
     130% 100% at 10% -20%,
     var(--moon-0) 0%,
@@ -64,12 +65,31 @@
   width: 100%;
 }
 
+/* Grain, on the moon surface only. One feTurbulence tile rasterised once by
+   the browser and repeated, multiplied at 6%. It sits below the checker and
+   the content, so the ink squares and the type stay clean while every
+   moon-coloured area, including the gaps between checks, picks up the
+   texture. No animation, no filter on a live layer, no repaint cost. */
+.panel::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.06;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
 /* Checker divider: a solid ink band, then two offset rows of checks that
    dissolve it into the panel. Two rows, not one, and the second is offset by
    half a period, which is what makes it read as a dither rather than teeth. */
 .edge {
   display: block;
+  position: relative;
   width: 100%;
+  z-index: 1;
 }
 
 .edgeBand {
@@ -108,6 +128,7 @@
 
 .body {
   display: grid;
+  z-index: 1;
   gap: clamp(1.25rem, 2.6vw, 2.25rem);
   /* The page's .glass-overlay is fixed to the bottom of the viewport and is
      up to 128px tall, so the meta row needs to clear it. */
@@ -123,9 +144,21 @@
 
 .headline svg {
   display: block;
+  /* Debossed: a light edge catching along the bottom of every stroke and a
+     tight dark one above, so the letters read as pressed into the surface
+     rather than sitting on it. Two drop-shadows compose on the GPU, no extra
+     paint of the text itself. */
+  filter:
+    drop-shadow(0 0.012em 0 rgba(255, 255, 255, 0.65))
+    drop-shadow(0 -0.006em 0.006em rgba(9, 11, 14, 0.45));
   height: auto;
   overflow: visible;
   width: 100%;
+}
+
+.headline text {
+  /* Slightly off pure ink so the surface reads through the cut. */
+  fill: #171a1f;
 }
 
 .headline text {
@@ -161,10 +194,13 @@
   justify-content: flex-end;
 }
 
+/* The padding is the magnetic catchment. Negative margin cancels it, so the
+   field can be far larger than the glyph without moving anything. */
 .asteriskField {
   cursor: pointer;
   display: inline-flex;
-  padding: clamp(0.75rem, 1.6vw, 1.25rem);
+  margin: clamp(-4.5rem, -5vw, -2.5rem);
+  padding: clamp(2.5rem, 5vw, 4.5rem);
 }
 
 /* The magnet carries the spring-driven translate written from JS. */
