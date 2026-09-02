@@ -141,11 +141,17 @@ scrolls, and unwrites it on the way back up. `app/hero-signature.tsx` portals
 it into `.logomark` at runtime rather than injecting markup through the
 generator, so the ported DOM stays untouched.
 
-The word is outlines from a script face, so no font is fetched at runtime.
-`tools/make-signature.py` writes four to choose from, all SIL OFL:
-`alexbrush` (elegant, long strokes, currently used), `stylescript` (heavier
-brush), `zeyada` (fast scrawl) and `nothingyoucoulddo` (ballpoint). Switch by
-changing the import at the top of `app/signature.tsx`. It is revealed through a mask rather than a wipe: one thick
+Set in Graflo Italic, from `graflo-urban-graffiti-font.zip` on `main`, and
+converted to outlines by `tools/make-signature.py` so nothing is fetched at
+runtime. Four SIL OFL alternatives are generated alongside it (`alexbrush`,
+`stylescript`, `zeyada`, `nothingyoucoulddo`); switch by changing the import at
+the top of `app/signature.tsx`.
+
+Each letter is a separate path with its own dash offset, and they run in
+sequence across the scroll range with a 35% overlap, so the word draws
+continuously letter by letter. Each letter's fill comes up over the last 30% of
+its own stroke. Progress is read from `scrollY`, so at the top of the page it
+is exactly zero: nothing draws until the page moves. It is revealed through a mask rather than a wipe: one thick
 stroke runs the length of the word along the writing line, and its dash offset
 is tied to scroll position, so the letters uncover in writing order. The path
 length is measured from the DOM with `getTotalLength()` rather than estimated.

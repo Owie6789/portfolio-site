@@ -87,12 +87,13 @@
 }
 
 .hero-signature {
-  bottom: -6%;
-  left: 4%;
+  left: 50%;
   mix-blend-mode: difference;
   pointer-events: none;
   position: absolute;
-  width: 62%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72%;
   z-index: 2;
 }
 
@@ -105,8 +106,7 @@
 
 @media only screen and (max-width: 768px) {
   .hero-signature {
-    bottom: -10%;
-    width: 78%;
+    width: 86%;
   }
 }
 

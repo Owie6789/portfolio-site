@@ -1,15 +1,9 @@
-"""Draw the signature and the pen path that reveals it.
+"""Draw the signature, one path per letter.
 
-Two pieces come out of this:
-
-  signature  the word set in Ms Madi, a monoline signature script, converted to
-             outlines so no font is fetched at runtime and the shape can be
-             masked.
-  pen        a single smooth curve running the length of the word, roughly
-             along the writing line. Stroked thick and used as a mask, it
-             uncovers the signature in writing order as its dash offset
-             animates, which reads as the word being written rather than
-             wiped in.
+The word is converted to outlines so no font is fetched at runtime. Letters are
+kept as separate paths on purpose: app/signature.tsx strokes each one in turn
+with a dash offset, so the word draws letter by letter and continuously, rather
+than being uncovered by a mask sweeping across it.
 
   /tmp/fv/bin/python tools/make-signature.py            # writes all four
 """
@@ -24,14 +18,15 @@ WORD = "Emmanuel"
 
 # Four script faces, all SIL OFL. Switch by editing FACE, re-running, and
 # pointing app/signature.tsx at the file it writes.
+# Graflo Italic is the user's own face, from graflo-urban-graffiti-font.zip on
+# main. The others are alternatives kept from an earlier round.
 FACES = {
-    "alexbrush": "/tmp/AlexBrush-Regular.ttf",   # elegant, long flowing strokes
-    "stylescript": "/tmp/StyleScript-Regular.ttf",  # brush-like, heavier
-    "zeyada": "/tmp/Zeyada.ttf",                 # fast casual scrawl
-    "nothingyoucoulddo": "/tmp/NothingYouCouldDo.ttf",  # ballpoint handwriting
+    "graflo": "/tmp/graflo/itgraflo-italic.otf",
+    "alexbrush": "/tmp/AlexBrush-Regular.ttf",
+    "stylescript": "/tmp/StyleScript-Regular.ttf",
+    "zeyada": "/tmp/Zeyada.ttf",
+    "nothingyoucoulddo": "/tmp/NothingYouCouldDo.ttf",
 }
-FACE = "alexbrush"
-SRC = FACES[FACE]
 WIDTH = 1000  # viewBox units the signature is scaled to fill
 MARGIN = 24  # air around the ink, so nothing clips and the pen can overshoot
 
@@ -70,33 +65,14 @@ def build(face, src):
         if svg.getCommands():
             paths.append(svg.getCommands())
 
-    # The pen path: left to right across the word, dipping and rising through the
-    # letter bodies so the mask sweeps the ascenders and descenders as it passes.
-    mid = height * 0.55
-    amp = height * 0.16
-    steps = 8
-    pts = []
-    for i in range(steps + 1):
-        t = i / steps
-        x = -MARGIN + t * (WIDTH + MARGIN * 2)
-        y = mid + amp * ((-1) ** i) * (0.35 + 0.65 * t)
-        pts.append((round(x, 2), round(y, 2)))
-
-    pen = f"M{pts[0][0]} {pts[0][1]}"
-    for i in range(1, len(pts)):
-        px, py = pts[i - 1]
-        cx, cy = pts[i]
-        pen += f" C{round(px + (cx - px) * 0.5, 2)} {py} {round(px + (cx - px) * 0.5, 2)} {cy} {cx} {cy}"
-
     return json.dumps({
         "word": WORD,
         "face": face,
         "viewBox": f"{-MARGIN} {-MARGIN} {WIDTH + MARGIN * 2} {round(height + MARGIN * 2, 2)}",
         "height": height,
-        "penWidth": round(height * 0.78, 2),
+        "strokeWidth": round(height * 0.018, 2),
         "paths": paths,
-        "pen": pen,
-        }, indent=2)
+    }, indent=2)
 
 for face, src in FACES.items():
     out = f"app/signature-{face}.json"
