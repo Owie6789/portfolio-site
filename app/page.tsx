@@ -1,0 +1,550 @@
+/* AUTO-GENERATED from the original khagwal.com index.html by
+ * tools/html-to-jsx.mjs + tools/assemble.mjs. Markup, attributes and text are
+ * copied verbatim from the source; only JSX attribute names differ.
+ * Regenerate with: npm run port
+ */
+import Scripts from "./scripts";
+
+export default function Page() {
+  return (
+    <>
+      {/* Google Tag Manager (noscript) */}
+      <noscript dangerouslySetInnerHTML={{ __html: "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-PTWHNQ3\" height=\"0\" width=\"0\"\n            style=\"display:none;visibility:hidden\"></iframe>" }} />
+      {/* End Google Tag Manager (noscript) */}
+      <a className="skip headline" href="index.html#main">
+        {"Skip to main content ↓"}
+      </a>
+      <div className="grd-fold-a">
+        <header>
+          <div className="grd-header">
+            <div className="logo headline dense" aria-label="Nitish Khagwal">
+              <span aria-hidden="true">
+                {"Nitish"}
+              </span>
+              <span aria-hidden="true">
+                {"Khagwal"}
+              </span>
+            </div>
+            <div className="caption body-small" aria-label="Hey! I’m Nitish Khagwal. I specialize in human-centered design. Crafting products grounded in insights. My goal is to design usable & delightful products.">
+              <p>
+                <span aria-hidden="true">
+                  {"Hey! I’m Nitish Khagwal."}
+                </span>
+                <span aria-hidden="true">
+                  {"I specialize in human-centered design."}
+                </span>
+              </p>
+              <p>
+                <span aria-hidden="true">
+                  {"Crafting products grounded in insights."}
+                </span>
+                <span aria-hidden="true">
+                  {"My goal is to design usable & delightful products."}
+                </span>
+              </p>
+            </div>
+            <nav className="navigation">
+              <button className="nav-control" aria-controls="#menu" aria-expanded="true">
+                <span className="icon-nav">
+                  <span></span>
+                  <span></span>
+                </span>
+                <span className="body-large dense">
+                  {"Menu"}
+                </span>
+              </button>
+              <ul className="nav-list" id="menu">
+                <li>
+                  <a className="body-medium current" href="index.html#">
+                    {"Home"}
+                  </a>
+                </li>
+                <li>
+                  <a className="body-medium" rel="noopenner" href="https://www.khagwal.com/interactions">
+                    {"Interactions"}
+                  </a>
+                </li>
+                <li>
+                  <a className="body-medium" target="_blank" rel="noopenner" href="https://medium.com/@nitishkmrk">
+                    {"Blog"}
+                  </a>
+                </li>
+                <li>
+                  <a className="body-medium" target="_blank" rel="noopenner" href="https://twitter.com/nitishkmrk">
+                    {"X"}
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section>
+          <div className="hero">
+            <div className="wall">
+              <div className="roll">
+                <svg aria-hidden="true" className="magic-a" xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 57 57" fill="none">
+                  <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+                  <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+                  <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+                </svg>
+              </div>
+            </div>
+            <h1 className="title-large" aria-label="I bring utility & beauty closer. I design for humans.">
+              <span aria-hidden="true">
+                {"I bring usability & beauty closer."}
+              </span>
+              <span aria-hidden="true">
+                {"I design for humans."}
+              </span>
+            </h1>
+            <div className="logomark">
+              <svg width="100%" height="100%" viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 27.965V5H4.20485V15.4798L13.1968 5H18.1779L9.57412 15.0916L18.7278 27.965H13.9084L6.79245 17.9704L4.20485 20.9137V27.965H0Z" fill="var(--on-neutral-inverse)" />
+                <path d="M22 27.965V5H26.2049V14.5741H35.876V5H40.0809V27.965H35.876V18.2291H26.2049V27.965H22Z" fill="var(--on-neutral-inverse)" />
+                <path d="M43.5 27.965L51.7803 5H56.9232L65.2035 27.965H60.8046L58.8962 22.531H49.8073L47.8989 27.965H43.5ZM51.0364 18.9407H57.6671L54.3679 9.2372L51.0364 18.9407Z" fill="var(--on-neutral-inverse)" />
+                <path d="M77.5121 28C70.9137 28 67 23.0512 67 16.0323C67 9.14286 70.9784 4 77.7062 4C83.5283 4 86.504 7.20216 87.4744 11.8922L83.1078 12.1186C82.5903 9.43396 81.0377 7.65499 77.7385 7.65499C73.372 7.65499 71.3666 11.3747 71.3666 16.0323C71.3666 20.8194 73.3396 24.345 77.8032 24.345C81.1995 24.345 83.2695 21.9838 83.4636 18.9111H77.7709V15.6442H87.5391V27.4825H84.8221L84.6604 24.0216C83.496 26.4151 80.7143 28 77.5121 28Z" fill="var(--on-neutral-inverse)" />
+                <path d="M96.6779 27.965L90.5 5H94.9636L99.1685 22.1429L103.373 5H107.287L111.557 22.1429L115.729 5H120.16L114.047 27.965H109.357L105.346 12.2453L101.336 27.965H96.6779Z" fill="var(--on-neutral-inverse)" />
+                <path d="M119.5 27.965L127.78 5H132.923L141.204 27.965H136.805L134.896 22.531H125.807L123.899 27.965H119.5ZM127.036 18.9407H133.667L130.368 9.2372L127.036 18.9407Z" fill="var(--on-neutral-inverse)" />
+                <path d="M144.5 27.965V5H148.705V24.31H159.605V27.965H144.5Z" fill="var(--on-neutral-inverse)" />
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
+      <main id="main">
+        <div className="grd-fold-b">
+          <div className="grd-fold-b-lt">
+            <p className="exp">
+              <span className="display-large dense">
+                {"12Yrs."}
+              </span>
+              <span className="title-large">
+                {"of experience in human-centered design."}
+              </span>
+            </p>
+            <div className="sticky-grd">
+              <svg aria-hidden="true" className="magic-b" xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 57 57" fill="none">
+                <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+                <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+                <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+              </svg>
+              <div className="sticky"></div>
+            </div>
+          </div>
+          <div className="grd-fold-b-rt">
+            <div className="picture-wrap">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/nitish_khagwal_portrait_1x.webp?v1.0.1 1x, static/bitmap/nitish_khagwal_portrait_2x.webp?v1.0.1 2x" />
+                <img alt="nitish khagwal" data-src="static/bitmap/nitish_khagwal_portrait_1x.jpg?v1.0.1" data-srcset="static/bitmap/nitish_khagwal_portrait_1x.jpg?v1.0.1 1x, static/bitmap/nitish_khagwal_portrait_2x.jpg?v1.0.1 2x" />
+              </picture>
+            </div>
+            <p className="geo">
+              <span className="title-large">
+                {"Based in Meerut, IN"}
+              </span>
+              <span className="title-large">
+                {"— IST "}
+                <span className="timestamp">
+                  {"5:30 am"}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div className="grd-fold-c">
+          <div className="poster-wrap">
+            <picture className="skeleton" style={{ display: "none" }}>
+              <source type="image/webp" data-srcset="static/bitmap/cover_design_system_1x.webp 1x, static/bitmap/cover_design_system_2x.webp 2x" />
+              <img alt="paytm official design system (PODS)" data-src="static/bitmap/cover_design_system_1x.jpg" data-srcset="static/bitmap/cover_design_system_1x.jpg 1x, static/bitmap/cover_design_system_2x.jpg 2x" />
+            </picture>
+          </div>
+          <div className="poster-caption">
+            <p className="body-large dense">
+              {"January 2021 - July 2024"}
+            </p>
+            <div className="main-info">
+              <p className="title-large">
+                {"Built, maintained, and scaled a tokenized design system at Paytm."}
+              </p>
+              <ul className="body-medium">
+                <li>
+                  {"Design System Tokenisation"}
+                </li>
+                <li>
+                  {"Design System Tooling"}
+                </li>
+                <li>
+                  {"Maintaining Component Lifecycle"}
+                </li>
+                <li>
+                  {"Building Org-level Plugins"}
+                </li>
+                <li>
+                  {"SVN Asset Management"}
+                </li>
+                <li>
+                  {"Design Audits & Checks"}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-d">
+          <div className="grd-mosaic">
+            <div className="mosaic-caption">
+              <p className="title-small">
+                {"I like to do experiments."}
+              </p>
+              <p className="title-small">
+                {"I work on design concepts that extend beyond traditional GUI. I make magic\n                        happen."}
+              </p>
+            </div>
+            <div className="mosaic-gamepad">
+              <div className="video-wrap">
+                <video autoPlay={true} poster="static/bitmap/poster_gamepad.jpg" muted={true} playsInline={true} loop={true} src="live/flex_gamepad.mp4"></video>
+              </div>
+            </div>
+            <div className="mosaic-mobile">
+              <div className="video-wrap">
+                <video autoPlay={true} poster="static/bitmap/poster_mobile.jpg" muted={true} playsInline={true} loop={true} src="https://khagwal.com/live/flex_mobile.mp4"></video>
+              </div>
+            </div>
+            <div className="mosaic-keyboard">
+              <div className="sticky-arrow" aria-hidden="true">
+                <span className="sticky"></span>
+                <span className="dense">
+                  {"↓"}
+                </span>
+              </div>
+              <div className="video-keyboard">
+                <div className="video-wrap">
+                  <video autoPlay={true} poster="static/bitmap/poster_keyboard.jpg" muted={true} playsInline={true} loop={true} src="live/keyboard.mp4"></video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-e">
+          <h2 className="title-medium dense" aria-label="My design values">
+            <span aria-hidden="true">
+              {"My design "}
+            </span>
+            <span aria-hidden="true">
+              {"values –"}
+            </span>
+          </h2>
+          <div className="grd-val-wrap">
+            <div className="grd-val">
+              <div className="grd-val-icon" aria-hidden="true">
+                <svg aria-hidden="true" width="6rem" height="6rem" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="37.332" cy="17.333" r="8" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M61.332 62.666c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24h21.334" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M37.332 25.333v27.333h32L78 75.333 85.332 72" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                </svg>
+                <span></span>
+              </div>
+              <div>
+                <h3 className="title-medium dense">
+                  {"Accessibility first"}
+                </h3>
+                <p className="headline">
+                  {"When we design for differently-abled users, we make experiences better for\n                            everyone. I focus on permanent, temporary, and situational disability."}
+                </p>
+              </div>
+            </div>
+            <div className="grd-val">
+              <div className="grd-val-icon" aria-hidden="true">
+                <svg aria-hidden="true" width="6rem" height="6rem" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M32 16H16v16M32 80H16V64M64 16h16v16M64 80h16V64" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <circle cx="48" cy="36" r="8" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M64 68v-8a8 8 0 0 0-8-8H40a8 8 0 0 0-8 8v8" stroke="var(--on-neutral-inverse)" strokeWidth="6" />
+                </svg>
+                <span></span>
+              </div>
+              <div>
+                <h3 className="title-medium dense">
+                  {"User focus"}
+                </h3>
+                <p className="headline">
+                  {"While designing experiences, I keep users front and centre. I prefer\n                            firsthand user observations and making design decisions grounded in data."}
+                </p>
+              </div>
+            </div>
+            <div className="grd-val">
+              <div className="grd-val-icon" aria-hidden="true">
+                <svg aria-hidden="true" width="6rem" height="6rem" fill="none" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M74.148 85.333V59.667a29.595 29.595 0 0 0 7.185-19.385c0-16.356-13.186-29.615-29.453-29.615S22.426 23.926 22.426 40.282v7L16 62.54h9.33l4.82 15.974h17.446l4.284-9.692" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M50.667 44a6.667 6.667 0 0 0 0 13.333H58V66" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M45.333 49.333a8 8 0 0 1 0-16M41.333 33.85a8 8 0 0 1 15.128-5.209" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M52 30.632a8 8 0 0 1 13.265 8.947" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M61.683 44.635a5.196 5.196 0 0 1 10.353-.906" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                </svg>
+                <span></span>
+              </div>
+              <div>
+                <h3 className="title-medium dense">
+                  {"Human factor"}
+                </h3>
+                <p className="headline">
+                  {"Humans have variables that increase the tendency of errors. I make product\n                            interaction so easy that it becomes hard for users to make errors."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-f">
+          <div className="plugin-caption">
+            <p className="body-large dense">
+              {"Figma Plugins & Widgets"}
+            </p>
+            <p className="title-large">
+              {"I make things for people who design things."}
+            </p>
+          </div>
+          <div className="grd-plugin">
+            <div className="plugin-poster">
+              <a href="https://www.figma.com/community/plugin/1071077298865016770/Ink-Wireframe" target="_blank" rel="noopenner" className="plugin-cover plugin-ink">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/logo_ink_wireframe_1x.webp 1x, static/bitmap/logo_ink_wireframe_2x.webp 2x" />
+                  <img alt="figma ink wireframe plugin" data-src="static/bitmap/logo_ink_wireframe_1x.png" data-srcset="static/bitmap/logo_ink_wireframe_1x.png 1x, static/bitmap/logo_ink_wireframe_2x.png 2x" />
+                </picture>
+              </a>
+              <a className="title-large" href="https://www.figma.com/community/plugin/1071077298865016770/Ink-Wireframe" target="_blank" aria-label="Ink Wireframe Plugin">
+                <span aria-hidden="true">
+                  {"Ink Wireframe"}
+                </span>
+                <span aria-hidden="true">
+                  {"Plugin ↗"}
+                </span>
+              </a>
+            </div>
+            <div className="plugin-poster">
+              <a href="https://www.figma.com/community/widget/1123673447187127238/Sticky-Note" target="_blank" rel="noopener" className="plugin-cover plugin-note">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/logo_sticky_note_1x.webp 1x, static/bitmap/logo_sticky_note_2x.webp 2x" />
+                  <img alt="figma sticky note widget" data-src="static/bitmap/logo_sticky_note_1x.png" data-srcset="static/bitmap/logo_sticky_note_1x.png 1x, static/bitmap/logo_sticky_note_2x.png 2x" />
+                </picture>
+              </a>
+              <a className="title-large" href="https://www.figma.com/community/widget/1123673447187127238/Sticky-Note" target="_blank" aria-label="Sticky Note Widget">
+                <span aria-hidden="true">
+                  {"Sticky Note"}
+                </span>
+                <span aria-hidden="true">
+                  {"Widget ↗"}
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-g">
+          <div className="grd-title">
+            <h2 className="title-medium dense" aria-label="I share threads about design systems and tools —">
+              <span aria-hidden="true">
+                {"I share threads about"}
+              </span>
+              <span aria-hidden="true">
+                {"design systems\n                        &"}
+              </span>
+              <span aria-hidden="true">
+                {"tools —"}
+              </span>
+            </h2>
+            <svg aria-hidden="true" className="magic-c" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 57 57" fill="none">
+              <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+              <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+              <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+            </svg>
+          </div>
+          <div className="grd-cover">
+            <a href="https://twitter.com/nitishkmrk/status/1579477287849775105" rel="nopenner" target="_blank" className="landscape">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_100_figma_tips_1x.webp 1x, static/bitmap/cover_100_figma_tips_2x.webp 2x" />
+                <img alt="100 figma tips" data-src="static/bitmap/cover_100_figma_tips_1x.jpg" data-srcset="static/bitmap/cover_100_figma_tips_1x.jpg 1x, static/bitmap/cover_100_figma_tips_2x.jpg 2x" />
+              </picture>
+            </a>
+            <a href="https://twitter.com/nitishkmrk/status/1599670760163139584" rel="nopenner" target="_blank" className="square">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_design_system_overrides_1x.webp 1x, static/bitmap/cover_design_system_overrides_2x.webp 2x" />
+                <img alt="figma design system overrides" data-src="static/bitmap/cover_design_system_overrides_1x.jpg" data-srcset="static/bitmap/cover_design_system_overrides_1x.jpg 1x, static/bitmap/cover_design_system_overrides_2x.jpg 2x" />
+              </picture>
+            </a>
+            <a href="https://twitter.com/nitishkmrk/status/1586984831212478465" rel="nopenner" target="_blank" className="square">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_figma_10_design_system_things_1x.webp 1x, static/bitmap/cover_figma_10_design_system_things_2x.webp 2x" />
+                <img alt="figma design system" data-src="static/bitmap/cover_figma_10_design_system_things_1x.jpg" data-srcset="static/bitmap/cover_figma_10_design_system_things_1x.jpg 1x, static/bitmap/cover_figma_10_design_system_things_2x.jpg 2x" />
+              </picture>
+            </a>
+            <a href="https://twitter.com/nitishkmrk/status/1592060740701421569" rel="nopenner" target="_blank" className="square">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_figma_spring_animations_1x.webp 1x, static/bitmap/cover_figma_spring_animations_2x.webp 2x" />
+                <img alt="figma spring animations" data-src="static/bitmap/cover_figma_spring_animations_1x.jpg" data-srcset="static/bitmap/cover_figma_spring_animations_1x.jpg 1x, static/bitmap/cover_figma_spring_animations_2x.jpg 2x" />
+              </picture>
+            </a>
+          </div>
+          <p className="grd-footnote title-medium dense">
+            {"find out more at"}
+            <span>
+              <a href="https://twitter.com/search?q=from%3Anitishkmrk%20thread&src=typed_query" rel="noopener" target="_blank">
+                {"Twitter ↗"}
+              </a>
+            </span>
+          </p>
+        </div>
+        <div className="grd-fold-h">
+          <h2 className="dense">
+            {"Certifications"}
+          </h2>
+          <div className="grd-certificate">
+            <svg aria-hidden="true" className="magic-d" xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 57 57" fill="none">
+              <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+              <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+              <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+            </svg>
+            <ul>
+              <li>
+                <span className="title-large">
+                  {"Google UX Design Specialization"}
+                </span>
+                <a className="body-large dense" href="https://www.coursera.org/account/accomplishments/specialization/certificate/NXSRRJQ56HRE" target="_blank">
+                  {"Coursera Professional Certificate ↗"}
+                </a>
+              </li>
+              <li>
+                <span className="title-large">
+                  {"Mobile User Experience Design"}
+                </span>
+                <a className="body-large dense" href="https://www.interaction-design.org/members/nitish-kumar-2/certificate/course/33f9d0ed-f40f-4d1d-bd11-8e402867be88" target="_blank">
+                  {"Interaction Design Foundation ↗"}
+                </a>
+              </li>
+              <li>
+                <span className="title-large">
+                  {"Interaction Design for Usability"}
+                </span>
+                <a className="body-large dense" href="https://www.interaction-design.org/members/nitish-kumar-2/certificate/course/5d3cb900-3f22-42a8-a48d-c3dd2168fbd1" target="_blank">
+                  {"Interaction Design Foundation ↗"}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="grd-fold-i">
+          <div className="grd-gallery">
+            <div className="grd-gallery-block">
+              <div className="grd-gallery-snap stretch">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_workspace_1x.webp 1x, static/bitmap/snap_workspace_2x.webp 2x" />
+                  <img alt="nitish khagwal workspace" data-src="static/bitmap/snap_workspace_1x.jpg" data-srcset="static/bitmap/snap_workspace_1x.jpg 1x, static/bitmap/snap_workspace_2x.jpg 2x" />
+                </picture>
+              </div>
+              <div className="grd-gallery-snap squash">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_candid_1x.webp 1x, static/bitmap/snap_candid_2x.webp 2x" />
+                  <img alt="nitish khagwal working on a ux project" data-src="static/bitmap/snap_candid_1x.jpg" data-srcset="static/bitmap/snap_candid_1x.jpg 1x, static/bitmap/snap_candid_2x.jpg 2x" />
+                </picture>
+              </div>
+            </div>
+            <div className="grd-gallery-block">
+              <div className="grd-gallery-snap squash">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_event_1x.webp 1x, static/bitmap/snap_event_2x.webp 2x" />
+                  <img alt="nitish khagwal at ux workshop" data-src="static/bitmap/snap_event_1x.jpg" data-srcset="static/bitmap/snap_event_1x.jpg 1x, static/bitmap/snap_event_2x.jpg 2x" />
+                </picture>
+              </div>
+              <div className="grd-gallery-snap stretch">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_hall_of_fame_1x.webp 1x, static/bitmap/snap_hall_of_fame_2x.webp 2x" />
+                  <img alt="paytm hall of fame award" data-src="static/bitmap/snap_hall_of_fame_1x.jpg" data-srcset="static/bitmap/snap_hall_of_fame_1x.jpg 1x, static/bitmap/snap_hall_of_fame_2x.jpg 2x" />
+                </picture>
+              </div>
+            </div>
+            <div className="grd-gallery-block">
+              <div className="grd-gallery-snap stretch">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_reading_book_1x.webp?v1.0.1 1x, static/bitmap/snap_reading_book_2x.webp?v1.0.1 2x" />
+                  <img alt="nitish khagwal reading a book" data-src="static/bitmap/snap_reading_book_1x.jpg" data-srcset="static/bitmap/snap_reading_book_1x.jpg?v1.0.1 1x, static/bitmap/snap_reading_book_2x.jpg?v1.0.1 2x" />
+                </picture>
+              </div>
+              <div className="grd-gallery-snap squash">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_session_1x.webp 1x, static/bitmap/snap_session_2x.webp 2x" />
+                  <img alt="nitish khagwal in ux workshop" data-src="static/bitmap/snap_session_1x.jpg" data-srcset="static/bitmap/snap_session_1x.jpg 1x, static/bitmap/snap_session_2x.jpg 2x" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-j">
+          <hr />
+          <footer>
+            <div className="grd-footer">
+              <div className="grd-footer-lt">
+                <div className="grd-contact">
+                  <h2 className="display-medium dense">
+                    {"Let’s connect async –"}
+                  </h2>
+                  <div className="grd-cut">
+                    <a className="title-medium" href="https://khagwal.com/cdn-cgi/l/email-protection#f69e938fb69d9e979181979ad895999b" target="_blank" rel="noopenner">
+                      <span className="__cf_email__" data-cfemail="95fdf0ecd5fefdf4f2e2f4f9bbf6faf8">
+                        {"[email protected]"}
+                      </span>
+                    </a>
+                    <span>
+                      <svg aria-hidden="true" className="magic-e" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 57 57" fill="none">
+                        <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+                        <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+                        <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <p className="footnote body-large dense">
+                  {"© 2025 Nitish Khagwal"}
+                </p>
+              </div>
+              <div className="grd-footer-rt">
+                <ul>
+                  <li>
+                    <a className="title-medium" href="https://twitter.com/nitishkmrk" target="_blank" rel="noopenner">
+                      {"X ↗"}
+                    </a>
+                  </li>
+                  <li>
+                    <a className="title-medium" href="https://www.behance.net/nitishkmrk" target="_blank" rel="noopenner">
+                      {"Behance ↗"}
+                    </a>
+                  </li>
+                  <li>
+                    <a className="title-medium" href="https://dribbble.com/nitishkmrk/" target="_blank" rel="noopenner">
+                      {"Dribbble ↗"}
+                    </a>
+                  </li>
+                  <li>
+                    <a className="title-medium" href="https://medium.com/@nitishkmrk" target="_blank" rel="noopenner">
+                      {"Medium ↗"}
+                    </a>
+                  </li>
+                  <li>
+                    <a className="title-medium" href="https://www.linkedin.com/in/nitishkmrk/" target="_blank" rel="noopenner">
+                      {"LinkedIn ↗"}
+                    </a>
+                  </li>
+                  <li>
+                    <a className="title-medium" href="https://www.instagram.com/nitishkmrk/" target="_blank" rel="noopenner">
+                      {"Instagram ↗"}
+                    </a>
+                  </li>
+                </ul>
+                <p className="footnote body-large dense">
+                  {"© 2025 Nitish Khagwal"}
+                </p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </main>
+      <div className="glass-overlay" aria-hidden="true"></div>
+      <Scripts />
+    </>
+  );
+}
