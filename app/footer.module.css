@@ -32,8 +32,8 @@
   --moon-2: #ccd2da;
   --ink: #101216;
   --ink-soft: #565e6a;
-  --tooth: 30px;
-  --band: 20px;
+  --tooth: 16px;
+  --band: 14px;
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --pad: clamp(1.25rem, 3.2vw, 3rem);
 
@@ -61,8 +61,9 @@
   width: 100%;
 }
 
-/* Stamp edge: a solid ink band with square teeth hanging into the panel.
-   Same figure/ground as the reference, inverted because the panel is light. */
+/* Checker divider: a solid ink band, then two offset rows of checks that
+   dissolve it into the panel. Two rows, not one, and the second is offset by
+   half a period, which is what makes it read as a dither rather than teeth. */
 .edge {
   display: block;
   width: 100%;
@@ -76,15 +77,13 @@
 }
 
 .edgeTeeth {
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--ink) 0,
-    var(--ink) var(--tooth),
-    transparent var(--tooth),
-    transparent calc(var(--tooth) * 2)
-  );
+  background-image:
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%),
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%);
+  background-position: 0 0, var(--tooth) var(--tooth);
+  background-size: calc(var(--tooth) * 2) calc(var(--tooth) * 2);
   display: block;
-  height: var(--band);
+  height: calc(var(--tooth) * 2);
   width: 100%;
 }
 
@@ -209,6 +208,8 @@
 .links {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  top: -5px;
   gap: 0 clamp(0.875rem, 2vw, 1.75rem);
   list-style: none;
   margin: 0;
@@ -272,8 +273,8 @@
    two-column block from the reference's mobile card. */
 @media only screen and (max-width: 576px) {
   .footer {
-    --tooth: 18px;
-    --band: 12px;
+    --tooth: 10px;
+    --band: 9px;
   }
 
   .meta {
