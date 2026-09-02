@@ -17,6 +17,7 @@
  * present — same DOM, same scripts, just no longer racing React.
  */
 import Script from "next/script";
+import SmoothScroll from "./smooth-scroll";
 
 export default function Scripts() {
   return (
@@ -27,6 +28,7 @@ export default function Scripts() {
         strategy="afterInteractive"
       />
       <Script src="/dist/main.js@v1.0.2" strategy="afterInteractive" />
+      <SmoothScroll />
     </>
   );
 }

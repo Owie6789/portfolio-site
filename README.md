@@ -94,6 +94,22 @@ user supplied in `footer fonts.zip` on `main`). The same script prints the ink
 metrics the SVG headline needs; re-run it if the copy or the fonts change. Note
 that it subsets the Garamond in place, so restore it from `main` first.
 
+## Smooth scrolling
+
+`app/smooth-scroll.tsx` adds Lenis, mounted from `app/scripts.tsx` after the
+original bundle.
+
+GSAP's own ScrollSmoother is not used, and cannot be: it is a Club GreenSock
+plugin rather than part of the free distribution, and it is not in
+`dist/main.js@v1.0.2`. That bundle also keeps `gsap` and `ScrollTrigger`
+private, with nothing exposed on `window`, so a smoother could not be given the
+same gsap instance even if the file were licensed and dropped in.
+
+Lenis drives the real window scroll position instead of transforming a wrapper,
+so every ScrollTrigger in the original bundle keeps reading scroll exactly as
+before and the existing pinning and scrubbing still work. Native scrolling is
+left in place for touch and for `prefers-reduced-motion`.
+
 ## Overrides on ported elements
 
 `app/overrides.css` is the one place where the port's own elements get
