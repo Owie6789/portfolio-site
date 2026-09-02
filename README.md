@@ -66,6 +66,37 @@ Next.js/React and none of them visible:
    by the browser. Set in `next.config.ts`.
 7. Next's own runtime `<script>`/preload tags are added to the page.
 
+## Known issues
+
+**Grey boxes** — two different things, and only one is a bug:
+
+1. *14 lazy-load skeletons.* Every `<picture>` in the page carries
+   `class="skeleton"`, which paints a grey/striped placeholder and sets
+   `picture.skeleton img{opacity:0}`. `main.js` only removes that class in the
+   image's `load` handler. All 14 images are missing from the archive, so
+   `load` never fires and the placeholders stay forever. They disappear on
+   their own once the files are added — see below. Not a port issue.
+2. *Decorative grey squares.* `.sticky-grd .sticky`, `.sticky-arrow .sticky`,
+   `.grd-cut span::before` and `.grd-fold-h h2::before` are part of the
+   original design. They look orphaned right now because the images they sit
+   next to are blank.
+
+**Script timing (fixed).** The closing scripts must run *after* React
+hydration, not before — see the comment in `app/scripts.tsx`. Running them
+before means React clobbers what they wrote: GSAP's inline `transform` on
+`.grd-cut span` is what makes that element the containing block for its
+`position:absolute` ::before square, so losing it sends the grey square off to
+the top-left of the page, and Cloudflare's decoded email address reverts to
+`[email protected]`.
+
+To identify any remaining stray box, paste `tools/inspect-boxes.js` into the
+browser console — it prints every grey block with its live position and flags
+any element whose `transform` has been lost.
+
+**Responsiveness** — untouched for now, as agreed. The original ships
+breakpoints at 1600/1400/1200/980/768/576px; the mobile viewport work is a
+separate pass.
+
 ## Missing from the archive
 
 The export contains 21 of the 78 local assets the page references. **57 image
