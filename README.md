@@ -78,10 +78,13 @@ It also drops the single `<hr>` that sat directly above the footer, since the
 panel is now full bleed. That is the only element removed from the page;
 `npm run verify` accounts for it and the body is otherwise identical.
 
-The redesign carries every piece of the original content across: the same six
-social links, the same copyright, and the Cloudflare-obfuscated email markup
-byte-for-byte so the decode script still resolves it. `npm run verify` checks
-all ten of those and compares the rest of the page as before.
+On the user's instruction the footer's link set changed: the six social links
+were dropped and replaced by About and Works. **Those two have no destination
+yet** — the original site has no such pages, so they are `href="#"` until real
+URLs are supplied. The copyright is now just the mark and an auto-updating
+year. The Cloudflare-obfuscated email markup is unchanged byte-for-byte, so the
+decode script still resolves it to hey@khagwal.com. `npm run verify` checks
+those seven items and compares the rest of the page as before.
 
 It adds the two display fonts the user supplied in `footer fonts.zip` on
 `main`, self-hosted under `public/live/font/`: Helvetica Now Display Medium

@@ -93,7 +93,7 @@
   gap: clamp(1.25rem, 2.6vw, 2.25rem);
   /* The page's .glass-overlay is fixed to the bottom of the viewport and is
      up to 128px tall, so the meta row needs to clear it. */
-  padding: clamp(2rem, 4.5vw, 4rem) var(--pad) clamp(5.5rem, 10vw, 9.5rem);
+  padding: clamp(2.75rem, 6vw, 5.5rem) var(--pad) clamp(3.25rem, 6vw, 5.75rem);
   position: relative;
 }
 
@@ -127,6 +127,13 @@
 .wordGara {
   font-family: "ITC Garamond Narrow", Garamond, serif;
   font-weight: 300;
+}
+
+/* Bottom row sits at 500 throughout. */
+.copy,
+.email,
+.links a {
+  font-weight: 500;
 }
 
 /* Asterisk sits in its own row so it never collides with the headline.
@@ -220,7 +227,7 @@
   transition: color 150ms ease-out;
 }
 
-/* The rule is always there. Hover thickens it and darkens the label. */
+/* A plain rule, no animation on it. The hover interest is the shuffle. */
 .links a::after,
 .email::after {
   background-color: currentColor;
@@ -230,9 +237,6 @@
   left: 0;
   position: absolute;
   right: 0;
-  transition:
-    height 200ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 150ms ease-out;
 }
 
 .links a:hover,
@@ -240,19 +244,14 @@
   color: var(--ink);
 }
 
-.links a:hover::after,
-.email:hover::after {
-  height: 3px;
+/* The shuffled label swaps glyphs, so the width must not twitch with it. */
+.links a {
+  font-variant-numeric: tabular-nums;
 }
 
-.arrow {
+.links a span {
   display: inline-block;
-  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.links a:hover .arrow,
-.links a:focus-visible .arrow {
-  transform: translate(0.18em, -0.18em);
+  min-width: 4.5ch;
 }
 
 .email:focus-visible,
@@ -309,11 +308,5 @@
 @media (prefers-reduced-motion: reduce) {
   .asterisk {
     animation: none;
-  }
-
-  .arrow,
-  .links a::after,
-  .email::after {
-    transition: none;
   }
 }

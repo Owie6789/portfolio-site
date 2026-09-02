@@ -187,6 +187,8 @@ you added it.
 - 2026-09-02 Licensed fonts come from the user, in `footer fonts.zip` on
   `main`. Check that branch for supplied assets before concluding something
   cannot be fetched.
+- 2026-09-02 Footer link set is About and Works only; the six social links are
+  gone. Destinations still needed.
 - 2026-09-02 Interaction preferences for this site: micro-interactions belong
   on the element itself, never on its parent container. Magnetic pull plus a
   springy half spin on the asterisk. Links carry a permanent underline that

@@ -119,13 +119,10 @@ function checkFooterContent() {
     ['data-cfemail="95fdf0ecd5fefdf4f2e2f4f9bbf6faf8"', "Cloudflare email payload"],
     ["cdn-cgi/l/email-protection#f69e938fb69d9e979181979ad895999b", "email href"],
     ["__cf_email__", "email decode hook"],
-    ["© 2025 Nitish Khagwal", "copyright"],
-    ["https://twitter.com/nitishkmrk", "X link"],
-    ["https://www.behance.net/nitishkmrk", "Behance link"],
-    ["https://dribbble.com/nitishkmrk/", "Dribbble link"],
-    ["https://medium.com/@nitishkmrk", "Medium link"],
-    ["https://www.linkedin.com/in/nitishkmrk/", "LinkedIn link"],
-    ["https://www.instagram.com/nitishkmrk/", "Instagram link"],
+    ["©", "copyright mark"],
+    [String(new Date().getFullYear()), "current year"],
+    ["About", "About link"],
+    ["Works", "Works link"],
   ];
   const missing = required.filter(([needle]) => !rendered.includes(needle));
   if (!missing.length) {
