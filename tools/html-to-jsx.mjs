@@ -1,4 +1,10 @@
 // Mechanical HTML -> JSX converter.
+//
+// One exception to "no content is rewritten": applyIdentity() below swaps the
+// site owner's name in the two places the user asked for. It is a scripted
+// transform on the parsed tree rather than an edit to the original HTML, so
+// tools/original-index.html stays the untouched reference and the change is
+// listed in one place.
 // Parses the original index.html with parse5 and emits JSX that produces an
 // identical DOM. No content is rewritten: text, attribute values and element
 // order are copied verbatim. Only the attribute *names* are mapped to their
@@ -19,6 +25,74 @@ const find = (node, tag) => {
   }
   return null;
 };
+
+/* Identity swap. Two places only:
+     - .logo, the stacked name at the top of the page
+     - .logomark, the giant hero wordmark, whose seven hand-drawn KHAGWAL paths
+       are replaced by OWIE drawn from Inter by tools/make-wordmark.py
+   Everything else that says Nitish Khagwal (page title, meta, JSON-LD, the
+   hero caption, the portrait alt text) is left alone deliberately. */
+const NAME = { first: "Owie", last: "Emmanuel" };
+const wordmark = JSON.parse(readFileSync("tools/wordmark.json", "utf8"));
+
+const classOf = (n) =>
+  n.attrs?.find((a) => a.name === "class")?.value ?? "";
+
+const setAttr = (n, name, value) => {
+  const a = n.attrs.find((x) => x.name === name);
+  if (a) a.value = value;
+  else n.attrs.push({ name, value });
+};
+
+function walk(node, fn) {
+  fn(node);
+  (node.childNodes ?? []).forEach((c) => walk(c, fn));
+}
+
+function applyIdentity(root) {
+  let logo = 0;
+  let mark = 0;
+
+  walk(root, (n) => {
+    if (classOf(n).split(/\s+/).includes("logo")) {
+      setAttr(n, "aria-label", `${NAME.first} ${NAME.last}`);
+      const spans = (n.childNodes ?? []).filter((c) => c.tagName === "span");
+      const words = [NAME.first, NAME.last];
+      spans.forEach((span, i) => {
+        const text = (span.childNodes ?? []).find((c) => c.nodeName === "#text");
+        if (text && words[i]) {
+          text.value = words[i];
+          logo++;
+        }
+      });
+    }
+
+    if (classOf(n) === "logomark") {
+      const svg = (n.childNodes ?? []).find((c) => c.tagName === "svg");
+      if (!svg) return;
+      setAttr(svg, "viewBox", wordmark.viewBox);
+      svg.childNodes = wordmark.paths.map((d) => ({
+        nodeName: "path",
+        tagName: "path",
+        attrs: [
+          { name: "d", value: d },
+          { name: "fill", value: "var(--on-neutral-inverse)" },
+        ],
+        childNodes: [],
+        parentNode: svg,
+        namespaceURI: svg.namespaceURI,
+      }));
+      mark++;
+    }
+  });
+
+  console.log(
+    `identity: ${logo} logo words -> ${NAME.first} ${NAME.last}, ` +
+      `${mark} wordmark -> ${wordmark.word} (${wordmark.paths.length} paths)`
+  );
+}
+
+applyIdentity(doc);
 
 // Attribute name mapping (HTML -> JSX). Anything not listed and not
 // data-/aria- prefixed is emitted through a spread so the value survives.

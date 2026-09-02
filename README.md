@@ -66,6 +66,26 @@ Next.js/React and none of them visible:
    by the browser. Set in `next.config.ts`.
 7. Next's own runtime `<script>`/preload tags are added to the page.
 
+## Identity swap
+
+`tools/html-to-jsx.mjs` renames the site owner in exactly two places, as a
+scripted transform on the parsed tree so `tools/original-index.html` stays the
+untouched reference:
+
+- `.logo`, the stacked name at the top, becomes Owie / Emmanuel.
+- `.logomark`, the giant hero wordmark, drops its seven hand-drawn KHAGWAL
+  paths for OWIE drawn from Inter (opsz 32, wght 700, -0.02em) by
+  `tools/make-wordmark.py` into `tools/wordmark.json`. Outlines rather than
+  live text, so the mark does not wait on a font request, and the paths keep
+  `fill="var(--on-neutral-inverse)"` so theming still works. Four letters at the
+  same 160-unit width makes the mark taller than the original: the viewBox goes
+  from `0 0 160 32` to `0 0 160 48.29`.
+
+**Still saying Nitish Khagwal**, deliberately, pending a decision: the page
+title and meta description, the Open Graph and Twitter tags, the JSON-LD
+person block, the hero caption ("Hey! I’m Nitish Khagwal."), the portrait alt
+text and the image filenames.
+
 ## The footer is not a port
 
 Everything on the page is generated verbatim from `tools/original-index.html`

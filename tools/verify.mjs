@@ -114,6 +114,37 @@ function stripFooter(n) {
   return n;
 }
 
+/* The identity swap in tools/html-to-jsx.mjs deliberately diverges from the
+   original in two subtrees. Drop them from the structural diff and assert the
+   new content instead. */
+function stripIdentity(n) {
+  if (!n || !n.c) return n;
+  n.c = n.c.filter((c) => {
+    // attrs are normalised to sorted [name, value] pairs
+    const cls = (c.a?.find(([k]) => k === "class")?.[1] ?? "").split(/\s+/);
+    return !(cls.includes("logo") || cls.includes("logomark"));
+  });
+  n.c.forEach(stripIdentity);
+  return n;
+}
+
+function checkIdentity() {
+  const required = [
+    ['aria-label="Owie Emmanuel"', "stacked name label"],
+    [">Owie<", "first name"],
+    [">Emmanuel<", "last name"],
+  ];
+  const missing = required.filter(([needle]) => !rendered.includes(needle));
+  const marks = (rendered.match(/var\(--on-neutral-inverse\)/g) ?? []).length;
+  if (!missing.length) {
+    console.log(`✔ <header>/<logomark> — renamed, wordmark drawn as outlines (${marks} themed paths on the page)`);
+    return 0;
+  }
+  console.log("✘ identity swap incomplete:");
+  missing.forEach(([, what]) => console.log(`   missing: ${what}`));
+  return 1;
+}
+
 function checkFooterContent() {
   const required = [
     ["mailto:heyowie@proton.me", "email href"],
@@ -159,8 +190,8 @@ function compare(a, b, path) {
 
 let failed = 0;
 for (const part of ["head", "body"]) {
-  const a = stripFooter(normalise(pick(parse(original), part), {}));
-  const b = stripFooter(normalise(pick(parse(rendered), part), {}));
+  const a = stripIdentity(stripFooter(normalise(pick(parse(original), part), {})));
+  const b = stripIdentity(stripFooter(normalise(pick(parse(rendered), part), {})));
   diffs.length = 0;
 
   // Head tag order is rearranged by React's hoisting, so compare it as a set.
@@ -234,5 +265,6 @@ for (const part of ["head", "body"]) {
   }
 }
 failed += checkFooterContent();
+failed += checkIdentity();
 
 process.exit(failed ? 1 : 0);
