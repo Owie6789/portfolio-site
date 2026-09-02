@@ -2,24 +2,37 @@
 
 /* Magnetic asterisk.
  *
- * Three behaviours, all on the asterisk itself rather than the whole panel:
- *   - magnetic pull: it leans toward the cursor while the cursor is inside its
- *     field, at a fraction of the cursor's offset so it never chases.
- *   - half spin on hover, springy unwind on leave.
- *   - nothing at all for touch pointers or reduced-motion users.
+ * Driven by a spring integrated on every frame, not by CSS transitions. A
+ * transition restarts from zero each time the pointer moves, which is what
+ * made the earlier version stutter. A spring carries its velocity across
+ * interruptions, so redirecting mid-motion stays continuous, and the same
+ * integrator handles the pull, the release and the half spin.
  *
- * Transform is written directly on the element instead of through a CSS
- * variable, because a variable on a parent recalculates styles for every
- * child. During tracking the transition is short so motion stays glued to the
- * pointer; on release it switches to the long spring so it overshoots home.
+ * The loop only runs while something is moving. Transform is written straight
+ * onto the element, since a CSS variable on the parent would recalculate
+ * styles for every child on every frame.
  */
 
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-const PULL = 0.32; // fraction of cursor offset the asterisk travels
-const MAX = 22; // px, cap so it never detaches from its corner
-const TRACK = "transform 160ms cubic-bezier(0.22, 1, 0.36, 1)";
-const SPRING = "transform 620ms cubic-bezier(0.34, 1.56, 0.64, 1)";
+const PULL = 0.34; // fraction of the cursor's offset the glyph travels
+const MAX = 26; // px cap, so it never leaves its corner
+const STIFF = 170;
+const DAMP = 16;
+const SPIN_STIFF = 120;
+const SPIN_DAMP = 14;
+const REST = 0.05;
+
+type Axis = { value: number; target: number; velocity: number };
+
+const axis = (): Axis => ({ value: 0, target: 0, velocity: 0 });
+
+function step(a: Axis, dt: number, stiffness: number, damping: number) {
+  const accel = (a.target - a.value) * stiffness - a.velocity * damping;
+  a.velocity += accel * dt;
+  a.value += a.velocity * dt;
+  return Math.abs(a.target - a.value) > REST || Math.abs(a.velocity) > REST;
+}
 
 type Props = {
   path: string;
@@ -29,39 +42,75 @@ type Props = {
 
 export default function FooterAsterisk({ path, className, fieldClassName }: Props) {
   const ref = useRef<SVGSVGElement>(null);
-  const spun = useRef(false);
+  const x = useRef(axis());
+  const y = useRef(axis());
+  const spin = useRef(axis());
+  const frame = useRef(0);
+  const last = useRef(0);
 
-  const reduced = () =>
-    typeof window !== "undefined" &&
+  const tick = useCallback((now: number) => {
+    const dt = Math.min((now - (last.current || now)) / 1000, 1 / 30);
+    last.current = now;
+
+    const moving =
+      [step(x.current, dt, STIFF, DAMP), step(y.current, dt, STIFF, DAMP), step(spin.current, dt, SPIN_STIFF, SPIN_DAMP)].some(
+        Boolean
+      );
+
+    const el = ref.current;
+    if (el) {
+      el.style.transform = `translate3d(${x.current.value.toFixed(2)}px, ${y.current.value.toFixed(2)}px, 0) rotate(${spin.current.value.toFixed(2)}deg)`;
+    }
+
+    if (moving) {
+      frame.current = requestAnimationFrame(tick);
+    } else {
+      frame.current = 0;
+      last.current = 0;
+    }
+  }, []);
+
+  const wake = useCallback(() => {
+    if (!frame.current) {
+      last.current = 0;
+      frame.current = requestAnimationFrame(tick);
+    }
+  }, [tick]);
+
+  useEffect(() => () => cancelAnimationFrame(frame.current), []);
+
+  const inert = (e: React.PointerEvent) =>
+    e.pointerType === "touch" ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const apply = (x: number, y: number, deg: number, transition: string) => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.transition = transition;
-    el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${deg}deg)`;
-  };
+  const onMove = useCallback(
+    (e: React.PointerEvent<HTMLSpanElement>) => {
+      if (inert(e)) return;
+      const r = e.currentTarget.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) * PULL;
+      const dy = (e.clientY - (r.top + r.height / 2)) * PULL;
+      x.current.target = Math.max(-MAX, Math.min(MAX, dx));
+      y.current.target = Math.max(-MAX, Math.min(MAX, dy));
+      wake();
+    },
+    [wake]
+  );
 
-  const onMove = useCallback((e: React.PointerEvent<HTMLSpanElement>) => {
-    if (e.pointerType === "touch" || reduced()) return;
-    const field = e.currentTarget.getBoundingClientRect();
-    const cx = field.left + field.width / 2;
-    const cy = field.top + field.height / 2;
-    const dx = Math.max(-MAX, Math.min(MAX, (e.clientX - cx) * PULL));
-    const dy = Math.max(-MAX, Math.min(MAX, (e.clientY - cy) * PULL));
-    apply(dx, dy, spun.current ? 180 : 0, TRACK);
-  }, []);
-
-  const onEnter = useCallback((e: React.PointerEvent<HTMLSpanElement>) => {
-    if (e.pointerType === "touch" || reduced()) return;
-    spun.current = true;
-    apply(0, 0, 180, SPRING);
-  }, []);
+  const onEnter = useCallback(
+    (e: React.PointerEvent<HTMLSpanElement>) => {
+      if (inert(e)) return;
+      spin.current.target = 180;
+      wake();
+    },
+    [wake]
+  );
 
   const onLeave = useCallback(() => {
-    spun.current = false;
-    apply(0, 0, 0, SPRING);
-  }, []);
+    x.current.target = 0;
+    y.current.target = 0;
+    spin.current.target = 0;
+    wake();
+  }, [wake]);
 
   return (
     <span

@@ -465,7 +465,6 @@
           </div>
         </div>
         <div className="grd-fold-j">
-          <hr />
           __FOOTER__
         </div>
       </main>

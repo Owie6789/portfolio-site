@@ -188,6 +188,16 @@ function serialize(node, indent) {
 
   // The <footer> is replaced by a designed React component. Emit a marker and
   // keep the original JSX in a separate file for reference and rollback.
+  // The <hr> immediately above the footer belonged to the old footer's
+  // divider. The redesigned panel is full bleed, so it goes with it.
+  if (tag === "hr" && footerJsx !== "__SKIP__") {
+    const siblings = node.parentNode?.childNodes ?? [];
+    const after = siblings
+      .slice(siblings.indexOf(node) + 1)
+      .find((n) => n.tagName);
+    if (after?.tagName === "footer") return "";
+  }
+
   if (tag === "footer" && footerJsx !== "__SKIP__") {
     footerJsx = serializeRaw(node, indent);
     return `${pad}__FOOTER__`;

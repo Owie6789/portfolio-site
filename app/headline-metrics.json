@@ -1,37 +1,35 @@
 {
-  "upm": 1000,
-  "instance": {
-    "wdth": 75,
-    "wght": 700
+  "InstrumentSans-CondensedBold.woff2": {
+    "axes": {
+      "wdth": 75,
+      "wght": 700
+    },
+    "upm": 1000,
+    "capHeight": 720,
+    "words": {
+      "talk": {
+        "advance": 1396,
+        "x0": 10,
+        "y0": -10,
+        "x1": 1386,
+        "y1": 720
+      }
+    }
   },
-  "lines": {
-    "Let’s connect": {
-      "advance": 4865,
-      "x0": 50,
-      "y0": -10,
-      "x1": 4851,
-      "y1": 742
+  "Geist-SemiBold.woff2": {
+    "axes": {
+      "wght": 600
     },
-    "async": {
-      "advance": 2091,
-      "x0": 32,
-      "y0": -205,
-      "x1": 2073,
-      "y1": 520
-    },
-    "Let’s talk": {
-      "advance": 3288,
-      "x0": 50,
-      "y0": -10,
-      "x1": 3278,
-      "y1": 742
-    },
-    "talk": {
-      "advance": 1396,
-      "x0": 10,
-      "y0": -10,
-      "x1": 1386,
-      "y1": 720
+    "upm": 1000,
+    "capHeight": 710,
+    "words": {
+      "Let’s": {
+        "advance": 2389,
+        "x0": 79.999267578125,
+        "y0": -12,
+        "x1": 2350.0023193359375,
+        "y1": 710
+      }
     }
   }
 }

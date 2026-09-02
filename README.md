@@ -74,14 +74,20 @@ the original footer for `app/footer.tsx`; the original markup is kept at
 `tools/generated-footer-original.jsx.txt` and can be restored by deleting the
 `__FOOTER__` branch in `tools/html-to-jsx.mjs`.
 
+It also drops the single `<hr>` that sat directly above the footer, since the
+panel is now full bleed. That is the only element removed from the page;
+`npm run verify` accounts for it and the body is otherwise identical.
+
 The redesign carries every piece of the original content across: the same six
 social links, the same copyright, and the Cloudflare-obfuscated email markup
 byte-for-byte so the decode script still resolves it. `npm run verify` checks
 all ten of those and compares the rest of the page as before.
 
-It adds one font, Instrument Sans variable (SIL OFL), self-hosted at
-`public/live/font/InstrumentSans.woff2` and converted from the Google Fonts
-TTF. Width axis 75 to 100, weight 400 to 700.
+It adds two display fonts, both SIL OFL, both cut to static instances by
+`tools/measure-headline.py` and self-hosted under `public/live/font/`:
+Instrument Sans at wdth 75 / wght 700 (27 KB) for "talk", and Geist at wght 600
+(34 KB) for "Let’s". The same script prints the ink metrics the SVG headline
+needs; re-run it if the copy or the fonts change.
 
 ## Known issues
 

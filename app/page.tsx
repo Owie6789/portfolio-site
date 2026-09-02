@@ -476,7 +476,6 @@ export default function Page() {
           </div>
         </div>
         <div className="grd-fold-j">
-          <hr />
       <Footer />
         </div>
       </main>

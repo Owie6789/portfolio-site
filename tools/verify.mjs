@@ -103,7 +103,13 @@ const norm = (t) => t.replace(/\s+/g, " ").trim();
 // structural comparison and check its content separately below.
 function stripFooter(n) {
   if (!n || !n.c) return n;
-  n.c = n.c.filter((c) => c.t !== "footer");
+  // Drop the footer and the single <hr> that sat directly above it; both are
+  // intentionally gone from the redesign.
+  n.c = n.c.filter((c, i) => {
+    if (c.t === "footer") return false;
+    const next = n.c[i + 1];
+    return !(c.t === "hr" && next && next.t === "footer");
+  });
   n.c.forEach(stripFooter);
   return n;
 }

@@ -5,13 +5,21 @@
  * own CSS is untouched.
  */
 
-/* Static instance at wdth 75 / wght 700, cut by tools/measure-headline.py.
-   A static cut rather than the variable font: no dependence on variable-axis
-   support, and no silent fallback to an unstyled weight. 27 KB. */
+/* Static cuts from tools/measure-headline.py. Static rather than variable:
+   no dependence on variable-axis support, and no silent fallback to the wrong
+   width. 27 KB and 34 KB. */
 @font-face {
   font-family: "Instrument Sans Cond";
   src: url("/live/font/InstrumentSans-CondensedBold.woff2") format("woff2");
   font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Geist SemiBold";
+  src: url("/live/font/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: block;
 }
@@ -29,7 +37,13 @@
   --pad: clamp(1.25rem, 3.2vw, 3rem);
 
   display: block;
-  padding-bottom: var(--space-9, 3rem);
+  /* Break out of the page's body padding so the panel meets the viewport on
+     three sides. The original sets body padding to 3rem, dropping to 1.5rem
+     at 980px, so the bottom pull matches those breakpoints. */
+  margin-bottom: calc(-1 * var(--space-9, 3rem));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
 }
 
 .panel {
@@ -95,6 +109,14 @@
 
 .headline text {
   fill: var(--ink);
+}
+
+.wordGeist {
+  font-family: "Geist SemiBold", "Some Sans", sans-serif;
+  font-weight: 600;
+}
+
+.wordCond {
   font-family: "Instrument Sans Cond", "Some Sans", sans-serif;
   font-weight: 700;
 }
@@ -118,7 +140,6 @@
   height: auto;
   transform-box: fill-box;
   transform-origin: 50% 50%;
-  transition: transform 620ms var(--ease-spring);
   width: clamp(2.75rem, 6vw, 5.5rem);
   will-change: transform;
 }
@@ -216,6 +237,12 @@
   outline-offset: 2px;
 }
 
+@media only screen and (max-width: 980px) {
+  .footer {
+    margin-bottom: calc(-1 * var(--space-6, 1.5rem));
+  }
+}
+
 /* Phone: same treatment, not a cut-down. Teeth shrink, meta stacks into the
    two-column block from the reference's mobile card. */
 @media only screen and (max-width: 576px) {
@@ -254,7 +281,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .asterisk,
   .arrow,
   .links a::after,
   .email::after {

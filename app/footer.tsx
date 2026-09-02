@@ -1,38 +1,39 @@
 /* Footer: moon-white panel with a stamp-edge checker and a fitted headline.
  *
  * The only part of the page that is not a verbatim port. The generator swaps
- * the original <footer> for this; the original markup is preserved at
+ * the original <footer> for this, and drops the <hr> that sat directly above
+ * it. The original markup is preserved at
  * tools/generated-footer-original.jsx.txt. All original content is carried
  * over, including the Cloudflare email markup byte-for-byte.
  *
- * The headline is SVG, not styled text. Its viewBox is built from the real ink
- * bounds of the string in Instrument Sans at wdth 75 / wght 700, measured by
- * tools/measure-headline.py and recorded in app/headline-metrics.json, plus
- * the tracking added below. It therefore fills the panel width exactly at
- * every viewport, and the letter spacing is real spacing rather than a
- * stretched font.
+ * The headline mixes two faces on one line: "Let’s" in Geist SemiBold and
+ * "talk" in Instrument Sans pinned to its narrowest width. It is drawn as SVG
+ * whose viewBox is assembled from each word's real ink bounds, measured by
+ * tools/measure-headline.py and recorded in app/headline-metrics.json, so the
+ * line fills the panel exactly at any viewport and neither word is stretched.
  */
 import FooterAsterisk from "./footer-asterisk";
 import styles from "./footer.module.css";
 
-const HEADLINE = "Let’s talk";
-
 // Ink bounds in font units (upm 1000), from app/headline-metrics.json.
-const INK = { x0: 50, x1: 3278, yTop: 742, yBottom: -10 };
+const GEIST = { text: "Let’s", x0: 80, x1: 2350, yTop: 710, yBottom: -12 };
+const COND = { text: "talk", x0: 10, x1: 1386, yTop: 720, yBottom: -10 };
 
-// Tracking, in the same units. The reference sits wide and open, so the
-// letters get 5.2% of an em between them and the word gap is opened further.
-const LETTER = 52;
-const WORD = 120;
+const LETTER = 34; // tracking inside each word
+const GAP = 190; // space between the two words
 
-const gaps = HEADLINE.length - 1;
-const spaces = (HEADLINE.match(/ /g) || []).length;
+const track = (w: { text: string; x0: number; x1: number }) =>
+  w.x1 - w.x0 + LETTER * (w.text.length - 1);
+
+const W1 = track(GEIST);
+const W2 = track(COND);
 const BOX = {
-  w: INK.x1 - INK.x0 + LETTER * gaps + WORD * spaces,
-  h: INK.yTop - INK.yBottom,
+  w: W1 + GAP + W2,
+  h: Math.max(GEIST.yTop, COND.yTop) - Math.min(GEIST.yBottom, COND.yBottom),
 };
+const BASELINE = Math.max(GEIST.yTop, COND.yTop);
 
-// The font's own asterisk outline, so the shape matches the headline and
+// The condensed face's own asterisk outline, so the shape matches "talk" and
 // rotation happens around the true centre of the ink.
 const ASTERISK =
   "M144 410 170 518 89 441 30 544 137 575 30 606 89 709 170 632 144 740H262L236 632L317 709L376 606L269 575L376 544L317 441L236 518L262 410Z";
@@ -69,16 +70,25 @@ export default function Footer() {
             <svg
               viewBox={`0 0 ${BOX.w} ${BOX.h}`}
               role="img"
-              aria-label={HEADLINE}
+              aria-label={`${GEIST.text} ${COND.text}`}
             >
               <text
-                x={-INK.x0}
-                y={INK.yTop}
+                className={styles.wordGeist}
+                x={-GEIST.x0}
+                y={BASELINE}
                 fontSize={1000}
                 letterSpacing={LETTER}
-                wordSpacing={WORD}
               >
-                {HEADLINE}
+                {GEIST.text}
+              </text>
+              <text
+                className={styles.wordCond}
+                x={W1 + GAP - COND.x0}
+                y={BASELINE}
+                fontSize={1000}
+                letterSpacing={LETTER}
+              >
+                {COND.text}
               </text>
             </svg>
           </h2>
