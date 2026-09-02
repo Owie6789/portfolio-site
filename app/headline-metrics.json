@@ -1,0 +1,26 @@
+{
+  "Inter-Display.woff2": {
+    "upm": 2048,
+    "words": {
+      "Let’s": {
+        "advance": 4193,
+        "x0": 148,
+        "y0": -24,
+        "x1": 4119,
+        "y1": 1490
+      }
+    }
+  },
+  "ITCGaramondStd-LightNarrow.woff2": {
+    "upm": 1000,
+    "words": {
+      "talk": {
+        "advance": 1282,
+        "x0": 17,
+        "y0": -12,
+        "x1": 1295,
+        "y1": 707
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+source: https://github.com/google-labs-code/stitch-skills
+path:   plugins/stitch-build/skills/shadcn-ui
+fetched: 2026-09-02T18:07:30.702Z
+command: npx skills use "https://github.com/google-labs-code/stitch-skills" --skill "shadcn-ui"

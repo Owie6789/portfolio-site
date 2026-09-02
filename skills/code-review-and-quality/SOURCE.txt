@@ -1,0 +1,4 @@
+source: https://github.com/addyosmani/agent-skills
+path:   skills/code-review-and-quality
+fetched: 2026-09-02T18:06:59.777Z
+command: npx skills use "https://github.com/addyosmani/agent-skills" --skill "code-review-and-quality"

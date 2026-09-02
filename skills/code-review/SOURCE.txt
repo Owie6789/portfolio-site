@@ -1,0 +1,4 @@
+source: https://github.com/mattpocock/skills
+path:   skills/engineering/code-review
+fetched: 2026-09-02T18:07:00.766Z
+command: npx skills use "https://github.com/mattpocock/skills" --skill "code-review"

@@ -1,0 +1,4 @@
+source: https://github.com/vercel-labs/skills
+path:   skills/find-skills
+fetched: 2026-09-02T18:07:25.455Z
+command: npx skills use "https://github.com/vercel-labs/skills" --skill "find-skills"

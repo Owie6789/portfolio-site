@@ -1,0 +1,405 @@
+/* Moon-white footer panel.
+ *
+ * Cold near-white surface, stamp-edge checker, headline set as fitted SVG.
+ * Self-contained: nothing here reaches outside .footer, so the ported page's
+ * own CSS is untouched.
+ */
+
+/* The two display faces, both cut by tools/measure-headline.py and subset to
+   the glyphs the headline draws: Inter pinned to opsz 32 / wght 500 (1 KB) and
+   the user's ITC Garamond Std Light Narrow converted from OTF (1.5 KB).
+   font-display: block so the fitted headline never flashes in a fallback face
+   at the wrong width. */
+@font-face {
+  font-family: "Inter Display";
+  src: url("/live/font/Inter-Display.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "ITC Garamond Narrow";
+  src: url("/live/font/ITCGaramondStd-LightNarrow.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+
+.footer {
+  /* Moon surface: cool grey-white, lit from the top left. */
+  --moon-0: #eef0f3;
+  --moon-1: #e3e6eb;
+  --moon-2: #ccd2da;
+  --ink: #101216;
+  --ink-soft: #565e6a;
+  --tooth: 22px; /* cell width */
+  --row-top: 34px; /* upper row: taller than wide */
+  --row-bottom: 20px;
+  --band: 18px;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --pad: clamp(1.25rem, 3.2vw, 3rem);
+
+  display: block;
+  /* Break out of the page's body padding so the panel meets the viewport on
+     three sides. The original sets body padding to 3rem, dropping to 1.5rem
+     at 980px, so the bottom pull matches those breakpoints. */
+  margin-bottom: calc(-1 * var(--space-9, 3rem));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+}
+
+.panel {
+  background-color: var(--moon-1);
+  isolation: isolate;
+  background-image: radial-gradient(
+    130% 100% at 10% -20%,
+    var(--moon-0) 0%,
+    var(--moon-1) 45%,
+    var(--moon-2) 100%
+  );
+  color: var(--ink);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Grain, on the moon surface only. One feTurbulence tile rasterised once by
+   the browser and repeated, multiplied at 6%. It sits below the checker and
+   the content, so the ink squares and the type stay clean while every
+   moon-coloured area, including the gaps between checks, picks up the
+   texture. No animation, no filter on a live layer, no repaint cost. */
+.panel::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.06;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+/* Checker divider: a solid ink band, then two offset rows of checks that
+   dissolve it into the panel. Two rows, not one, and the second is offset by
+   half a period, which is what makes it read as a dither rather than teeth. */
+.edge {
+  display: block;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.edgeBand {
+  background-color: var(--ink);
+  display: block;
+  height: var(--band);
+  width: 100%;
+}
+
+/* One element per row, each a purely horizontal repeating gradient. The 45deg
+   two-layer trick renders a diagonal seam across every cell where the two
+   gradients meet; horizontal hard stops have vertical edges only, so there is
+   nothing to alias. The rows are offset by one cell to interlock. */
+.edgeRow {
+  display: block;
+  width: 100%;
+}
+
+.edgeRowTop {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--ink) 0 var(--tooth),
+    transparent var(--tooth) calc(var(--tooth) * 2)
+  );
+  height: var(--row-top);
+}
+
+.edgeRowBottom {
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0 var(--tooth),
+    var(--ink) var(--tooth) calc(var(--tooth) * 2)
+  );
+  height: var(--row-bottom);
+}
+
+.body {
+  display: grid;
+  z-index: 1;
+  gap: clamp(1.25rem, 2.6vw, 2.25rem);
+  /* The page's .glass-overlay is fixed to the bottom of the viewport and is
+     up to 128px tall, so the meta row needs to clear it. */
+  padding: clamp(2.75rem, 6vw, 5.5rem) var(--pad) clamp(3.25rem, 6vw, 5.75rem);
+  position: relative;
+}
+
+/* Headline: SVG scaled to the panel width, so the type is edge to edge and
+   the size is a consequence of the layout rather than a guess. */
+.headline {
+  margin: 0;
+}
+
+.headline svg {
+  display: block;
+  /* Debossed: a light edge catching along the bottom of every stroke and a
+     tight dark one above, so the letters read as pressed into the surface
+     rather than sitting on it. Two drop-shadows compose on the GPU, no extra
+     paint of the text itself. */
+  filter:
+    drop-shadow(0 0.012em 0 rgba(255, 255, 255, 0.65))
+    drop-shadow(0 -0.006em 0.006em rgba(9, 11, 14, 0.45));
+  height: auto;
+  overflow: visible;
+  width: 100%;
+}
+
+.headline text {
+  /* Slightly off pure ink so the surface reads through the cut. */
+  fill: #171a1f;
+}
+
+.headline text {
+  fill: var(--ink);
+}
+
+.wordInter {
+  font-family: "Inter Display", Inter, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  /* Stroke under fill, same colour: a fraction of a weight step without a
+     second font file. */
+  paint-order: stroke fill;
+  stroke: var(--ink);
+  stroke-linejoin: round;
+}
+
+.wordGara {
+  font-family: "ITC Garamond Narrow", Garamond, serif;
+  font-weight: 300;
+}
+
+/* Bottom row sits at 500 throughout. */
+.copy,
+.email,
+.links a {
+  font-weight: 500;
+}
+
+/* Asterisk sits in its own row so it never collides with the headline.
+   The field is the magnetic catchment: larger than the glyph, invisible. */
+.top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* The padding is the magnetic catchment. Negative margin cancels it, so the
+   field can be far larger than the glyph without moving anything. */
+.asteriskField {
+  cursor: pointer;
+  display: inline-flex;
+  margin: clamp(-4.5rem, -5vw, -2.5rem);
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* The magnet carries the spring-driven translate written from JS. */
+.asteriskMagnet {
+  display: block;
+  will-change: transform;
+}
+
+/* The glyph carries the endless windmill turn, off the main thread. */
+.asterisk {
+  animation: windmill 14s linear infinite;
+  display: block;
+  overflow: visible;
+  fill: var(--ink);
+  height: auto;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  width: clamp(2.75rem, 6vw, 5.5rem);
+}
+
+.asteriskField:hover .asterisk {
+  animation-duration: 3.5s;
+}
+
+@keyframes windmill {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.meta {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem clamp(1.5rem, 4vw, 3rem);
+  justify-content: space-between;
+}
+
+.metaLeft {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 clamp(1rem, 2.5vw, 2rem);
+}
+
+.copy,
+.email,
+.links a {
+  font-family: "Some Sans", sans-serif;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.copy {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 clamp(0.875rem, 2vw, 1.75rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.links a,
+.email {
+  align-items: baseline;
+  color: var(--ink-soft);
+  display: inline-flex;
+  gap: 0.28em;
+  position: relative;
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+/* Touch-sized hit area, painted nowhere, centred on the label. Built from a
+   pseudo-element so it cannot drag the text off the baseline the way a
+   min-height did. */
+.links a::before,
+.email::before {
+  content: "";
+  inset: -14px -6px;
+  position: absolute;
+}
+
+/* A plain rule under each label. No animation on it. */
+.links a::after,
+.email::after {
+  background-color: currentColor;
+  bottom: -0.22em;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.links a:hover,
+.email:hover {
+  color: var(--ink);
+}
+
+/* The shuffled label swaps glyphs, so the width must not twitch with it. */
+.links a {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Two copies stacked in one grid cell: the hidden real label holds the width,
+   the visible one shuffles. No reserved slack, so the underline ends where the
+   word does. */
+.linkSlot {
+  display: inline-grid;
+}
+
+.linkSlot > * {
+  grid-area: 1 / 1;
+}
+
+.linkGhost {
+  visibility: hidden;
+}
+
+.email:focus-visible,
+.links a:focus-visible {
+  background-color: var(--ink);
+  color: var(--moon-0);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+@media only screen and (max-width: 980px) {
+  .footer {
+    margin-bottom: calc(-1 * var(--space-6, 1.5rem));
+  }
+}
+
+/* Tablet and below: the meta row stops competing for one line. */
+@media only screen and (max-width: 768px) {
+  .meta {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .metaLeft,
+  .links {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* Phone: same treatment, not a cut-down. Two rows of two, as in the
+   reference's mobile card: email opposite the year, then the two links. */
+@media only screen and (max-width: 576px) {
+  .footer {
+    --tooth: 14px;
+    --row-top: 21px;
+    --row-bottom: 13px;
+    --band: 11px;
+  }
+
+  .meta {
+    gap: 0.7rem;
+  }
+
+  .links {
+    display: flex;
+  }
+
+  .copy,
+  .email,
+  .links a {
+    font-size: 0.875rem;
+  }
+
+  /* Tighter air around the type at this size, and the asterisk closer in. */
+  .body {
+    gap: 0.9rem;
+    padding: 1.75rem var(--pad) 2.5rem;
+  }
+
+  .asterisk {
+    width: 2.25rem;
+  }
+}
+
+/* Touch fires hover on tap; the component already ignores touch pointers. */
+@media (hover: none) {
+  .asteriskField {
+    cursor: default;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asterisk {
+    animation: none;
+  }
+}

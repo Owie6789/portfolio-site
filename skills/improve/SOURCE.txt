@@ -1,0 +1,4 @@
+source: https://github.com/shadcn/improve
+path:   skills/improve
+fetched: 2026-09-02T18:07:26.826Z
+command: npx skills use "https://github.com/shadcn/improve" --skill "improve"

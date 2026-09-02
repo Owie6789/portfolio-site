@@ -1,0 +1,4 @@
+source: https://github.com/mattpocock/skills
+path:   skills/productivity/grill-me
+fetched: 2026-09-02T18:07:02.009Z
+command: npx skills use "https://github.com/mattpocock/skills" --skill "grill-me"

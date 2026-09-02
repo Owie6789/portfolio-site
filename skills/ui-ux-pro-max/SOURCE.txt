@@ -1,0 +1,4 @@
+source: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+path:   .claude/skills/ui-ux-pro-max
+fetched: 2026-09-02T18:07:24.825Z
+command: npx skills use "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" --skill "ui-ux-pro-max"

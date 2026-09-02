@@ -1,0 +1,470 @@
+      {/* Google Tag Manager (noscript) */}
+      <noscript dangerouslySetInnerHTML={{ __html: "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-PTWHNQ3\" height=\"0\" width=\"0\"\n            style=\"display:none;visibility:hidden\"></iframe>" }} />
+      {/* End Google Tag Manager (noscript) */}
+      <a className="skip headline" href="index.html#main">
+        {"Skip to main content ↓"}
+      </a>
+      <div className="grd-fold-a">
+        <header>
+          <div className="grd-header">
+            <div className="logo headline dense" aria-label="Owie Emmanuel">
+              <span aria-hidden="true">
+                {"Owie"}
+              </span>
+              <span aria-hidden="true">
+                {"Emmanuel"}
+              </span>
+            </div>
+            <div className="caption body-small" aria-label="Hey! I’m Emmanuel Owie I specialize in human-centered design. Crafting products grounded in insights. My goal is to design usable & delightful products.">
+              <p>
+                <span aria-hidden="true">
+                  {"Hey! I’m Emmanuel Owie"}
+                </span>
+                <span aria-hidden="true">
+                  {"I specialize in human-centered design."}
+                </span>
+              </p>
+              <p>
+                <span aria-hidden="true">
+                  {"Crafting products grounded in insights."}
+                </span>
+                <span aria-hidden="true">
+                  {"My goal is to design usable & delightful products."}
+                </span>
+              </p>
+            </div>
+            <nav className="navigation">
+              <button className="nav-control" aria-controls="#menu" aria-expanded="true">
+                <span className="icon-nav">
+                  <span></span>
+                  <span></span>
+                </span>
+                <span className="body-large dense">
+                  {"Menu"}
+                </span>
+              </button>
+              <ul className="nav-list" id="menu">
+                <li>
+                  <a className="body-medium current" href="index.html#">
+                    {"Home"}
+                  </a>
+                </li>
+                <li>
+                  <a className="body-medium" rel="noopenner" href="#">
+                    {"About"}
+                  </a>
+                </li>
+                <li>
+                  <a className="body-medium" rel="noopenner" href="#">
+                    {"Works"}
+                  </a>
+                </li>
+                <li>
+                  <a className="body-medium" rel="noopenner" href="#">
+                    {"Github"}
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <section>
+          <div className="hero">
+            <div className="wall">
+              <div className="roll">
+                <svg aria-hidden="true" className="magic-a" xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 57 57" fill="none">
+                  <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+                  <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+                  <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+                </svg>
+              </div>
+            </div>
+            <h1 className="title-large" aria-label="I bring utility & beauty closer. I design for humans.">
+              <span aria-hidden="true">
+                {"I bring usability & beauty closer."}
+              </span>
+              <span aria-hidden="true">
+                {"I design for humans."}
+              </span>
+            </h1>
+            <div className="logomark">
+              <svg width="100%" height="100%" viewBox="-3 -3 166 54.286" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g className="wordmark-scale">
+                  <path className="wordmark-letter" d="M22.051432545551158 48.28604618692777Q15.764832075697942 48.28604618692777 10.76638655408885 45.34743465713363Q5.767941032479758 42.408823127339495 2.883970516239879 36.9956357375505Q0.0 31.582448347761506 0.0 24.17441844208998Q0.0 16.70359783916627 2.883970516239879 11.28193405016783Q5.767941032479758 5.86027026116939 10.76638655408885 2.930135130584695Q15.764832075697942 0.0 22.051432545551158 0.0Q28.35247556561158 0.0 33.33522341290763 2.930135130584695Q38.31797126020368 5.86027026116939 41.210418175653 11.28193405016783Q44.102865091102316 16.70359783916627 44.102865091102316 24.17441844208998Q44.102865091102316 31.59940114618039 41.210418175653 37.012588535969385Q38.31797126020368 42.42577592575838 33.33522341290763 45.355911056343075Q28.35247556561158 48.28604618692777 22.051432545551158 48.28604618692777ZM22.051432545551158 39.756690321318416Q25.66255106857465 39.756690321318416 28.447349534473055 37.930722358601706Q31.23214800037146 36.104754395884996 32.8075893591224 32.61827161279147Q34.38303071787335 29.131788829697935 34.38303071787335 24.17441844208998Q34.38303071787335 19.18565270585593 32.8075893591224 15.683472248449355Q31.23214800037146 12.181291791042781 28.447349534473055 10.355323828326068Q25.66255106857465 8.529355865609354 22.051432545551158 8.529355865609354Q18.457266820946554 8.529355865609354 15.67246835504815 10.355323828326068Q12.887669889149745 12.181291791042781 11.303752131189356 15.683472248449355Q9.719834373228966 19.18565270585593 9.719834373228966 24.17441844208998Q9.719834373228966 29.131788829697935 11.303752131189356 32.61827161279147Q12.887669889149745 36.104754395884996 15.67246835504815 37.930722358601706Q18.457266820946554 39.756690321318416 22.051432545551158 39.756690321318416Z" data-thin="M20.06159328011191 48.034883397919046Q14.284849132911187 48.034883397919046 9.905197999571511 45.03662760412737Q5.525546866231834 42.03837181033569 3.0924073477097913 36.6540695209611Q0.6592678291877481 31.269767231586517 0.6592678291877481 24.17441844208998Q0.6592678291877481 17.016278955341257 3.108105022022836 11.631976665966672Q5.556942214857925 6.247674376592087 9.920895673884555 3.249418582800409Q14.284849132911187 0.2511627890087311 20.06159328011191 0.2511627890087311Q25.80694207868654 0.2511627890087311 30.17089553771317 3.249418582800409Q34.534848996739804 6.247674376592087 36.96798851526185 11.631976665966672Q39.40112803378389 17.016278955341257 39.40112803378389 24.17441844208998Q39.40112803378389 31.30116258021261 36.96798851526185 36.68546486958719Q34.534848996739804 42.06976715896178 30.17089553771317 45.052325278440414Q25.80694207868654 48.034883397919046 20.06159328011191 48.034883397919046ZM20.06159328011191 46.59069736111886Q25.367407197921267 46.59069736111886 29.401709496373943 43.780813659083734Q33.43601179482662 40.9709299570486 35.696476895905164 35.91627882824797Q37.95694199698371 30.861627699447336 37.95694199698371 24.17441844208998Q37.95694199698371 17.45581383610653 35.696476895905164 12.401162707305897Q33.43601179482662 7.346511578505265 29.401709496373943 4.520930202157089Q25.367407197921267 1.6953488258089138 20.06159328011191 1.6953488258089138Q14.755779362302551 1.6953488258089138 10.70577938953683 4.489534853531001Q6.655779416771106 7.283720881253089 4.379616641379517 12.33837201005372Q2.1034538659879285 17.39302313885435 2.1034538659879285 24.17441844208998Q2.1034538659879285 30.830232350821245 4.348221292753426 35.88488347962188Q6.592988719518924 40.939534608422505 10.642988692284646 43.76511598477069Q14.692988665050368 46.59069736111886 20.06159328011191 46.59069736111886Z" fill="var(--on-neutral-inverse)" />
+                  <path className="wordmark-letter" d="M57.651265575145814 47.53255781990159 45.09123481556066 0.7534883670261863H55.38244383860838L60.88048145039221 23.983777545842877Q61.544804267963485 26.871496188420195 62.129383589863686 29.767691230206957Q62.713962911763886 32.66388627199372 63.275623284247445 35.551604914571044Q63.837283656730996 38.43932355714836 64.3446297311718 41.34399499814457H62.41386752860746Q62.98651454851214 38.43932355714836 63.57360411862402 35.551604914571044Q64.1606936887359 32.66388627199372 64.79487628178693 29.767691230206957Q65.42905887483795 26.871496188420195 66.127287289247 23.983777545842877L71.91792403151236 0.7534883670261863H81.77090503584088L87.53265667769185 23.983777545842877Q88.23088509210089 26.871496188420195 88.8722889602555 29.767691230206957Q89.51369282841013 32.66388627199372 90.1080036736256 35.551604914571044Q90.70231451884109 38.43932355714836 91.27496153874577 41.34399499814457H89.28391888714094Q89.82266031020784 38.43932355714836 90.37584428348194 35.551604914571044Q90.92902825675606 32.66388627199372 91.53652652807291 29.767691230206957Q92.14402479938977 26.871496188420195 92.77695226833495 23.983777545842877L98.27750012833044 0.7534883670261863H108.59759425179257L96.00867839179301 47.53255781990159H85.22831397084913L78.5937854339769 22.004184308791302Q77.88173340842354 19.203705414559934 77.1753380643365 15.792925777248673Q76.46894272024946 12.382146139937412 75.52144282598049 8.089820984844081H78.13850114095834Q77.19100124668938 12.382146139937412 76.50030357691539 15.792925777248673Q75.80960590714139 19.203705414559934 75.08060108316913 22.004184308791302L68.46051509650411 47.53255781990159Z" data-thin="M58.67912790414873 47.53255781990159 45.43029078393838 0.7534883670261863H46.93726751799074L57.046569775592005 36.4813951035176Q57.54889535360946 38.23953462657869 58.03552325731387 39.99767414963978Q58.52215116101827 41.75581367270087 59.00877906472268 43.51395319576196Q59.49540696842709 45.272092718823046 59.997732546444546 47.030232241884136H59.55819766567927Q60.02912789507064 45.272092718823046 60.500058124462 43.51395319576196Q60.970988353853365 41.75581367270087 61.44191858324473 39.99767414963978Q61.912848812636085 38.23953462657869 62.383779042027456 36.4813951035176L72.11633711611563 0.7534883670261863H74.31401151994199L84.04656959403016 36.4813951035176Q84.51749982342153 38.23953462657869 84.98843005281289 39.99767414963978Q85.45936028220424 41.75581367270087 85.93029051159562 43.51395319576196Q86.40122074098697 45.272092718823046 86.87215097037833 47.030232241884136H86.43261608961306Q86.93494166763051 45.272092718823046 87.42156957133493 43.51395319576196Q87.90819747503934 41.75581367270087 88.39482537874375 39.99767414963978Q88.88145328244815 38.23953462657869 89.38377886046561 36.4813951035176L99.49308111806687 0.7534883670261863H101.00005785211923L87.75122073190889 47.53255781990159H85.55354632808252L76.10354639162917 12.872092936697264Q75.3186626759769 9.983720863096899 74.54947663463767 7.095348789496541Q73.78029059329845 4.206976715896182 72.99540687764616 1.318604642295817H73.43494175841144Q72.65005804275917 4.206976715896182 71.88087200141995 7.095348789496541Q71.11168596008072 9.983720863096899 70.32680224442845 12.872092936697264L60.87680230797509 47.53255781990159Z" fill="var(--on-neutral-inverse)" />
+                  <path className="wordmark-letter" d="M120.740081361274 0.7534883670261863V47.53255781990159H111.08805818172057V0.7534883670261863Z" data-thin="M114.3129414835268 0.7534883670261863V47.53255781990159H112.86875544672662V0.7534883670261863Z" fill="var(--on-neutral-inverse)" />
+                  <path className="wordmark-letter" d="M126.44163947382405 47.53255781990159V0.7534883670261863H160.0V9.031681443626809H136.09366265337746V19.862630240366084H158.1960225781056V27.93738973594008H136.09366265337746V39.25436474330097H160.0V47.53255781990159Z" data-thin="M128.2223367388301 47.53255781990159V0.7534883670261863H156.5409411995641V2.197674403826362H129.66652277563028V22.918604497046342H154.12349935535508V24.362790533846525H129.66652277563028V46.08837178310141H156.5409411995641V47.53255781990159Z" fill="var(--on-neutral-inverse)" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
+      <main id="main">
+        <div className="grd-fold-b">
+          <div className="grd-fold-b-lt">
+            <p className="exp">
+              <span className="display-large dense">
+                {"12Yrs."}
+              </span>
+              <span className="title-large">
+                {"of experience in human-centered design."}
+              </span>
+            </p>
+            <div className="sticky-grd">
+              <svg aria-hidden="true" className="magic-b" xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 57 57" fill="none">
+                <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+                <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+                <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+              </svg>
+              <div className="sticky"></div>
+            </div>
+          </div>
+          <div className="grd-fold-b-rt">
+            <div className="picture-wrap">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/nitish_khagwal_portrait_1x.webp?v1.0.1 1x, static/bitmap/nitish_khagwal_portrait_2x.webp?v1.0.1 2x" />
+                <img alt="nitish khagwal" data-src="static/bitmap/nitish_khagwal_portrait_1x.jpg?v1.0.1" data-srcset="static/bitmap/nitish_khagwal_portrait_1x.jpg?v1.0.1 1x, static/bitmap/nitish_khagwal_portrait_2x.jpg?v1.0.1 2x" />
+              </picture>
+            </div>
+            <p className="geo">
+              <span className="title-large">
+                {"Based in Edo State, NG"}
+              </span>
+              <span className="title-large">
+                {"— WAT "}
+                <span className="timestamp">
+                  {"10:48 pm"}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div className="grd-fold-c">
+          <div className="poster-wrap">
+            <picture className="skeleton" style={{ display: "none" }}>
+              <source type="image/webp" data-srcset="static/bitmap/cover_design_system_1x.webp 1x, static/bitmap/cover_design_system_2x.webp 2x" />
+              <img alt="paytm official design system (PODS)" data-src="static/bitmap/cover_design_system_1x.jpg" data-srcset="static/bitmap/cover_design_system_1x.jpg 1x, static/bitmap/cover_design_system_2x.jpg 2x" />
+            </picture>
+          </div>
+          <div className="poster-caption">
+            <p className="body-large dense">
+              {"January 2021 - July 2024"}
+            </p>
+            <div className="main-info">
+              <p className="title-large">
+                {"Built, maintained, and scaled a tokenized design system at Paytm."}
+              </p>
+              <ul className="body-medium">
+                <li>
+                  {"Design System Tokenisation"}
+                </li>
+                <li>
+                  {"Design System Tooling"}
+                </li>
+                <li>
+                  {"Maintaining Component Lifecycle"}
+                </li>
+                <li>
+                  {"Building Org-level Plugins"}
+                </li>
+                <li>
+                  {"SVN Asset Management"}
+                </li>
+                <li>
+                  {"Design Audits & Checks"}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-d">
+          <div className="grd-mosaic">
+            <div className="mosaic-caption">
+              <p className="title-small">
+                {"I like to do experiments."}
+              </p>
+              <p className="title-small">
+                {"I work on design concepts that extend beyond traditional GUI. I make magic\n                        happen."}
+              </p>
+            </div>
+            <div className="mosaic-gamepad">
+              <div className="video-wrap">
+                <video autoPlay={true} poster="static/bitmap/poster_gamepad.jpg" muted={true} playsInline={true} loop={true} src="live/flex_gamepad.mp4"></video>
+              </div>
+            </div>
+            <div className="mosaic-mobile">
+              <div className="video-wrap">
+                <video autoPlay={true} poster="static/bitmap/poster_mobile.jpg" muted={true} playsInline={true} loop={true} src="https://khagwal.com/live/flex_mobile.mp4"></video>
+              </div>
+            </div>
+            <div className="mosaic-keyboard">
+              <div className="sticky-arrow" aria-hidden="true">
+                <span className="sticky"></span>
+                <span className="dense">
+                  {"↓"}
+                </span>
+              </div>
+              <div className="video-keyboard">
+                <div className="video-wrap">
+                  <video autoPlay={true} poster="static/bitmap/poster_keyboard.jpg" muted={true} playsInline={true} loop={true} src="live/keyboard.mp4"></video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-e">
+          <h2 className="title-medium dense" aria-label="My design values">
+            <span aria-hidden="true">
+              {"My design "}
+            </span>
+            <span aria-hidden="true">
+              {"values –"}
+            </span>
+          </h2>
+          <div className="grd-val-wrap">
+            <div className="grd-val">
+              <div className="grd-val-icon" aria-hidden="true">
+                <svg aria-hidden="true" width="6rem" height="6rem" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="37.332" cy="17.333" r="8" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M61.332 62.666c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24h21.334" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M37.332 25.333v27.333h32L78 75.333 85.332 72" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                </svg>
+                <span></span>
+              </div>
+              <div>
+                <h3 className="title-medium dense">
+                  {"Accessibility first"}
+                </h3>
+                <p className="headline">
+                  {"When we design for differently-abled users, we make experiences better for\n                            everyone. I focus on permanent, temporary, and situational disability."}
+                </p>
+              </div>
+            </div>
+            <div className="grd-val">
+              <div className="grd-val-icon" aria-hidden="true">
+                <svg aria-hidden="true" width="6rem" height="6rem" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M32 16H16v16M32 80H16V64M64 16h16v16M64 80h16V64" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <circle cx="48" cy="36" r="8" stroke="var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M64 68v-8a8 8 0 0 0-8-8H40a8 8 0 0 0-8 8v8" stroke="var(--on-neutral-inverse)" strokeWidth="6" />
+                </svg>
+                <span></span>
+              </div>
+              <div>
+                <h3 className="title-medium dense">
+                  {"User focus"}
+                </h3>
+                <p className="headline">
+                  {"While designing experiences, I keep users front and centre. I prefer\n                            firsthand user observations and making design decisions grounded in data."}
+                </p>
+              </div>
+            </div>
+            <div className="grd-val">
+              <div className="grd-val-icon" aria-hidden="true">
+                <svg aria-hidden="true" width="6rem" height="6rem" fill="none" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M74.148 85.333V59.667a29.595 29.595 0 0 0 7.185-19.385c0-16.356-13.186-29.615-29.453-29.615S22.426 23.926 22.426 40.282v7L16 62.54h9.33l4.82 15.974h17.446l4.284-9.692" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M50.667 44a6.667 6.667 0 0 0 0 13.333H58V66" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M45.333 49.333a8 8 0 0 1 0-16M41.333 33.85a8 8 0 0 1 15.128-5.209" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M52 30.632a8 8 0 0 1 13.265 8.947" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                  <path d="M61.683 44.635a5.196 5.196 0 0 1 10.353-.906" stroke=" var(--on-neutral-inverse)" strokeWidth="6" strokeLinejoin="bevel" />
+                </svg>
+                <span></span>
+              </div>
+              <div>
+                <h3 className="title-medium dense">
+                  {"Human factor"}
+                </h3>
+                <p className="headline">
+                  {"Humans have variables that increase the tendency of errors. I make product\n                            interaction so easy that it becomes hard for users to make errors."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-f">
+          <div className="plugin-caption">
+            <p className="body-large dense">
+              {"Figma Plugins & Widgets"}
+            </p>
+            <p className="title-large">
+              {"I make things for people who design things."}
+            </p>
+          </div>
+          <div className="grd-plugin">
+            <div className="plugin-poster">
+              <a href="https://www.figma.com/community/plugin/1071077298865016770/Ink-Wireframe" target="_blank" rel="noopenner" className="plugin-cover plugin-ink">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/logo_ink_wireframe_1x.webp 1x, static/bitmap/logo_ink_wireframe_2x.webp 2x" />
+                  <img alt="figma ink wireframe plugin" data-src="static/bitmap/logo_ink_wireframe_1x.png" data-srcset="static/bitmap/logo_ink_wireframe_1x.png 1x, static/bitmap/logo_ink_wireframe_2x.png 2x" />
+                </picture>
+              </a>
+              <a className="title-large" href="https://www.figma.com/community/plugin/1071077298865016770/Ink-Wireframe" target="_blank" aria-label="Ink Wireframe Plugin">
+                <span aria-hidden="true">
+                  {"Ink Wireframe"}
+                </span>
+                <span aria-hidden="true">
+                  {"Plugin ↗"}
+                </span>
+              </a>
+            </div>
+            <div className="plugin-poster">
+              <a href="https://www.figma.com/community/widget/1123673447187127238/Sticky-Note" target="_blank" rel="noopener" className="plugin-cover plugin-note">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/logo_sticky_note_1x.webp 1x, static/bitmap/logo_sticky_note_2x.webp 2x" />
+                  <img alt="figma sticky note widget" data-src="static/bitmap/logo_sticky_note_1x.png" data-srcset="static/bitmap/logo_sticky_note_1x.png 1x, static/bitmap/logo_sticky_note_2x.png 2x" />
+                </picture>
+              </a>
+              <a className="title-large" href="https://www.figma.com/community/widget/1123673447187127238/Sticky-Note" target="_blank" aria-label="Sticky Note Widget">
+                <span aria-hidden="true">
+                  {"Sticky Note"}
+                </span>
+                <span aria-hidden="true">
+                  {"Widget ↗"}
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-g">
+          <div className="grd-title">
+            <h2 className="title-medium dense" aria-label="I share threads about design systems and tools —">
+              <span aria-hidden="true">
+                {"I share threads about"}
+              </span>
+              <span aria-hidden="true">
+                {"design systems\n                        &"}
+              </span>
+              <span aria-hidden="true">
+                {"tools —"}
+              </span>
+            </h2>
+            <svg aria-hidden="true" className="magic-c" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 57 57" fill="none">
+              <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+              <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+              <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+            </svg>
+          </div>
+          <div className="grd-cover">
+            <a href="https://twitter.com/nitishkmrk/status/1579477287849775105" rel="nopenner" target="_blank" className="landscape">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_100_figma_tips_1x.webp 1x, static/bitmap/cover_100_figma_tips_2x.webp 2x" />
+                <img alt="100 figma tips" data-src="static/bitmap/cover_100_figma_tips_1x.jpg" data-srcset="static/bitmap/cover_100_figma_tips_1x.jpg 1x, static/bitmap/cover_100_figma_tips_2x.jpg 2x" />
+              </picture>
+            </a>
+            <a href="https://twitter.com/nitishkmrk/status/1599670760163139584" rel="nopenner" target="_blank" className="square">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_design_system_overrides_1x.webp 1x, static/bitmap/cover_design_system_overrides_2x.webp 2x" />
+                <img alt="figma design system overrides" data-src="static/bitmap/cover_design_system_overrides_1x.jpg" data-srcset="static/bitmap/cover_design_system_overrides_1x.jpg 1x, static/bitmap/cover_design_system_overrides_2x.jpg 2x" />
+              </picture>
+            </a>
+            <a href="https://twitter.com/nitishkmrk/status/1586984831212478465" rel="nopenner" target="_blank" className="square">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_figma_10_design_system_things_1x.webp 1x, static/bitmap/cover_figma_10_design_system_things_2x.webp 2x" />
+                <img alt="figma design system" data-src="static/bitmap/cover_figma_10_design_system_things_1x.jpg" data-srcset="static/bitmap/cover_figma_10_design_system_things_1x.jpg 1x, static/bitmap/cover_figma_10_design_system_things_2x.jpg 2x" />
+              </picture>
+            </a>
+            <a href="https://twitter.com/nitishkmrk/status/1592060740701421569" rel="nopenner" target="_blank" className="square">
+              <picture className="skeleton" style={{ display: "none" }}>
+                <source type="image/webp" data-srcset="static/bitmap/cover_figma_spring_animations_1x.webp 1x, static/bitmap/cover_figma_spring_animations_2x.webp 2x" />
+                <img alt="figma spring animations" data-src="static/bitmap/cover_figma_spring_animations_1x.jpg" data-srcset="static/bitmap/cover_figma_spring_animations_1x.jpg 1x, static/bitmap/cover_figma_spring_animations_2x.jpg 2x" />
+              </picture>
+            </a>
+          </div>
+          <p className="grd-footnote title-medium dense">
+            {"find out more at"}
+            <span>
+              <a href="https://twitter.com/search?q=from%3Anitishkmrk%20thread&src=typed_query" rel="noopener" target="_blank">
+                {"Twitter ↗"}
+              </a>
+            </span>
+          </p>
+        </div>
+        <div className="grd-fold-h">
+          <h2 className="dense">
+            {"Certifications"}
+          </h2>
+          <div className="grd-certificate">
+            <svg aria-hidden="true" className="magic-d" xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 57 57" fill="none">
+              <path d="M17.9981 53.8037H18.6544C18.7637 53.1318 19.0606 52.3975 19.5606 51.6006C20.5606 50.0225 22.5762 48.4756 24.3106 48.1162V47.46C23.4512 47.2725 22.6075 46.8818 21.795 46.3037C20.1387 45.1318 18.92 43.3818 18.6544 41.8037H17.9981C17.8419 42.6318 17.4825 43.4287 16.92 44.2412C15.8106 45.8506 14.0762 47.0381 12.3106 47.46V48.1162C13.2012 48.3037 14.1075 48.7412 14.9981 49.4131C16.8106 50.7725 17.7637 52.46 17.9981 53.8037Z" fill="var(--on-neutral-inverse)" />
+              <path d="M31.9355 47.6362H34.123C34.4876 45.3966 35.4771 42.9487 37.1438 40.2925C40.4771 35.0321 47.1959 29.8758 52.9771 28.6779V26.4904C50.1126 25.8654 47.3001 24.5633 44.5917 22.6362C39.0709 18.73 35.0084 12.8966 34.123 7.63623H31.9355C31.4146 10.3966 30.2167 13.0529 28.3417 15.7612C24.6438 21.1258 18.8626 25.0841 12.9771 26.4904V28.6779C15.9459 29.3029 18.9667 30.7612 21.9355 33.0008C27.9771 37.5321 31.1542 43.1571 31.9355 47.6362Z" fill="var(--on-neutral-inverse)" />
+              <path d="M9.99849 18.8091H10.8735C11.0193 17.9132 11.4152 16.9341 12.0818 15.8716C13.4152 13.7674 16.1027 11.7049 18.4152 11.2257V10.3507C17.2693 10.1007 16.1443 9.57991 15.061 8.80908C12.8527 7.24658 11.2277 4.91325 10.8735 2.80908L9.99849 2.80908C9.79015 3.91325 9.31099 4.97575 8.56099 6.05908C7.08182 8.20491 4.76932 9.78825 2.41515 10.3507L2.41515 11.2257C3.60265 11.4757 4.81099 12.0591 5.99849 12.9549C8.41515 14.7674 9.68599 17.0174 9.99849 18.8091Z" fill="var(--on-neutral-inverse)" />
+            </svg>
+            <ul>
+              <li>
+                <span className="title-large">
+                  {"Google UX Design Specialization"}
+                </span>
+                <a className="body-large dense" href="https://www.coursera.org/account/accomplishments/specialization/certificate/NXSRRJQ56HRE" target="_blank">
+                  {"Coursera Professional Certificate ↗"}
+                </a>
+              </li>
+              <li>
+                <span className="title-large">
+                  {"Mobile User Experience Design"}
+                </span>
+                <a className="body-large dense" href="https://www.interaction-design.org/members/nitish-kumar-2/certificate/course/33f9d0ed-f40f-4d1d-bd11-8e402867be88" target="_blank">
+                  {"Interaction Design Foundation ↗"}
+                </a>
+              </li>
+              <li>
+                <span className="title-large">
+                  {"Interaction Design for Usability"}
+                </span>
+                <a className="body-large dense" href="https://www.interaction-design.org/members/nitish-kumar-2/certificate/course/5d3cb900-3f22-42a8-a48d-c3dd2168fbd1" target="_blank">
+                  {"Interaction Design Foundation ↗"}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="grd-fold-i">
+          <div className="grd-gallery">
+            <div className="grd-gallery-block">
+              <div className="grd-gallery-snap stretch">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_workspace_1x.webp 1x, static/bitmap/snap_workspace_2x.webp 2x" />
+                  <img alt="nitish khagwal workspace" data-src="static/bitmap/snap_workspace_1x.jpg" data-srcset="static/bitmap/snap_workspace_1x.jpg 1x, static/bitmap/snap_workspace_2x.jpg 2x" />
+                </picture>
+              </div>
+              <div className="grd-gallery-snap squash">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_candid_1x.webp 1x, static/bitmap/snap_candid_2x.webp 2x" />
+                  <img alt="nitish khagwal working on a ux project" data-src="static/bitmap/snap_candid_1x.jpg" data-srcset="static/bitmap/snap_candid_1x.jpg 1x, static/bitmap/snap_candid_2x.jpg 2x" />
+                </picture>
+              </div>
+            </div>
+            <div className="grd-gallery-block">
+              <div className="grd-gallery-snap squash">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_event_1x.webp 1x, static/bitmap/snap_event_2x.webp 2x" />
+                  <img alt="nitish khagwal at ux workshop" data-src="static/bitmap/snap_event_1x.jpg" data-srcset="static/bitmap/snap_event_1x.jpg 1x, static/bitmap/snap_event_2x.jpg 2x" />
+                </picture>
+              </div>
+              <div className="grd-gallery-snap stretch">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_hall_of_fame_1x.webp 1x, static/bitmap/snap_hall_of_fame_2x.webp 2x" />
+                  <img alt="paytm hall of fame award" data-src="static/bitmap/snap_hall_of_fame_1x.jpg" data-srcset="static/bitmap/snap_hall_of_fame_1x.jpg 1x, static/bitmap/snap_hall_of_fame_2x.jpg 2x" />
+                </picture>
+              </div>
+            </div>
+            <div className="grd-gallery-block">
+              <div className="grd-gallery-snap stretch">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_reading_book_1x.webp?v1.0.1 1x, static/bitmap/snap_reading_book_2x.webp?v1.0.1 2x" />
+                  <img alt="nitish khagwal reading a book" data-src="static/bitmap/snap_reading_book_1x.jpg" data-srcset="static/bitmap/snap_reading_book_1x.jpg?v1.0.1 1x, static/bitmap/snap_reading_book_2x.jpg?v1.0.1 2x" />
+                </picture>
+              </div>
+              <div className="grd-gallery-snap squash">
+                <picture className="skeleton" style={{ display: "none" }}>
+                  <source type="image/webp" data-srcset="static/bitmap/snap_session_1x.webp 1x, static/bitmap/snap_session_2x.webp 2x" />
+                  <img alt="nitish khagwal in ux workshop" data-src="static/bitmap/snap_session_1x.jpg" data-srcset="static/bitmap/snap_session_1x.jpg 1x, static/bitmap/snap_session_2x.jpg 2x" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grd-fold-j">
+          __FOOTER__
+        </div>
+      </main>
+      <div className="glass-overlay" aria-hidden="true"></div>
