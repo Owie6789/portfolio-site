@@ -142,17 +142,46 @@ function applyIdentity(root) {
       const svg = (n.childNodes ?? []).find((c) => c.tagName === "svg");
       if (!svg) return;
       setAttr(svg, "viewBox", wordmark.viewBox);
-      svg.childNodes = wordmark.paths.map((d) => ({
-        nodeName: "path",
-        tagName: "path",
-        attrs: [
-          { name: "d", value: d },
-          { name: "fill", value: "var(--on-neutral-inverse)" },
-        ],
-        childNodes: [],
+
+      const el = (tagName, attrs, children = []) => ({
+        nodeName: tagName,
+        tagName,
+        attrs,
+        childNodes: children,
         parentNode: svg,
         namespaceURI: svg.namespaceURI,
-      }));
+      });
+
+      /* Two versions of the mark.
+         - outlines, which render immediately and need no font
+         - live text on a variable cut of Inter, revealed by
+           app/wordmark-weight.tsx once the font is ready, so its weight can be
+           driven by scroll. textLength pins the advance, so thinning changes
+           stroke weight without changing how much room the mark takes. */
+      const paths = el("g", [{ name: "class", value: "wordmark-outline" }]);
+      paths.childNodes = wordmark.paths.map((d) =>
+        el("path", [
+          { name: "d", value: d },
+          { name: "fill", value: "var(--on-neutral-inverse)" },
+        ])
+      );
+
+      const text = el(
+        "text",
+        [
+          { name: "class", value: "wordmark-live" },
+          { name: "x", value: String(-wordmark.inkLeft) },
+          { name: "y", value: String(wordmark.baseline) },
+          { name: "font-size", value: String(wordmark.fontSize) },
+          { name: "textLength", value: String(wordmark.advance) },
+          { name: "lengthAdjust", value: "spacing" },
+          { name: "fill", value: "var(--on-neutral-inverse)" },
+        ],
+        [{ nodeName: "#text", value: wordmark.word }]
+      );
+      text.childNodes[0].parentNode = text;
+
+      svg.childNodes = [paths, text];
       mark++;
     }
   });

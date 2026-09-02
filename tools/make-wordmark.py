@@ -13,6 +13,7 @@ import json
 from fontTools.pens.boundsPen import BoundsPen
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
+from fontTools.subset import Subsetter
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
 
@@ -24,6 +25,18 @@ SRC = "/tmp/Inter.ttf"
 AXES = {"opsz": 32, "wght": 700}
 
 font = instancer.instantiateVariableFont(TTFont(SRC), AXES, inplace=False)
+
+# A second cut that keeps the weight axis live, subset to the four letters, so
+# the mark can be thinned on scroll. Optical size is still pinned.
+var_cut = instancer.instantiateVariableFont(
+    TTFont(SRC), {"opsz": AXES["opsz"]}, inplace=False
+)
+sub = Subsetter()
+sub.populate(text=WORD)
+sub.subset(var_cut)
+var_cut.flavor = "woff2"
+VAR_OUT = "public/live/font/Inter-Wordmark-var.woff2"
+var_cut.save(VAR_OUT)
 upm = font["head"].unitsPerEm
 cmap = font.getBestCmap()
 hmtx = font["hmtx"]
@@ -62,11 +75,22 @@ for name, ox in placed:
     paths.append(svg.getCommands())
 
 h = round(height * scale, 3)
+
+# Advance width of the word at the default weight, in viewBox units. The live
+# text is locked to this with textLength so thinning changes stroke weight
+# without changing how much room the mark takes.
+advance = round((pen_x - track) * scale, 3)
+
 print(json.dumps({
     "word": WORD,
     "font": f"Inter opsz {AXES['opsz']} wght {AXES['wght']}",
     "tracking_em": TRACK,
     "margin": MARGIN,
     "viewBox": f"{-MARGIN} {-MARGIN} {160 + MARGIN * 2} {round(h + MARGIN * 2, 3)}",
+    "fontSize": round(upm * scale, 3),
+    "baseline": round(y1 * scale, 3),
+    "inkLeft": round(x0 * scale, 3),
+    "advance": advance,
+    "variableFont": VAR_OUT,
     "paths": paths,
 }, indent=2))

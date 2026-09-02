@@ -19,6 +19,7 @@
 import Script from "next/script";
 import LocalTime from "./local-time";
 import SmoothScroll from "./smooth-scroll";
+import WordmarkWeight from "./wordmark-weight";
 
 export default function Scripts() {
   return (
@@ -31,6 +32,7 @@ export default function Scripts() {
       <Script src="/dist/main.js@v1.0.2" strategy="afterInteractive" />
       <SmoothScroll />
       <LocalTime />
+      <WordmarkWeight />
     </>
   );
 }

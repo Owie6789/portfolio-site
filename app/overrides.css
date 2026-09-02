@@ -78,6 +78,33 @@
   }
 }
 
+/* Live wordmark. A variable cut of Inter, four glyphs, weight axis intact,
+ * 1.7 KB. Hidden until app/wordmark-weight.tsx confirms the font is ready and
+ * marks the svg live; until then the outlines carry the mark, so there is no
+ * moment where it is missing or set in a fallback face.
+ */
+@font-face {
+  font-family: "Inter Wordmark";
+  src: url("/live/font/Inter-Wordmark-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+.logomark .wordmark-live {
+  font-family: "Inter Wordmark", sans-serif;
+  font-variation-settings: "wght" 700;
+  visibility: hidden;
+}
+
+.logomark svg.is-live .wordmark-live {
+  visibility: visible;
+}
+
+.logomark svg.is-live .wordmark-outline {
+  display: none;
+}
+
 /* The hero wordmark is transformed on scroll. Its viewBox carries 3 units of
  * air on every side (see tools/make-wordmark.py) and this stops the SVG
  * viewport clipping the outer edge of the letterforms.
