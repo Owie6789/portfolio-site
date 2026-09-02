@@ -1,13 +1,13 @@
 {
-  "HelveticaNowDisplay-Medium.woff2": {
-    "upm": 1000,
+  "Inter-Display-Medium.woff2": {
+    "upm": 2048,
     "words": {
       "Let’s": {
-        "advance": 2097,
-        "x0": 62,
-        "y0": -13,
-        "x1": 2079,
-        "y1": 712
+        "advance": 4320,
+        "x0": 136,
+        "y0": -25,
+        "x1": 4253,
+        "y1": 1490
       }
     }
   },

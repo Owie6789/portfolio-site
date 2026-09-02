@@ -16,8 +16,10 @@ import { useCallback, useEffect, useRef } from "react";
 
 const PULL = 0.34; // fraction of the cursor's offset the glyph travels
 const MAX = 26; // px cap, so it never leaves its corner
-const STIFF = 170;
-const DAMP = 16;
+const STIFF = 62; // position: low and slow, so it drifts toward the cursor
+const DAMP = 13;
+const SCALE_STIFF = 170; // the hover swell stays quick
+const SCALE_DAMP = 16;
 const REST = 0.05;
 
 type Axis = { value: number; target: number; velocity: number };
@@ -58,7 +60,7 @@ export default function FooterAsterisk({
     const moving = [
       step(x.current, dt, STIFF, DAMP),
       step(y.current, dt, STIFF, DAMP),
-      step(scale.current, dt, STIFF, DAMP),
+      step(scale.current, dt, SCALE_STIFF, SCALE_DAMP),
     ].some(Boolean);
 
     const el = ref.current;

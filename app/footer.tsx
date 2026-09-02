@@ -4,9 +4,10 @@
  * the original <footer> for this and drops the <hr> that sat above it. The
  * original markup is kept at tools/generated-footer-original.jsx.txt.
  *
- * The headline mixes two faces on one line: "Let’s" in Helvetica Now Display
- * Medium and "talk" in ITC Garamond Std Light Narrow, both from the user's
- * `footer fonts.zip` on main. It is drawn as SVG whose viewBox is assembled
+ * The headline mixes two faces on one line: "Let’s" in Inter (display optical
+ * size, weight 500) and "talk" in ITC Garamond Std Light Narrow from the
+ * user's `footer fonts.zip` on main. Both are subset to the glyphs actually
+ * drawn, 1 KB and 1.5 KB. It is drawn as SVG whose viewBox is assembled
  * from each word's real ink bounds, measured by tools/measure-headline.py and
  * recorded in app/headline-metrics.json, so the line fills the panel exactly
  * at any viewport.
@@ -16,16 +17,31 @@ import FooterShuffle from "./footer-shuffle";
 import FooterYear from "./footer-year";
 import styles from "./footer.module.css";
 
-// Ink bounds in font units (upm 1000), from app/headline-metrics.json.
-const HELV = { text: "Let’s", x0: 62, x1: 2079, yTop: 712, yBottom: -13 };
-const GARA = { text: "talk", x0: 17, x1: 1295, yTop: 707, yBottom: -12 };
+// Ink bounds in each face's own units, from app/headline-metrics.json. Inter
+// is 2048 upm and the Garamond 1000, so every measurement is normalised below.
+const INTER = {
+  text: "Let’s",
+  upm: 2048,
+  x0: 136,
+  x1: 4253,
+  yTop: 1490,
+  yBottom: -25,
+};
+const GARA = {
+  text: "talk",
+  upm: 1000,
+  x0: 17,
+  x1: 1295,
+  yTop: 707,
+  yBottom: -12,
+};
 
 /* Metrics from the original's own CSS, converted to font units at upm 1000.
    .heading-style-h1 tracks -0.012em; .text-serif sets the serif word 1.05em
    and tracks it -0.03em. */
-const SIZE_HELV = 1000;
+const SIZE_INTER = 1000;
 const SIZE_GARA = 1050;
-const TRACK_HELV = -12;
+const TRACK_INTER = -12;
 const TRACK_GARA = -31.5;
 const GAP = 160; // optical space between the words
 
@@ -36,28 +52,33 @@ const BOLD = 9;
 /* ...and nudged off the left edge. Negative moves it left. */
 const SHIFT = 24;
 
-const em = (units: number, size: number) => (units / 1000) * size;
+type Face = { upm: number };
+const em = (units: number, size: number, face: Face) =>
+  (units / face.upm) * size;
 
 const W1 =
-  em(HELV.x1 - HELV.x0, SIZE_HELV) +
-  TRACK_HELV * (HELV.text.length - 1) +
+  em(INTER.x1 - INTER.x0, SIZE_INTER, INTER) +
+  TRACK_INTER * (INTER.text.length - 1) +
   BOLD +
   SHIFT;
 const W2 =
-  em(GARA.x1 - GARA.x0, SIZE_GARA) + TRACK_GARA * (GARA.text.length - 1);
+  em(GARA.x1 - GARA.x0, SIZE_GARA, GARA) + TRACK_GARA * (GARA.text.length - 1);
 
-const TOP = Math.max(em(HELV.yTop, SIZE_HELV) + BOLD / 2, em(GARA.yTop, SIZE_GARA));
+const TOP = Math.max(
+  em(INTER.yTop, SIZE_INTER, INTER) + BOLD / 2,
+  em(GARA.yTop, SIZE_GARA, GARA)
+);
 const BOTTOM = Math.min(
-  em(HELV.yBottom, SIZE_HELV) - BOLD / 2,
-  em(GARA.yBottom, SIZE_GARA)
+  em(INTER.yBottom, SIZE_INTER, INTER) - BOLD / 2,
+  em(GARA.yBottom, SIZE_GARA, GARA)
 );
 
 const BOX = { w: W1 + GAP + W2, h: TOP - BOTTOM };
 const BASELINE = TOP;
 // The stroke grows the ink by half its width on every side, so the word starts
 // half a stroke earlier than its outline bounds.
-const HELV_X = -em(HELV.x0, SIZE_HELV) + BOLD / 2 + SHIFT;
-const GARA_X = W1 + GAP - em(GARA.x0, SIZE_GARA);
+const INTER_X = -em(INTER.x0, SIZE_INTER, INTER) + BOLD / 2 + SHIFT;
+const GARA_X = W1 + GAP - em(GARA.x0, SIZE_GARA, GARA);
 
 // Asterisk supplied by the user, an 80x80 box.
 const ASTERISK =
@@ -95,17 +116,17 @@ export default function Footer() {
             <svg
               viewBox={`0 0 ${BOX.w} ${BOX.h}`}
               role="img"
-              aria-label={`${HELV.text} ${GARA.text}`}
+              aria-label={`${INTER.text} ${GARA.text}`}
             >
               <text
-                className={styles.wordHelv}
-                x={HELV_X}
+                className={styles.wordInter}
+                x={INTER_X}
                 y={BASELINE}
-                fontSize={SIZE_HELV}
-                letterSpacing={TRACK_HELV}
+                fontSize={SIZE_INTER}
+                letterSpacing={TRACK_INTER}
                 strokeWidth={BOLD}
               >
-                {HELV.text}
+                {INTER.text}
               </text>
               <text
                 className={styles.wordGara}

@@ -1,8 +1,8 @@
 """Measure the footer headline words in the fonts they are actually set in.
 
-The headline mixes two faces on one line: "Let's" in Helvetica Now Display
-Medium and "talk" in ITC Garamond Std Light Narrow. Both are supplied by the
-user in `footer fonts.zip` on main. The SVG that draws the headline is fitted
+The headline mixes two faces on one line: "Let's" in Inter, cut here to a
+static display instance, and "talk" in ITC Garamond Std Light Narrow, which the
+user supplied in `footer fonts.zip` on main. The SVG that draws the headline is fitted
 to the panel, so it needs each word's real advance and ink bounds in font
 units. Re-run this with the fontTools venv when the copy or the fonts change:
 
@@ -11,10 +11,17 @@ units. Re-run this with the fontTools venv when the copy or the fonts change:
 import json
 
 from fontTools.pens.boundsPen import BoundsPen
+from fontTools.subset import Subsetter
 from fontTools.ttLib import TTFont
+from fontTools.varLib import instancer
+
+# Inter is variable; pin it to the display optical size at the weight the
+# original heading uses, then keep the static cut.
+CUTS = [("/tmp/Inter.ttf", {"opsz": 32, "wght": 500},
+         "public/live/font/Inter-Display-Medium.woff2")]
 
 FACES = [
-    ("public/live/font/HelveticaNowDisplay-Medium.woff2", ["Let’s"]),
+    ("public/live/font/Inter-Display-Medium.woff2", ["Let’s"]),
     ("public/live/font/ITCGaramondStd-LightNarrow.woff2", ["talk"]),
 ]
 
@@ -45,7 +52,26 @@ def measure(font, text):
     }
 
 
+for src, axes, dest in CUTS:
+    cut = instancer.instantiateVariableFont(TTFont(src), axes, inplace=False)
+    cut.flavor = "woff2"
+    cut.save(dest)
+
+
+def subset(path, words):
+    """Keep only the glyphs the headline actually draws."""
+    font = TTFont(path)
+    sub = Subsetter()
+    sub.populate(text="".join(words) + " ")
+    sub.subset(font)
+    font.flavor = "woff2"
+    font.save(path)
+
+
 out = {}
+for path, words in FACES:
+    subset(path, words)
+
 for path, words in FACES:
     font = TTFont(path)
     out[path.split("/")[-1]] = {

@@ -86,13 +86,13 @@ year. The Cloudflare-obfuscated email markup is unchanged byte-for-byte, so the
 decode script still resolves it to hey@khagwal.com. `npm run verify` checks
 those seven items and compares the rest of the page as before.
 
-It adds the two display fonts the user supplied in `footer fonts.zip` on
-`main`, self-hosted under `public/live/font/`: Helvetica Now Display Medium
-(45 KB, used as delivered) for "Let’s", and ITC Garamond Std Light Narrow
-(converted from OTF to woff2, 26 KB) for "talk", condensed a further 14% with
-a horizontal scale. Both are licensed fonts supplied by the user, not fetched.
-`tools/measure-headline.py` prints the ink metrics the SVG headline needs;
-re-run it if the copy or the fonts change.
+It adds two display faces under `public/live/font/`, both cut and subset by
+`tools/measure-headline.py` to only the glyphs the headline draws: Inter pinned
+to opsz 32 / wght 500 for "Let’s" (1 KB, down from a 116 KB variable font) and
+ITC Garamond Std Light Narrow for "talk" (1.5 KB, converted from the OTF the
+user supplied in `footer fonts.zip` on `main`). The same script prints the ink
+metrics the SVG headline needs; re-run it if the copy or the fonts change. Note
+that it subsets the Garamond in place, so restore it from `main` first.
 
 ## Known issues
 
