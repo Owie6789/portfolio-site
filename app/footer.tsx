@@ -20,20 +20,35 @@ import styles from "./footer.module.css";
 const HELV = { text: "Let’s", x0: 62, x1: 2079, yTop: 712, yBottom: -13 };
 const GARA = { text: "talk", x0: 17, x1: 1295, yTop: 707, yBottom: -12 };
 
-const LETTER = 12; // tracking inside each word
-const GAP = 150; // space between the two words
+/* Metrics follow the original's own numbers, in font units at upm 1000:
+   letter-spacing -0.012em, and a word gap of the space advance (202) plus the
+   0.046em the original adds with .word { padding-right }. */
+const LETTER = -12;
+const GAP = 202 + 46;
 const SQUEEZE = 0.86; // horizontal condense applied to "talk"
+
+/* "Let’s" is a touch bolder than the Medium it is set in. Only one weight was
+   supplied, so the weight comes from a hairline stroke in the same colour,
+   painted under the fill. 9 units at upm 1000 is roughly a third of a step. */
+const BOLD = 9;
+/* ...and nudged off the left edge. Negative moves it left. */
+const SHIFT = 24;
 
 const track = (w: { text: string; x0: number; x1: number }) =>
   w.x1 - w.x0 + LETTER * (w.text.length - 1);
 
-const W1 = track(HELV);
+const W1 = track(HELV) + BOLD + SHIFT;
 const W2 = track(GARA) * SQUEEZE;
 const BOX = {
   w: W1 + GAP + W2,
-  h: Math.max(HELV.yTop, GARA.yTop) - Math.min(HELV.yBottom, GARA.yBottom),
+  h:
+    Math.max(HELV.yTop + BOLD / 2, GARA.yTop) -
+    Math.min(HELV.yBottom - BOLD / 2, GARA.yBottom),
 };
-const BASELINE = Math.max(HELV.yTop, GARA.yTop);
+const BASELINE = Math.max(HELV.yTop + BOLD / 2, GARA.yTop);
+// The stroke grows the ink by half its width on every side, so the word starts
+// half a stroke earlier than its outline bounds.
+const HELV_X = -HELV.x0 + BOLD / 2 + SHIFT;
 // Under scale(SQUEEZE, 1) the x coordinate is scaled too, so solve for the
 // untransformed x that lands the ink exactly after the gap.
 const GARA_X = (W1 + GAP) / SQUEEZE - GARA.x0;
@@ -79,10 +94,11 @@ export default function Footer() {
             >
               <text
                 className={styles.wordHelv}
-                x={-HELV.x0}
+                x={HELV_X}
                 y={BASELINE}
                 fontSize={1000}
                 letterSpacing={LETTER}
+                strokeWidth={BOLD}
               >
                 {HELV.text}
               </text>

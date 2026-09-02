@@ -125,7 +125,9 @@ export default function FooterAsterisk({
       aria-hidden="true"
     >
       <span className={magnetClassName} ref={ref}>
-        <svg className={className} viewBox="0 0 80 80">
+        {/* Padded box: the outline touches 0 and 80 on every side, so a
+            tight viewBox clips the tips as it turns. */}
+        <svg className={className} viewBox="-8 -8 96 96">
           <path d={path} />
         </svg>
       </span>
