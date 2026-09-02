@@ -1,0 +1,265 @@
+/* Moon-white footer panel.
+ *
+ * Cold near-white surface, checkerboard edge, oversized condensed Instrument
+ * Sans headline. Self-contained: no rule here reaches outside .footer, so the
+ * ported page's own CSS is untouched.
+ */
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("/live/font/InstrumentSans.woff2") format("woff2-variations");
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+
+.footer {
+  /* Moon surface: cool grey-white, lit slightly from the top left. */
+  --moon-0: #eef0f3;
+  --moon-1: #e2e5ea;
+  --moon-2: #d3d8df;
+  --ink: #14161a;
+  --ink-soft: #4a515b;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  display: block;
+  padding-bottom: var(--space-9, 3rem);
+}
+
+.panel {
+  background-color: var(--moon-1);
+  background-image: radial-gradient(
+    120% 90% at 12% -10%,
+    var(--moon-0) 0%,
+    var(--moon-1) 42%,
+    var(--moon-2) 100%
+  );
+  color: var(--ink);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Checkerboard edge: a solid band, then a row of teeth. */
+.checker {
+  display: block;
+  width: 100%;
+}
+
+.checkerBand {
+  background-color: var(--moon-0);
+  display: block;
+  height: 18px;
+  width: 100%;
+}
+
+.checkerTeeth {
+  --tooth: 18px;
+  background-color: var(--moon-0);
+  background-image:
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%),
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%);
+  background-position: 0 0, var(--tooth) var(--tooth);
+  background-size: calc(var(--tooth) * 2) calc(var(--tooth) * 2);
+  display: block;
+  height: var(--tooth);
+  width: 100%;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-9, 3rem);
+  padding: var(--space-10, 4rem) var(--space-7, 2rem) var(--space-7, 2rem);
+  position: relative;
+}
+
+/* Headline: very condensed, heavy, with the extra letter spacing asked for. */
+.headline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.28em;
+  font-family: "Instrument Sans", "Some Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-stretch: 75%;
+  font-variation-settings: "wdth" 75, "wght" 700;
+  font-synthesis: none;
+  font-weight: 700;
+  font-size: clamp(3.25rem, 13.5vw, 11.5rem);
+  letter-spacing: 0.005em;
+  line-height: 0.86;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.word {
+  display: inline-block;
+}
+
+/* Asterisk: springy half spin in, springy unwind out. */
+.asterisk {
+  color: var(--ink);
+  font-family: "Instrument Sans", "Some Sans", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-variation-settings: "wdth" 100, "wght" 400;
+  font-weight: 400;
+  line-height: 1;
+  position: absolute;
+  right: var(--space-7, 2rem);
+  top: var(--space-7, 2rem);
+  transition: transform 620ms var(--ease-spring);
+  will-change: transform;
+}
+
+.panel:hover .asterisk {
+  transform: rotate(180deg);
+}
+
+.meta {
+  align-items: end;
+  display: grid;
+  gap: var(--space-6, 1.5rem) var(--space-9, 3rem);
+  grid-template-columns: auto 1fr auto;
+}
+
+.copy,
+.email {
+  color: var(--ink-soft);
+  font-size: var(--type-size-3, 1rem);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.email {
+  border-radius: 4px;
+  display: inline-block;
+  min-height: 44px;
+  padding: 12px 0;
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+.email:hover {
+  color: var(--ink);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-6, 1.5rem);
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.links a {
+  border-radius: 4px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--type-size-3, 1rem);
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+.links a:hover {
+  color: var(--ink);
+}
+
+.email:focus-visible,
+.links a:focus-visible {
+  background-color: var(--ink);
+  color: var(--moon-0);
+  outline: 2px dotted var(--ink);
+  outline-offset: 3px;
+}
+
+/* Tablet */
+@media only screen and (max-width: 980px) {
+  .body {
+    padding: var(--space-9, 3rem) var(--space-6, 1.5rem) var(--space-6, 1.5rem);
+  }
+
+  .meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .links {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+/* Phone: the reference's stacked card. Type stays oversized, the four meta
+   items fall into a 2x2 block. */
+@media only screen and (max-width: 576px) {
+  .checkerBand,
+  .checkerTeeth {
+    height: 12px;
+  }
+
+  .checkerTeeth {
+    --tooth: 12px;
+  }
+
+  .body {
+    gap: var(--space-7, 2rem);
+    padding: var(--space-8, 2.5rem) var(--space-5, 1.25rem) var(--space-5, 1.25rem);
+  }
+
+  .headline {
+    font-size: clamp(2.75rem, 17vw, 5rem);
+  }
+
+  .asterisk {
+    font-size: 2.25rem;
+    right: var(--space-5, 1.25rem);
+    top: var(--space-5, 1.25rem);
+  }
+
+  .meta {
+    gap: var(--space-4, 1rem) var(--space-6, 1.5rem);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .copy {
+    order: 2;
+    text-align: right;
+  }
+
+  .email {
+    order: 1;
+  }
+
+  .links {
+    display: grid;
+    gap: 0 var(--space-6, 1.5rem);
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+    order: 3;
+  }
+
+  .links li:nth-child(even) a {
+    justify-content: flex-end;
+  }
+}
+
+/* Touch devices fire hover on tap. */
+@media (hover: none) {
+  .panel:hover .asterisk {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asterisk {
+    transition: none;
+  }
+
+  .panel:hover .asterisk {
+    transform: none;
+  }
+}

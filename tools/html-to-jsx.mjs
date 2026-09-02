@@ -163,6 +163,16 @@ function textNode(text) {
   return `{${jsStr(text)}}`;
 }
 
+let footerJsx = "";
+
+function serializeRaw(node, indent) {
+  const saved = footerJsx;
+  footerJsx = "__SKIP__";
+  const out = serialize(node, indent);
+  footerJsx = saved;
+  return out;
+}
+
 function serialize(node, indent) {
   const pad = "  ".repeat(indent);
 
@@ -175,6 +185,14 @@ function serialize(node, indent) {
   }
 
   const tag = node.tagName;
+
+  // The <footer> is replaced by a designed React component. Emit a marker and
+  // keep the original JSX in a separate file for reference and rollback.
+  if (tag === "footer" && footerJsx !== "__SKIP__") {
+    footerJsx = serializeRaw(node, indent);
+    return `${pad}__FOOTER__`;
+  }
+
   const a = attrs(node);
   const attrStr = a.length ? " " + a.join(" ") : "";
 
@@ -219,6 +237,7 @@ const headJsx = head.childNodes
   .join("\n");
 
 writeFileSync("tools/generated-body.jsx.txt", bodyJsx);
+writeFileSync("tools/generated-footer-original.jsx.txt", footerJsx);
 writeFileSync("tools/generated-head.jsx.txt", headJsx);
 console.log(
   `body children: ${bodyChildren.length}, head children: ${head.childNodes.length}`

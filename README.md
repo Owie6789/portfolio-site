@@ -66,6 +66,23 @@ Next.js/React and none of them visible:
    by the browser. Set in `next.config.ts`.
 7. Next's own runtime `<script>`/preload tags are added to the page.
 
+## The footer is not a port
+
+Everything on the page is generated verbatim from `tools/original-index.html`
+except the `<footer>`, which the user asked to redesign. The generator swaps
+the original footer for `app/footer.tsx`; the original markup is kept at
+`tools/generated-footer-original.jsx.txt` and can be restored by deleting the
+`__FOOTER__` branch in `tools/html-to-jsx.mjs`.
+
+The redesign carries every piece of the original content across: the same six
+social links, the same copyright, and the Cloudflare-obfuscated email markup
+byte-for-byte so the decode script still resolves it. `npm run verify` checks
+all ten of those and compares the rest of the page as before.
+
+It adds one font, Instrument Sans variable (SIL OFL), self-hosted at
+`public/live/font/InstrumentSans.woff2` and converted from the Google Fonts
+TTF. Width axis 75 to 100, weight 400 to 700.
+
 ## Known issues
 
 **Grey boxes** — two different things, and only one is a bug:

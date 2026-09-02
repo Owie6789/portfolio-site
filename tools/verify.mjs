@@ -99,6 +99,38 @@ const pick = (doc, tag) => {
 const nextScripts = decodeNextScripts(rendered);
 const norm = (t) => t.replace(/\s+/g, " ").trim();
 
+// The footer is deliberately no longer a verbatim port. Drop it from the
+// structural comparison and check its content separately below.
+function stripFooter(n) {
+  if (!n || !n.c) return n;
+  n.c = n.c.filter((c) => c.t !== "footer");
+  n.c.forEach(stripFooter);
+  return n;
+}
+
+function checkFooterContent() {
+  const required = [
+    ['data-cfemail="95fdf0ecd5fefdf4f2e2f4f9bbf6faf8"', "Cloudflare email payload"],
+    ["cdn-cgi/l/email-protection#f69e938fb69d9e979181979ad895999b", "email href"],
+    ["__cf_email__", "email decode hook"],
+    ["© 2025 Nitish Khagwal", "copyright"],
+    ["https://twitter.com/nitishkmrk", "X link"],
+    ["https://www.behance.net/nitishkmrk", "Behance link"],
+    ["https://dribbble.com/nitishkmrk/", "Dribbble link"],
+    ["https://medium.com/@nitishkmrk", "Medium link"],
+    ["https://www.linkedin.com/in/nitishkmrk/", "LinkedIn link"],
+    ["https://www.instagram.com/nitishkmrk/", "Instagram link"],
+  ];
+  const missing = required.filter(([needle]) => !rendered.includes(needle));
+  if (!missing.length) {
+    console.log(`✔ <footer> — redesigned, all ${required.length} original content items carried over`);
+    return 0;
+  }
+  console.log("✘ <footer> — redesigned but content was lost:");
+  missing.forEach(([, what]) => console.log(`   missing: ${what}`));
+  return 1;
+}
+
 const diffs = [];
 function compare(a, b, path) {
   if (diffs.length > 25) return;
@@ -125,8 +157,8 @@ function compare(a, b, path) {
 
 let failed = 0;
 for (const part of ["head", "body"]) {
-  const a = normalise(pick(parse(original), part), {});
-  const b = normalise(pick(parse(rendered), part), {});
+  const a = stripFooter(normalise(pick(parse(original), part), {}));
+  const b = stripFooter(normalise(pick(parse(rendered), part), {}));
   diffs.length = 0;
 
   // Head tag order is rearranged by React's hoisting, so compare it as a set.
@@ -199,4 +231,6 @@ for (const part of ["head", "body"]) {
     diffs.forEach((d) => console.log(`   ${d}`));
   }
 }
+failed += checkFooterContent();
+
 process.exit(failed ? 1 : 0);

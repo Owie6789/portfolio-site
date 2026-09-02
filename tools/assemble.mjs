@@ -70,13 +70,16 @@ ${head}
 }
 `;
 
+const pageBody = body.replace(/^[ \t]*__FOOTER__[ \t]*$/m, "      <Footer />");
+
 const page = `${banner}
+import Footer from "./footer";
 import Scripts from "./scripts";
 
 export default function Page() {
   return (
     <>
-${body}
+${pageBody}
       <Scripts />
     </>
   );

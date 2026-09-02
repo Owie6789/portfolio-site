@@ -178,6 +178,12 @@ you added it.
   their work. This broke GSAP transforms and the Cloudflare email decode.
 - 2026-09-02 Leave responsiveness and the mobile viewport alone until the user
   starts that pass.
+- 2026-09-02 The footer is now a designed component, not a port, at the user's
+  request. New design work is allowed when asked for by name; the rest of the
+  page stays verbatim. Keep original content, only the treatment changes.
+- 2026-09-02 Design direction for this site: cold moon-white greyish surfaces,
+  checkerboard edge, very condensed Instrument Sans display type, springy
+  half-spin on the asterisk. Mobile gets the same treatment, not a cut-down.
 - 2026-09-02 `public/dist/` is excluded from the workspace snapshot layer, the
   name `dist` is on the platform's ignore list. Those two files disappear
   between sessions even though git tracks them. Run `npm run check-assets`, now
