@@ -76,6 +76,9 @@ untouched reference:
 - `.caption`'s first line becomes "Emmanuel Owie".
 - `.geo` becomes "Based in Edo State, NG — WAT", and its clock placeholder is
   baked at generate time from `Africa/Lagos`.
+- `.nav-list`: Interactions / Blog / X become About / Works / Github. **No
+  destinations yet**, same as the footer pair, so they are `href="#"` with the
+  `target="_blank"` removed.
 - `.logomark`, the giant hero wordmark, drops its seven hand-drawn KHAGWAL
   paths for OWIE drawn from Inter (opsz 32, wght 700, -0.02em) by
   `tools/make-wordmark.py` into `tools/wordmark.json`. Outlines rather than
@@ -161,7 +164,13 @@ copy. It currently holds three:
   wordmark against its own viewport.
 - Hero headline: line-height from 1.2 down to 1.02 with tighter tracking, and
   one sentence per line below 980px. The original collapses them onto one
-  running line there with `.hero h1 span{display:inline}`.
+  running line there with `.hero h1 span{display:inline}`. The same 1.02 ratio
+  is applied to `.display-large`, `.display-medium`, `.display-small` and
+  `.title-large`, and relaxes to 1.06 below 768px.
+- Body text: the original sets `Some Sans, sans-serif` on `*`; that is
+  overridden to `Geist, "Some Sans", sans-serif`. Geist is cut to weights 400
+  and 600 and subset to Latin plus the punctuation the page uses, 11 KB each,
+  by `tools/make-body-font.py`. Some Sans stays in the stack as the fallback.
 
 ## Known issues
 

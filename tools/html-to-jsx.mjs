@@ -26,17 +26,24 @@ const find = (node, tag) => {
   return null;
 };
 
-/* Identity swap. Four places:
+/* Identity swap. Five places:
      - .logo, the stacked name at the top of the page
      - .logomark, the giant hero wordmark, whose seven hand-drawn KHAGWAL paths
        are replaced by OWIE drawn from Inter by tools/make-wordmark.py
      - the first line of .caption, the greeting
      - .geo, the location and timezone line
+     - .nav-list, whose Interactions / Blog / X entries become About / Works /
+       Github. TODO: real destinations; they are placeholders, as in the footer
    Everything else that says Nitish Khagwal (page title, meta, JSON-LD, the
    portrait alt text, image filenames) is left alone deliberately. */
 const NAME = { first: "Owie", last: "Emmanuel" };
 const GREETING = "Hey! I’m Emmanuel Owie";
 const GEO = { place: "Based in Edo State, NG", zone: "WAT" };
+const NAV = [
+  { was: "Interactions", label: "About", href: "#" },
+  { was: "Blog", label: "Works", href: "#" },
+  { was: "X", label: "Github", href: "#" },
+];
 // Placeholder only. app/local-time.tsx overwrites this with live WAT once the
 // original bundle has finished grabbing the node. Baked at generate time so a
 // no-JS visitor still sees a plausible Lagos time rather than an IST one.
@@ -67,6 +74,7 @@ function applyIdentity(root) {
   let mark = 0;
   let greeting = 0;
   let geo = 0;
+  let nav = 0;
 
   walk(root, (n) => {
     if (classOf(n).split(/\s+/).includes("logo")) {
@@ -116,6 +124,20 @@ function applyIdentity(root) {
       });
     }
 
+    if (classOf(n) === "nav-list") {
+      walk(n, (a) => {
+        if (a.tagName !== "a") return;
+        const text = (a.childNodes ?? []).find((c) => c.nodeName === "#text");
+        const entry = NAV.find((e) => e.was === text?.value.trim());
+        if (!entry) return;
+        text.value = entry.label;
+        setAttr(a, "href", entry.href);
+        // placeholders should not open a new tab
+        a.attrs = a.attrs.filter((x) => x.name !== "target");
+        nav++;
+      });
+    }
+
     if (classOf(n) === "logomark") {
       const svg = (n.childNodes ?? []).find((c) => c.tagName === "svg");
       if (!svg) return;
@@ -138,7 +160,8 @@ function applyIdentity(root) {
   console.log(
     `identity: ${logo} logo words -> ${NAME.first} ${NAME.last}, ` +
       `${mark} wordmark -> ${wordmark.word} (${wordmark.paths.length} paths), ` +
-      `${greeting} greeting -> ${GREETING}, ${geo} geo -> ${GEO.place} / ${GEO.zone}`
+      `${greeting} greeting -> ${GREETING}, ${geo} geo -> ${GEO.place} / ${GEO.zone}, ` +
+      `${nav} nav -> ${NAV.map((e) => e.label).join(" / ")}`
   );
 }
 

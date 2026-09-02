@@ -75,6 +75,19 @@ const RENAMED = new Map([
   ["Based in Edo State, NG", "«place»"],
   ["— IST", "«zone»"],
   ["— WAT", "«zone»"],
+  ["Interactions", "«nav1»"],
+  ["About", "«nav1»"],
+  ["Blog", "«nav2»"],
+  ["Works", "«nav2»"],
+  ["X", "«nav3»"],
+  ["Github", "«nav3»"],
+]);
+// The three renamed nav links also lose their href and target.
+const NAV_HREFS = new Set([
+  "https://www.khagwal.com/interactions",
+  "https://medium.com/@nitishkmrk",
+  "https://twitter.com/nitishkmrk",
+  "#",
 ]);
 const CLOCK = /^\d{1,2}:\d{2} [ap]m$/;
 
@@ -85,6 +98,8 @@ function foldText(v) {
 }
 
 function foldAttr(name, value) {
+  if (name === "href" && NAV_HREFS.has(value)) return "«navhref»";
+  if (name === "target" && value === "_blank") return "«target»";
   if (name !== "aria-label") return value;
   let out = value;
   for (const [from, to] of RENAMED) out = out.replace(from, to);
@@ -107,7 +122,16 @@ function normalise(node, seen) {
   const children = (node.childNodes ?? [])
     .map((c) => normalise(c, seen))
     .filter(Boolean);
-  return { t: node.tagName ?? node.nodeName, a: attrs, c: children };
+
+  // The renamed nav links point at placeholders, so they also lose the
+  // target="_blank" the originals carried. Ignore target on those three only.
+  const isNavPlaceholder =
+    node.tagName === "a" && attrs.some(([k, v]) => k === "href" && v === "«navhref»");
+  const finalAttrs = isNavPlaceholder
+    ? attrs.filter(([k]) => k !== "target")
+    : attrs;
+
+  return { t: node.tagName ?? node.nodeName, a: finalAttrs, c: children };
 }
 
 const pick = (doc, tag) => {

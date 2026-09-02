@@ -61,18 +61,18 @@ export default function Page() {
                   </a>
                 </li>
                 <li>
-                  <a className="body-medium" rel="noopenner" href="https://www.khagwal.com/interactions">
-                    {"Interactions"}
+                  <a className="body-medium" rel="noopenner" href="#">
+                    {"About"}
                   </a>
                 </li>
                 <li>
-                  <a className="body-medium" target="_blank" rel="noopenner" href="https://medium.com/@nitishkmrk">
-                    {"Blog"}
+                  <a className="body-medium" rel="noopenner" href="#">
+                    {"Works"}
                   </a>
                 </li>
                 <li>
-                  <a className="body-medium" target="_blank" rel="noopenner" href="https://twitter.com/nitishkmrk">
-                    {"X"}
+                  <a className="body-medium" rel="noopenner" href="#">
+                    {"Github"}
                   </a>
                 </li>
               </ul>
@@ -143,7 +143,7 @@ export default function Page() {
               <span className="title-large">
                 {"— WAT "}
                 <span className="timestamp">
-                  {"9:36 pm"}
+                  {"9:48 pm"}
                 </span>
               </span>
             </p>

@@ -5,6 +5,34 @@
  * and should be listed in README.md.
  */
 
+/* Body text.
+ *
+ * The original sets `Some Sans, sans-serif` on `*`, so one override at the
+ * same specificity moves the whole page. Geist is cut to the two weights that
+ * replaces and subset to Latin plus the punctuation this page uses, 11 KB
+ * each, by tools/make-body-font.py. Some Sans stays in the stack as the
+ * fallback, so nothing reflows into a system face if a request fails.
+ */
+@font-face {
+  font-family: "Geist";
+  src: url("/live/font/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/live/font/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: Geist, "Some Sans", sans-serif;
+}
+
 /* Hero headline.
  *
  * The original sets 3.75rem type on a 4.5rem line, a 1.2 ratio that is loose
@@ -20,6 +48,15 @@
   line-height: 1.02;
 }
 
+/* The same ratio across the rest of the display sizes. The original runs them
+   all at roughly 1.2, which is a reading ratio, not a display one. */
+.display-large,
+.display-medium,
+.display-small,
+.title-large {
+  line-height: 1.02;
+}
+
 @media only screen and (max-width: 980px) {
   .hero h1 span {
     display: block;
@@ -30,6 +67,13 @@
   /* 1.75rem type here, so the tracking has to scale back with it. */
   .hero h1.title-large {
     letter-spacing: -0.045rem;
+    line-height: 1.06;
+  }
+
+  .display-large,
+  .display-medium,
+  .display-small,
+  .title-large {
     line-height: 1.06;
   }
 }
