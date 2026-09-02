@@ -184,6 +184,12 @@ you added it.
 - 2026-09-02 Design direction for this site: cold moon-white greyish surfaces,
   checkerboard edge, very condensed Instrument Sans display type, springy
   half-spin on the asterisk. Mobile gets the same treatment, not a cut-down.
+- 2026-09-02 Interaction preferences for this site: micro-interactions belong
+  on the element itself, never on its parent container. Magnetic pull plus a
+  springy half spin on the asterisk. Links carry a permanent underline that
+  thickens on hover, with the arrow travelling up and to the right.
+- 2026-09-02 Display type must be visibly tracked out. Tight default spacing
+  reads as cramped at large sizes.
 - 2026-09-02 `public/dist/` is excluded from the workspace snapshot layer, the
   name `dist` is on the platform's ignore list. Those two files disappear
   between sessions even though git tracks them. Run `npm run check-assets`, now

@@ -5,18 +5,32 @@
  * tools/generated-footer-original.jsx.txt. All original content is carried
  * over, including the Cloudflare email markup byte-for-byte.
  *
- * The headline is SVG, not styled text. Its viewBox comes from the real ink
+ * The headline is SVG, not styled text. Its viewBox is built from the real ink
  * bounds of the string in Instrument Sans at wdth 75 / wght 700, measured by
- * tools/measure-headline.py and recorded in app/headline-metrics.json. That
- * makes it fill the panel width exactly at every viewport instead of being
- * guessed at with clamp(), and it cannot silently fall back to a wrong face.
+ * tools/measure-headline.py and recorded in app/headline-metrics.json, plus
+ * the tracking added below. It therefore fills the panel width exactly at
+ * every viewport, and the letter spacing is real spacing rather than a
+ * stretched font.
  */
+import FooterAsterisk from "./footer-asterisk";
 import styles from "./footer.module.css";
 
-// Ink bounds of "Let’s talk" in font units, from app/headline-metrics.json.
 const HEADLINE = "Let’s talk";
+
+// Ink bounds in font units (upm 1000), from app/headline-metrics.json.
 const INK = { x0: 50, x1: 3278, yTop: 742, yBottom: -10 };
-const BOX = { w: INK.x1 - INK.x0, h: INK.yTop - INK.yBottom };
+
+// Tracking, in the same units. The reference sits wide and open, so the
+// letters get 5.2% of an em between them and the word gap is opened further.
+const LETTER = 52;
+const WORD = 120;
+
+const gaps = HEADLINE.length - 1;
+const spaces = (HEADLINE.match(/ /g) || []).length;
+const BOX = {
+  w: INK.x1 - INK.x0 + LETTER * gaps + WORD * spaces,
+  h: INK.yTop - INK.yBottom,
+};
 
 // The font's own asterisk outline, so the shape matches the headline and
 // rotation happens around the true centre of the ink.
@@ -43,13 +57,13 @@ export default function Footer() {
         </div>
 
         <div className={styles.body}>
-          <svg
-            className={styles.asterisk}
-            viewBox="0 0 346 330"
-            aria-hidden="true"
-          >
-            <path d={ASTERISK} transform="translate(-30, 740) scale(1, -1)" />
-          </svg>
+          <div className={styles.top}>
+            <FooterAsterisk
+              path={ASTERISK}
+              className={styles.asterisk}
+              fieldClassName={styles.asteriskField}
+            />
+          </div>
 
           <h2 className={styles.headline}>
             <svg
@@ -57,7 +71,13 @@ export default function Footer() {
               role="img"
               aria-label={HEADLINE}
             >
-              <text x={-INK.x0} y={INK.yTop} fontSize={1000}>
+              <text
+                x={-INK.x0}
+                y={INK.yTop}
+                fontSize={1000}
+                letterSpacing={LETTER}
+                wordSpacing={WORD}
+              >
                 {HEADLINE}
               </text>
             </svg>
@@ -85,8 +105,10 @@ export default function Footer() {
               {SOCIALS.map((s) => (
                 <li key={s.label}>
                   <a href={s.href} target="_blank" rel="noopenner">
-                    {s.label}
-                    <span aria-hidden="true"> ↗</span>
+                    <span className={styles.linkLabel}>{s.label}</span>
+                    <span className={styles.arrow} aria-hidden="true">
+                      ↗
+                    </span>
                   </a>
                 </li>
               ))}
