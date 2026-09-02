@@ -33,7 +33,9 @@
   --moon-2: #ccd2da;
   --ink: #101216;
   --ink-soft: #565e6a;
-  --tooth: 22px;
+  --tooth: 22px; /* cell width */
+  --row-top: 34px; /* upper row: taller than wide */
+  --row-bottom: 20px;
   --band: 18px;
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --pad: clamp(1.25rem, 3.2vw, 3rem);
@@ -77,15 +79,31 @@
   width: 100%;
 }
 
-.edgeTeeth {
-  background-image:
-    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%),
-    linear-gradient(45deg, var(--ink) 25%, transparent 25%, transparent 75%, var(--ink) 75%);
-  background-position: 0 0, var(--tooth) var(--tooth);
-  background-size: calc(var(--tooth) * 2) calc(var(--tooth) * 2);
+/* One element per row, each a purely horizontal repeating gradient. The 45deg
+   two-layer trick renders a diagonal seam across every cell where the two
+   gradients meet; horizontal hard stops have vertical edges only, so there is
+   nothing to alias. The rows are offset by one cell to interlock. */
+.edgeRow {
   display: block;
-  height: calc(var(--tooth) * 2);
   width: 100%;
+}
+
+.edgeRowTop {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--ink) 0 var(--tooth),
+    transparent var(--tooth) calc(var(--tooth) * 2)
+  );
+  height: var(--row-top);
+}
+
+.edgeRowBottom {
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0 var(--tooth),
+    var(--ink) var(--tooth) calc(var(--tooth) * 2)
+  );
+  height: var(--row-bottom);
 }
 
 .body {
@@ -209,8 +227,6 @@
 .links {
   display: flex;
   flex-wrap: wrap;
-  position: relative;
-  top: -5px;
   gap: 0 clamp(0.875rem, 2vw, 1.75rem);
   list-style: none;
   margin: 0;
@@ -219,21 +235,30 @@
 
 .links a,
 .email {
-  align-items: center;
+  align-items: baseline;
   color: var(--ink-soft);
   display: inline-flex;
   gap: 0.28em;
-  min-height: 44px;
   position: relative;
   text-decoration: none;
   transition: color 150ms ease-out;
+}
+
+/* Touch-sized hit area, painted nowhere, centred on the label. Built from a
+   pseudo-element so it cannot drag the text off the baseline the way a
+   min-height did. */
+.links a::before,
+.email::before {
+  content: "";
+  inset: -14px -6px;
+  position: absolute;
 }
 
 /* A plain rule, no animation on it. The hover interest is the shuffle. */
 .links a::after,
 .email::after {
   background-color: currentColor;
-  bottom: 12px;
+  bottom: -0.22em;
   content: "";
   height: 1px;
   left: 0;
@@ -275,6 +300,8 @@
 @media only screen and (max-width: 576px) {
   .footer {
     --tooth: 14px;
+    --row-top: 21px;
+    --row-bottom: 13px;
     --band: 11px;
   }
 

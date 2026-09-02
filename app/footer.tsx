@@ -41,7 +41,7 @@ const GARA = {
    and tracks it -0.03em. */
 const SIZE_INTER = 1000;
 const SIZE_GARA = 1050;
-const TRACK_INTER = -12;
+const TRACK_INTER = -34;
 const TRACK_GARA = -31.5;
 const GAP = 160; // optical space between the words
 
@@ -99,7 +99,8 @@ export default function Footer() {
         {/* Stamp edge: solid band, then square teeth biting into the panel. */}
         <div className={styles.edge} aria-hidden="true">
           <span className={styles.edgeBand} />
-          <span className={styles.edgeTeeth} />
+          <span className={`${styles.edgeRow} ${styles.edgeRowTop}`} />
+          <span className={`${styles.edgeRow} ${styles.edgeRowBottom}`} />
         </div>
 
         <div className={styles.body}>

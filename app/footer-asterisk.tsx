@@ -16,10 +16,16 @@ import { useCallback, useEffect, useRef } from "react";
 
 const PULL = 0.34; // fraction of the cursor's offset the glyph travels
 const MAX = 26; // px cap, so it never leaves its corner
-const STIFF = 62; // position: low and slow, so it drifts toward the cursor
-const DAMP = 13;
-const SCALE_STIFF = 170; // the hover swell stays quick
-const SCALE_DAMP = 16;
+/* Two regimes for the position spring. While the cursor is inside, it is soft
+   and slow so the glyph drifts after it. On release it stiffens to roughly
+   critical damping (damping ~ 2*sqrt(stiffness)) so a quick in-and-out settles
+   straight home instead of wobbling around it. */
+const TRACK_STIFF = 62;
+const TRACK_DAMP = 16;
+const RETURN_STIFF = 130;
+const RETURN_DAMP = 23;
+const SCALE_STIFF = 200; // the hover swell stays quick and lands flat
+const SCALE_DAMP = 28;
 const REST = 0.05;
 
 type Axis = { value: number; target: number; velocity: number };
@@ -53,13 +59,17 @@ export default function FooterAsterisk({
   const frame = useRef(0);
   const last = useRef(0);
 
+  const homing = useRef(false);
+
   const tick = useCallback((now: number) => {
     const dt = Math.min((now - (last.current || now)) / 1000, 1 / 30);
     last.current = now;
 
+    const stiff = homing.current ? RETURN_STIFF : TRACK_STIFF;
+    const damp = homing.current ? RETURN_DAMP : TRACK_DAMP;
     const moving = [
-      step(x.current, dt, STIFF, DAMP),
-      step(y.current, dt, STIFF, DAMP),
+      step(x.current, dt, stiff, damp),
+      step(y.current, dt, stiff, damp),
       step(scale.current, dt, SCALE_STIFF, SCALE_DAMP),
     ].some(Boolean);
 
@@ -95,6 +105,7 @@ export default function FooterAsterisk({
       const r = e.currentTarget.getBoundingClientRect();
       const dx = (e.clientX - (r.left + r.width / 2)) * PULL;
       const dy = (e.clientY - (r.top + r.height / 2)) * PULL;
+      homing.current = false;
       x.current.target = Math.max(-MAX, Math.min(MAX, dx));
       y.current.target = Math.max(-MAX, Math.min(MAX, dy));
       wake();
@@ -112,6 +123,7 @@ export default function FooterAsterisk({
   );
 
   const onLeave = useCallback(() => {
+    homing.current = true;
     x.current.target = 0;
     y.current.target = 0;
     scale.current.target = 1;
