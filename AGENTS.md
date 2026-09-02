@@ -78,6 +78,32 @@ provenance in each `SOURCE.txt`. Load the full file before acting on one.
 | `find-skills` | Looking for a capability that might already exist as a skill |
 | `unslop` | Always. Every piece of writing |
 
+## Loading skills into context
+
+The skills folder holds about 1 MB of instructions, roughly 250k tokens. No
+agent loads it all at once. Load on demand, in this order:
+
+1. This file, always.
+2. `skills/unslop/SKILL.md`, always, before writing anything.
+3. The 2 to 4 skills the current task names. Full file, not a skim.
+4. For impeccable, load `SKILL.md` to route, then the one
+   `reference/<command>.md` you need, then `reference/craft-floor.md` right
+   before editing UI.
+
+Never load the data files. `impeccable/scripts/data/font-index.json` is 1.1 MB,
+`ui-ux-pro-max/data/` holds 800 KB of icon JSON and 732 KB of Google Fonts CSV.
+Query them with grep when a specific lookup is needed.
+
+## When a skill conflicts with this repo
+
+The non-negotiables win. `high-end-visual-design` bans certain fonts and
+demands a fresh layout archetype every time. `impeccable` craft-floor refuses
+kickers and same-size card grids. This repo is a verbatim port of someone
+else's design, so none of that applies to `app/page.tsx` or the original CSS.
+Apply those skills to new surfaces the user asks for, never retroactively to
+the ported page. If a skill's rule would change the original design, say so and
+ask first.
+
 ## Condensed rules
 
 ### Writing, from `unslop`
@@ -152,5 +178,11 @@ you added it.
   their work. This broke GSAP transforms and the Cloudflare email decode.
 - 2026-09-02 Leave responsiveness and the mobile viewport alone until the user
   starts that pass.
+- 2026-09-02 `public/dist/` is excluded from the workspace snapshot layer, the
+  name `dist` is on the platform's ignore list. Those two files disappear
+  between sessions even though git tracks them. Run `npm run check-assets`, now
+  wired into dev, build and verify, before trusting a local run.
+- 2026-09-02 Load the relevant SKILL.md files into context before design or
+  review work, do not work from the condensed summary alone.
 - 2026-09-02 Answer the actual question. When the user points at one element,
   identify that element, do not restate the whole situation.
