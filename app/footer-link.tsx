@@ -23,10 +23,14 @@ export default function FooterLink({
   label,
   href,
   className,
+  slotClassName,
+  ghostClassName,
 }: {
   label: string;
   href: string;
   className?: string;
+  slotClassName?: string;
+  ghostClassName?: string;
 }) {
   const [text, setText] = useState(label);
   const timer = useRef(0);
@@ -82,7 +86,13 @@ export default function FooterLink({
       onPointerLeave={stop}
       onBlur={stop}
     >
-      <span aria-hidden="true">{text}</span>
+      {/* The real label sizes the box, hidden but laid out; the shuffling copy
+          sits on top of it. Same width throughout, so neither the row nor the
+          underline moves while glyphs swap. */}
+      <span className={slotClassName} aria-hidden="true">
+        <span className={ghostClassName}>{label}</span>
+        <span>{text}</span>
+      </span>
     </a>
   );
 }

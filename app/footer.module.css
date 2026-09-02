@@ -312,11 +312,19 @@
   font-variant-numeric: tabular-nums;
 }
 
-.links a span {
-  display: inline-block;
-  /* Widest label, so a swapped glyph cannot twitch the row's width. */
-  min-width: 5ch;
-  text-align: left;
+/* Two copies stacked in one grid cell: the hidden real label holds the width,
+   the visible one shuffles. No reserved slack, so the underline ends where the
+   word does. */
+.linkSlot {
+  display: inline-grid;
+}
+
+.linkSlot > * {
+  grid-area: 1 / 1;
+}
+
+.linkGhost {
+  visibility: hidden;
 }
 
 .email:focus-visible,

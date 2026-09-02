@@ -156,7 +156,12 @@ export default function Footer() {
             <ul className={styles.links}>
               {LINKS.map((l) => (
                 <li key={l.label}>
-                  <FooterLink label={l.label} href={l.href} />
+                  <FooterLink
+                    label={l.label}
+                    href={l.href}
+                    slotClassName={styles.linkSlot}
+                    ghostClassName={styles.linkGhost}
+                  />
                 </li>
               ))}
             </ul>
