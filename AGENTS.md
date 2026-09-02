@@ -187,6 +187,10 @@ you added it.
 - 2026-09-02 Licensed fonts come from the user, in `footer fonts.zip` on
   `main`. Check that branch for supplied assets before concluding something
   cannot be fetched.
+- 2026-09-02 Restyle ported elements in `app/overrides.css`, never by editing
+  `public/dist/main.css@v1.0.10.css`. CSS modules reject bare `:global()`
+  selectors, so a plain global sheet imported from a hand-written component is
+  the route.
 - 2026-09-02 Footer link set is About and Works only; the six social links are
   gone. Destinations still needed.
 - 2026-09-02 Interaction preferences for this site: micro-interactions belong

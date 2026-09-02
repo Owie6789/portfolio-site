@@ -94,6 +94,15 @@ user supplied in `footer fonts.zip` on `main`). The same script prints the ink
 metrics the SVG headline needs; re-run it if the copy or the fonts change. Note
 that it subsets the Garamond in place, so restore it from `main` first.
 
+## Overrides on ported elements
+
+`app/overrides.css` is the one place where the port's own elements get
+restyled, kept separate so `public/dist/main.css@v1.0.10.css` stays a verbatim
+copy. It currently holds a single rule: `.glass-overlay { pointer-events: none }`.
+That element is fixed across the bottom of the viewport at `z-index: 1` and
+paints only a blur, but it was intercepting every pointer event aimed at the
+footer links beneath it.
+
 ## Known issues
 
 **Grey boxes** — two different things, and only one is a bug:

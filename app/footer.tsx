@@ -12,6 +12,7 @@
  * recorded in app/headline-metrics.json, so the line fills the panel exactly
  * at any viewport.
  */
+import "./overrides.css";
 import FooterAsterisk from "./footer-asterisk";
 import FooterShuffle from "./footer-shuffle";
 import FooterYear from "./footer-year";

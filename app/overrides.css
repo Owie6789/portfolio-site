@@ -1,0 +1,15 @@
+/* Overrides on the ported page's own elements.
+ *
+ * Kept in a separate global sheet so public/dist/main.css@v1.0.10.css stays a
+ * verbatim copy of the original. Anything in here is a deliberate deviation
+ * and should be listed in README.md.
+ */
+
+/* .glass-overlay is fixed across the bottom of the viewport at z-index 1, so
+ * it swallowed every pointer event aimed at what sits beneath it, including
+ * the footer's links. It paints a blur and nothing else, so it has no reason
+ * to be a hit target.
+ */
+.glass-overlay {
+  pointer-events: none;
+}
