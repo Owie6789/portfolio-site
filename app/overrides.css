@@ -78,6 +78,44 @@
   }
 }
 
+/* Signature over the hero wordmark. difference blending means it carries no
+ * colour of its own: white against the dark hero, inverted where it crosses
+ * the mark underneath.
+ */
+.logomark {
+  position: relative;
+}
+
+.hero-signature {
+  bottom: -6%;
+  left: 4%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  position: absolute;
+  width: 62%;
+  z-index: 2;
+}
+
+.hero-signature svg {
+  display: block;
+  height: auto;
+  overflow: visible;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .hero-signature {
+    bottom: -10%;
+    width: 78%;
+  }
+}
+
+/* The wordmark letters scale toward their own centre on scroll. */
+.wordmark-scale {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
 /* The hero wordmark is transformed on scroll. Its viewBox carries 3 units of
  * air on every side (see tools/make-wordmark.py) and this stops the SVG
  * viewport clipping the outer edge of the letterforms.

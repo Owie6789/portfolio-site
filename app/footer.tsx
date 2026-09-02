@@ -16,7 +16,6 @@ import "./overrides.css";
 import FooterAsterisk from "./footer-asterisk";
 import FooterEmail from "./footer-email";
 import FooterLink from "./footer-link";
-import Signature from "./signature";
 import FooterYear from "./footer-year";
 import styles from "./footer.module.css";
 
@@ -144,8 +143,6 @@ export default function Footer() {
               </text>
             </svg>
           </h2>
-
-          <Signature className={styles.signature} />
 
           <div className={styles.meta}>
             <div className={styles.metaLeft}>

@@ -17,6 +17,7 @@
  * present — same DOM, same scripts, just no longer racing React.
  */
 import Script from "next/script";
+import HeroSignature from "./hero-signature";
 import LocalTime from "./local-time";
 import SmoothScroll from "./smooth-scroll";
 import WordmarkWeight from "./wordmark-weight";
@@ -33,6 +34,7 @@ export default function Scripts() {
       <SmoothScroll />
       <LocalTime />
       <WordmarkWeight />
+      <HeroSignature />
     </>
   );
 }

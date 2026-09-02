@@ -156,7 +156,11 @@ function applyIdentity(root) {
          data attribute. app/wordmark-weight.tsx interpolates between the two
          on scroll. Instances of one variable font share their point structure,
          so this is a number-for-number blend and needs no font at runtime. */
-      svg.childNodes = wordmark.paths.map((d, i) =>
+      /* The letters live in a group of their own. GSAP already writes a
+         transform on the svg element, so the scroll scale goes on the group
+         instead of fighting it for the same property. */
+      const group = el("g", [{ name: "class", value: "wordmark-scale" }]);
+      group.childNodes = wordmark.paths.map((d, i) =>
         el("path", [
           { name: "class", value: "wordmark-letter" },
           { name: "d", value: d },
@@ -164,6 +168,7 @@ function applyIdentity(root) {
           { name: "fill", value: "var(--on-neutral-inverse)" },
         ])
       );
+      svg.childNodes = [group];
       mark++;
     }
   });

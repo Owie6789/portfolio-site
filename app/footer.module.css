@@ -231,23 +231,6 @@
   }
 }
 
-/* Signature. difference blending means it needs no colour of its own: it
-   comes out black on the moon panel and white where it crosses the ink
-   checker. */
-.signature {
-  margin: 0 0 clamp(0.5rem, 1.5vw, 1.25rem);
-  mix-blend-mode: difference;
-  pointer-events: none;
-  width: min(100%, 34rem);
-}
-
-.signature svg {
-  display: block;
-  height: auto;
-  overflow: visible;
-  width: 100%;
-}
-
 .meta {
   align-items: baseline;
   display: flex;
